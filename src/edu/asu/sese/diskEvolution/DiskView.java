@@ -1,9 +1,6 @@
 package edu.asu.sese.diskEvolution;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
