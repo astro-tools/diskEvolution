@@ -1,6 +1,5 @@
 package edu.asu.sese.diskEvolution;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
