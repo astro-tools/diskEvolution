@@ -1,6 +1,9 @@
 package edu.asu.sese.diskEvolution;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,12 +26,16 @@ public class DiskView extends JFrame {
 
     private void setFrameContents() {
         JPanel content = new JPanel();
-        content.setLayout(new FlowLayout());
+        BorderLayout layout = new BorderLayout();
+        layout.setHgap(5);
+        layout.setVgap(5);
+        content.setLayout(layout);
         
-        content.add(new JLabel("Σ(r)"));
+        content.add(new JLabel("Σ(r)"), BorderLayout.WEST);
+        content.add(new JLabel("r", JLabel.CENTER), BorderLayout.PAGE_END);
         
         plot = new RadialPlotView(radialGrid, densityGrid);
-        content.add(plot);
+        content.add(plot, BorderLayout.CENTER);
         
         this.setContentPane(content);
         this.pack();
