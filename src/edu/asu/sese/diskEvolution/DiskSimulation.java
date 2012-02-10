@@ -13,7 +13,10 @@ public class DiskSimulation {
         int intervalCount = 50;
         radialGrid = new RadialGrid(rmin , rmax , deltar0 , intervalCount);
         densityGrid = new DensityGrid(radialGrid);
-        densityGrid.initialize(1e3, PhysicalConstants.auInCm, 1.5);
+        double density0 = 1e3;
+		double radius0 = PhysicalConstants.auInCm;
+		double exponent = 1.5;
+		densityGrid.initialize(density0, radius0, exponent);
         
         System.out.print("Running DiskSimulation");
         
