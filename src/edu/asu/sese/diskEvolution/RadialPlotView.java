@@ -15,7 +15,7 @@ public class RadialPlotView extends JPanel {
     
     private static final long serialVersionUID = 1L;
     private RadialGrid radialGrid;
-    private DensityGrid densityGrid;
+    private MidpointGrid densityGrid;
     private double minimumRadius;
     private double maximumRadius;
     private double minimumDensity;
@@ -25,7 +25,7 @@ public class RadialPlotView extends JPanel {
     int height;
   
     
-    public RadialPlotView(RadialGrid radialGrid, DensityGrid densityGrid) {
+    public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
         this.radialGrid = radialGrid;
         this.densityGrid = densityGrid;
         minimumRadius = 0.9*radialGrid.getMinimumRadius();
