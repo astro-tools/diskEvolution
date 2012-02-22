@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 public class DiskView extends JFrame {
     private static final long serialVersionUID = 1L;
     RadialPlotView plot;
-    private DensityGrid densityGrid;
+    private MidpointGrid densityGrid;
     private RadialGrid radialGrid;
 
-    public DiskView(RadialGrid radialGrid, DensityGrid densityGrid) {
+    public DiskView(RadialGrid radialGrid, MidpointGrid densityGrid) {
         this.radialGrid = radialGrid;
         this.densityGrid = densityGrid;
         

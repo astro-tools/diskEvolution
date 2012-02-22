@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DensityGridTest {
-    DensityGrid grid;
+public class ViscosityGridTest {
+    ViscosityGrid grid;
     RadialGrid radialGrid;
     int zoneCount = 100;
     
@@ -16,7 +16,7 @@ public class DensityGridTest {
         double rmax = 40.0 * PhysicalConstants.auInCm;
         double deltar0 = 0.01 * PhysicalConstants.auInCm;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
-        grid = new DensityGrid(radialGrid);
+        grid = new ViscosityGrid(radialGrid);
     }
     
     @Test
@@ -32,9 +32,9 @@ public class DensityGridTest {
     
     @Test
     public void testInitialization() {
-        grid.initializeWithPowerLaw(1.0e3, PhysicalConstants.auInCm, -1.5);
+        grid.initializeWithPowerLaw(1.0e12, PhysicalConstants.auInCm, 1.0);
         double rcheck = Math.sqrt(0.1 * 0.11);
-        double expected = 1.0e3 * Math.pow(rcheck, -1.5);
-        assertEquals(expected, grid.getValue(0), 1e-10);
+        double expected = 1.0e12 * rcheck;
+        assertEquals(expected, grid.getValue(0), 1e-3);
     }
 }
