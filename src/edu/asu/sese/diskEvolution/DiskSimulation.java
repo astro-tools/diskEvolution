@@ -15,17 +15,13 @@ public class DiskSimulation {
         radialGrid = new RadialGrid(rmin , rmax , deltar0 , intervalCount);
         
         densityGrid = new DensityGrid(radialGrid);
-<<<<<<< HEAD
         double density0 = 1e3;
 		double radius0 = PhysicalConstants.auInCm;
-		double exponent = 1.5;
-		densityGrid.initialize(density0, radius0, exponent);
-=======
-        densityGrid.initializeWithPowerLaw(1e3, PhysicalConstants.auInCm, -1.5);
+		double exponent = -1.5;
+		densityGrid.initializeWithPowerLaw(density0, radius0, exponent);
         
         viscosityGrid = new ViscosityGrid(radialGrid);
-        viscosityGrid.initializeWithPowerLaw(1e12, PhysicalConstants.auInCm, 1.0)
->>>>>>> 1b2a2282f4778ce418d87b484ddde7464b974ab5
+        viscosityGrid.initializeWithPowerLaw(1e12, PhysicalConstants.auInCm, 1.0);
         
         System.out.print("Running DiskSimulation");
         
