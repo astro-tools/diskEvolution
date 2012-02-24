@@ -6,35 +6,32 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MassFlowGridTest {
-//    MassFlowGrid grid;
-    RadialGrid radialGrid;
-    int zoneCount = 100;
-    
-    @Before
-    public void setup() { 
-        double rmin = 0.1 * PhysicalConstants.auInCm;
-        double rmax = 40.0 * PhysicalConstants.auInCm;
-        double deltar0 = 0.01 * PhysicalConstants.auInCm;
-        radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
-//        grid = new MassFlowGrid(radialGrid);
-    }
-    
-    @Test
-    public void testGridSize() {
-//        assertEquals(zoneCount+1, grid.getCount());
-    }
-    
-    @Test
-    public void testGetValue() {
-//        assertEquals(0.0, grid.getValue(1), 1e-14);
-    }
+	RadialGrid radialGrid;
+	int zoneCount = 100;
+	MassFlowGrid grid;
 
-    
-//    @Test
-//    public void testInitialization() {
-//        grid.initializeWithPowerLaw(1.0e3, PhysicalConstants.auInCm, -1.5);
-//        double rcheck = Math.sqrt(0.1 * 0.11);
-//        double expected = 1.0e3 * Math.pow(rcheck, -1.5);
-//        assertEquals(expected, grid.getValue(0), 1e-10);
-//    }
+	@Before
+	public void setup() { 
+		double rmin = 0.1 * PhysicalConstants.auInCm;
+		double rmax = 40.0 * PhysicalConstants.auInCm;
+		double deltar0 = 0.01 * PhysicalConstants.auInCm;
+		radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
+		grid = new MassFlowGrid(radialGrid);
+	}
+
+	@Test
+	public void testGridSize() {
+		assertEquals(zoneCount+1, grid.getCount());
+	}
+
+	@Test
+	public void testGetValue() {
+		assertEquals(0.0, grid.getValue(1), 1e-14);
+	}
+	
+	@Test
+	public void testLastValueIsZero() {
+		assertEquals(0.0, grid.getValue(zoneCount), 1e-14);
+	}
 }
+
