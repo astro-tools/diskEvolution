@@ -16,7 +16,7 @@ public class MassFlowGridTest {
         double rmax = 40.0 * PhysicalConstants.auInCm;
         double deltar0 = 0.01 * PhysicalConstants.auInCm;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
-//        grid = new MassFlowGrid(radialGrid);
+        grid = new MassFlowGrid(radialGrid);
     }
     
     @Test
