@@ -11,7 +11,7 @@ public class DensityGridTest {
     int zoneCount = 100;
     
     @Before
-    public void setup() { 
+    public void setup() {
         double rmin = 0.1 * PhysicalConstants.auInCm;
         double rmax = 40.0 * PhysicalConstants.auInCm;
         double deltar0 = 0.01 * PhysicalConstants.auInCm;

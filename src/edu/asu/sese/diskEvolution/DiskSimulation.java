@@ -6,6 +6,7 @@ public class DiskSimulation {
     private static RadialGrid radialGrid;
     private static DensityGrid densityGrid;
     private static ViscosityGrid viscosityGrid;
+    private static MassFlowGrid massFlowGrid;
 
     public static void main(String[] args) {
         double rmin = 0.1 * PhysicalConstants.auInCm;
@@ -22,6 +23,8 @@ public class DiskSimulation {
         
         viscosityGrid = new ViscosityGrid(radialGrid);
         viscosityGrid.initializeWithPowerLaw(1e12, radius0, 1.0);
+        
+        massFlowGrid = new MassFlowGrid(radialGrid);
         
         System.out.print("Running DiskSimulation");
         
