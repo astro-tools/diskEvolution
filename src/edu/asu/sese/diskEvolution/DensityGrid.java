@@ -5,6 +5,5 @@ public class DensityGrid extends MidpointGrid {
     public DensityGrid(RadialGrid radialGrid) {
         super(radialGrid);
     }
-
     
 }

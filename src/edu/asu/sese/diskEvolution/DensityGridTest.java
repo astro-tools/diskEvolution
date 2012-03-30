@@ -23,7 +23,7 @@ public class DensityGridTest {
     public void testGridSize() {
         assertEquals(zoneCount, grid.getCount());
     }
-    
+        
     @Test
     public void testGetValue() {
         assertEquals(0.0, grid.getValue(1), 1e-14);
