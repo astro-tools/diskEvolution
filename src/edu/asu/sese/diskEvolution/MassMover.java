@@ -7,7 +7,6 @@ public class MassMover {
 	}
 
 	public void moveMass() {
-		// TODO Auto-generated method stub
 		
 	}
 
