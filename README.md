@@ -13,10 +13,11 @@ and graduate students Mike Lesniak (Ph. D. 2012) and Nikhil Monga.
 To build and run the project:
 
 1. Download the source using git or from a zip file.
-2. Run ant from the source directory.
+2. Add required external jar files to the lib directory as described in [[lib/README.md]].
+3. Run ant from the source directory.
 
     ant jar
-3. Run with “ant run” or the run script.
+4. Run with “ant run” or the run script.
 
     bash runApp.sh
 
