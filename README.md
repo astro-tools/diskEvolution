@@ -1,6 +1,6 @@
 # Introduction
 
-This is a project to port a disk evolution simulation to java.
+This is a project to port a proto-stellar disk evolution simulation to Java.
 
 A team of undergraduate researchers at Arizona State University
 is working with Prof. Shumway in Physics and
@@ -13,14 +13,17 @@ and graduate students Mike Lesniak (Ph. D. 2012) and Nikhil Monga.
 To build and run the project:
 
 1. Download the source using git or from a zip file.
-2. Add the required external jar files to the lib directory as 
-   described in lib/README.md.
+
+2. Add the required external jar files to the lib directory as described in 
+   [lib/README.md](https://github.com/shumway/diskEvolution/blob/master/lib/README).
+
 3. Run ant from the source directory.
 
-    ant jar
+        ant jar
+
 4. Run with “ant run” or the run script.
 
-    bash runApp.sh
+        bash runApp.sh
 
 # More information
 
