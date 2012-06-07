@@ -13,7 +13,8 @@ and graduate students Mike Lesniak (Ph. D. 2012) and Nikhil Monga.
 To build and run the project:
 
 1. Download the source using git or from a zip file.
-2. Add required external jar files to the lib directory as described in [[lib/README.md]].
+2. Add the required external jar files to the lib directory as 
+   described in lib/README.md.
 3. Run ant from the source directory.
 
     ant jar
