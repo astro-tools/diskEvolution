@@ -1,6 +1,6 @@
 # Introduction
 
-This is a project to port a proto-stellar disk evolution simulation to Java.
+This is a project to port a protoplanetary disk evolution simulation to Java.
 
 A team of undergraduate researchers at Arizona State University
 is working with Prof. Shumway in Physics and
