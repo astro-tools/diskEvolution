@@ -1,4 +1,8 @@
 .classpath
 .project
 .settings/
+.*.swp
+.DS_Store
 bin/
+build/
+*.jar

@@ -1,14 +1,26 @@
-<project name="diskEvolution" basedir="." default="main">
+<project name="diskEvolution" basedir="." default="main"
+        xmlns:ivy="antlib:org.apache.ivy.ant">
     <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
     <property name="build.dir" value="build"/>
+    <property name="contrib.dir" value="contrib"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="testClasses.dir" value="${build.dir}/testClasses"/>
     <property name="jar.dir" value="${build.dir}/jar"/>
     <property name="lib.dir" value="lib"/>
     <property name="main-class"
         value="edu.asu.sese.diskEvolution.DiskSimulation"/>
+    <property name="repo-url" value="http://repo1.maven.org/maven2"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${contrib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <path id="classpath.test">
+        <pathelement location="${testClasses.dir}" />
+        <pathelement location="${classes.dir}" />
+        <path refid="classpath" />
     </path>
 
     <target name="clean">
@@ -21,6 +33,17 @@
         <mkdir dir="${classes.dir}"/>	
         <javac srcdir="${src.dir}" destdir="${classes.dir}"
                classpathref="classpath" includeantruntime="false"/>
+    </target>
+
+    <target name="compile-test" depends="compile">
+        <mkdir dir="${testClasses.dir}"/>
+        <javac srcdir="${test.dir}" destdir="${testClasses.dir}"
+                includeantruntime="false">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${classes.dir}"/>
+            </classpath>
+        </javac>
     </target>
 
     <target name="build" depends="compile"/>
@@ -45,9 +68,24 @@
         </java>
     </target>
 
+    <target name="test" depends="compile-test">
+        <junit>
+            <classpath refid="classpath.test" />
+            <formatter type="brief" usefile="false" />
+            <batchtest>
+                <fileset dir="${testClasses.dir}" includes="**/*.class" />
+            </batchtest>
+        </junit>
+    </target>
+
     <target name="clean-build" depends="clean,jar"/>
 
-    <target name="dist" depends="clean">
+    <target name="update-contrib">
+        <get src="${repo-url}/junit/junit/4.10/junit-4.10.jar" 
+            dest="${contrib.dir}/" usetimestamp="true"/>
+    </target>
+
+    <target name="zip" depends="clean">
         <zip destfile="${ant.project.name}.zip" excludes="bin/**">
             <zipfileset dir="." prefix="${ant.project.name}"
                         excludes="**/.*/**,bin/**/*"/>
@@ -56,7 +94,7 @@
 
     <target name="main" depends="jar"> 
          <echo>Use "ant run" to run the application.</echo>
-         <echo>Use "ant run-hardware" to test the hardware.</echo>
+         <echo>Use "ant test" to run all unit tests.</echo>
     </target>
 
 </project>
