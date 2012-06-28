@@ -1,4 +1,4 @@
-Please add the following external libraries to lib to run the simulations.
+You can either place jar files here or run "ant update-lib" to automatically download them.
 
-* junit.jar
-* jfreechart.jar
+Project dependencies  are:
+* junit-4.10.jar

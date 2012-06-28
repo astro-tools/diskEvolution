@@ -3,7 +3,6 @@
     <property name="src.dir" value="src"/>
     <property name="test.dir" value="test"/>
     <property name="build.dir" value="build"/>
-    <property name="contrib.dir" value="contrib"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="testClasses.dir" value="${build.dir}/testClasses"/>
     <property name="jar.dir" value="${build.dir}/jar"/>
@@ -14,7 +13,6 @@
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
-        <fileset dir="${contrib.dir}" includes="**/*.jar"/>
     </path>
 
     <path id="classpath.test">
@@ -40,8 +38,7 @@
         <javac srcdir="${test.dir}" destdir="${testClasses.dir}"
                 includeantruntime="false">
             <classpath>
-                <path refid="classpath"/>
-                <path location="${classes.dir}"/>
+                <path refid="classpath.test"/>
             </classpath>
         </javac>
     </target>
@@ -80,9 +77,9 @@
 
     <target name="clean-build" depends="clean,jar"/>
 
-    <target name="update-contrib">
+    <target name="update-lib">
         <get src="${repo-url}/junit/junit/4.10/junit-4.10.jar" 
-            dest="${contrib.dir}/" usetimestamp="true"/>
+            dest="${lib.dir}/" usetimestamp="true"/>
     </target>
 
     <target name="zip" depends="clean">
