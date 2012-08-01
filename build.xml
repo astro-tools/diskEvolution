@@ -9,7 +9,8 @@
     <property name="lib.dir" value="lib"/>
     <property name="main-class"
         value="edu.asu.sese.diskEvolution.DiskSimulation"/>
-    <property name="repo-url" value="http://repo1.maven.org/maven2"/>
+    <property name="repo-url" 
+              value="http://search.maven.org/remotecontent?filepath="/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -79,7 +80,7 @@
 
     <target name="update-lib">
         <get src="${repo-url}/junit/junit/4.10/junit-4.10.jar" 
-            dest="${lib.dir}/" usetimestamp="true"/>
+            dest="${lib.dir}/junit-4.10.jar" usetimestamp="true"/>
     </target>
 
     <target name="zip" depends="clean">
