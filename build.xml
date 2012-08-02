@@ -81,6 +81,8 @@
     <target name="update-lib">
         <get src="${repo-url}/junit/junit/4.10/junit-4.10.jar" 
             dest="${lib.dir}/junit-4.10.jar" usetimestamp="true"/>
+        <get src="${repo-url}/org/jfree/jfreechart/1.0.14/jfreechart-1.0.14.jar" 
+            dest="${lib.dir}/jfreechart-1.0.14.jar" usetimestamp="true"/>
     </target>
 
     <target name="zip" depends="clean">
