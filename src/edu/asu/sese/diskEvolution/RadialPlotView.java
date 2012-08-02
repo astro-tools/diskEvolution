@@ -1,95 +1,56 @@
 package edu.asu.sese.diskEvolution;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
+import org.jfree.chart.*;
+import org.jfree.chart.axis.*;
+import org.jfree.chart.plot.*;
+import org.jfree.data.xy.*;
 
-import javax.swing.JPanel;
-
-public class RadialPlotView extends JPanel {
+public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
-    private RadialGrid radialGrid;
-    private MidpointGrid densityGrid;
-    private double minimumRadius;
-    private double maximumRadius;
-    private double minimumDensity;
-    private double maximumDensity;
-    
-    int width;
-    int height;
-  
+      
     
     public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
-        this.radialGrid = radialGrid;
-        this.densityGrid = densityGrid;
-        minimumRadius = 0.9*radialGrid.getMinimumRadius();
-        maximumRadius = 1.1*radialGrid.getMaximumRadius();
-        minimumDensity = 0.1;
-        maximumDensity = 1.0e5;
-        setPreferredSize(new Dimension(320, 240));
-        setBackground(Color.white);
+        super(createSimpleXYChart(radialGrid, densityGrid));
+    }    
+
+    public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, MidpointGrid densityGrid) {
+        XYSeriesCollection dataset = createDataset(radialGrid, densityGrid);
+
+        String title = "Surface Density";
+        String domainTitle = "r (AU)";
+        String rangeTitle = "Σ (g/cm²)";
+        boolean showLegend = false;
+        boolean useTooltips = true;
+        boolean generateURLs = false;
+        JFreeChart chart = ChartFactory.createXYLineChart(title, domainTitle,
+                rangeTitle, dataset, PlotOrientation.VERTICAL,
+                showLegend, useTooltips, generateURLs);
+        
+        convertToLogLogChart(domainTitle, rangeTitle, chart);
+        return chart;
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        Dimension d = getSize();
-        width = d.width;
-        height = d.height;
-        
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setBackground(getBackground());
-        g2.clearRect(0, 0, width, height);
-        
-        drawDensityCurve(g2);
-        drawBoundingRectangle(g2);
+    public static void convertToLogLogChart(String domainTitle,
+            String rangeTitle, JFreeChart chart) {
+        final XYPlot plot = chart.getXYPlot();
+        final NumberAxis domainAxis = new LogarithmicAxis(domainTitle);
+        final NumberAxis rangeAxis = new LogarithmicAxis(rangeTitle);
+        plot.setDomainAxis(domainAxis);
+        plot.setRangeAxis(rangeAxis);
     }
 
-    private void drawDensityCurve(Graphics2D g2) {
-        int count = densityGrid.getCount();
-        GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
-        double x = calcX(radialGrid.getMidpoint(0));
-        double y = calcY(densityGrid.getValue(0));
-        path.moveTo(x, y);
-        for (int i = 1; i < count; ++i) {
-             x = calcX(radialGrid.getMidpoint(i));
-             y = calcY(densityGrid.getValue(i));
-            path.lineTo(x, y);
+    public static XYSeriesCollection createDataset(RadialGrid radialGrid,
+            MidpointGrid densityGrid) {
+        XYSeries series = new XYSeries("Surface Density");
+        int intervalCount = radialGrid.getIntervalCount();
+        for (int i = 0; i < intervalCount; ++i) {
+            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.auInCm,
+                    densityGrid.getValue(i));
         }
-        g2.setColor(Color.blue);
-        g2.draw(path);
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+        return dataset;
     }
 
-    private double calcY(double density) {
-        double logDensity = Math.log((1e-15 + density)/minimumDensity)
-                / Math.log(maximumDensity/minimumDensity);
-        return height * (1.0 - logDensity);
-    }
-
-    private double calcX(double radius) {       
-        double logRadius = Math.log(radius/minimumRadius)
-                / Math.log(maximumRadius/minimumRadius);
-        return width * logRadius;
-    }
-
-    private void drawBoundingRectangle(Graphics2D g2) {
-        Shape rectangle = new Rectangle2D.Double(0, 0, width-1, height-1);
-        g2.setColor(Color.black);
-        g2.draw(rectangle);
-    }
-
-    public RadialGrid getRadialGrid() {
-        return radialGrid;
-    }
-
-    public void setRadialGrid(RadialGrid radialGrid) {
-        this.radialGrid = radialGrid;
-    }
 }
