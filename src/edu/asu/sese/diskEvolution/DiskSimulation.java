@@ -1,5 +1,12 @@
 package edu.asu.sese.diskEvolution;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
+import edu.asu.sese.diskEvolution.model.MassFlowGrid;
+import edu.asu.sese.diskEvolution.model.RadialGrid;
+import edu.asu.sese.diskEvolution.model.ViscosityGrid;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.view.DiskView;
+
 
 public class DiskSimulation {
 

@@ -1,4 +1,5 @@
-package edu.asu.sese.diskEvolution;
+package edu.asu.sese.diskEvolution.model;
+
 
 public class DensityGrid extends MidpointGrid {
 

@@ -1,9 +1,11 @@
-package edu.asu.sese.diskEvolution;
+package edu.asu.sese.diskEvolution.model;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 
 public class MassFlowCalculatorTest {
 

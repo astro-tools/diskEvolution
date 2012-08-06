@@ -1,4 +1,6 @@
-package edu.asu.sese.diskEvolution;
+package edu.asu.sese.diskEvolution.model;
+
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 
 public class MassMover {
 

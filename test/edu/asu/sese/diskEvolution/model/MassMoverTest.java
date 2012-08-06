@@ -1,8 +1,11 @@
-package edu.asu.sese.diskEvolution;
+package edu.asu.sese.diskEvolution.model;
 
 import java.util.Arrays;
 
 import org.junit.*;
+
+import edu.asu.sese.diskEvolution.model.DensityGrid;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import static org.junit.Assert.*;
 
 public class MassMoverTest {	
