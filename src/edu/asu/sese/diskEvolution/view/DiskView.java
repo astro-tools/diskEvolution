@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.MidpointGrid;
 import edu.asu.sese.diskEvolution.model.RadialGrid;
 
@@ -22,6 +23,10 @@ public class DiskView extends JFrame {
 
         setTitle("DiskEvolution");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public DiskView(DiskSimulation simulation) {
+        this(simulation.getRadialGrid(), simulation.getDensityGrid());
     }
 
     private void setFrameContents() {

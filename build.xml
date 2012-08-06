@@ -8,7 +8,7 @@
     <property name="jar.dir" value="${build.dir}/jar"/>
     <property name="lib.dir" value="lib"/>
     <property name="main-class"
-        value="edu.asu.sese.diskEvolution.DiskSimulation"/>
+        value="edu.asu.sese.diskEvolution.Main"/>
     <property name="repo-url" 
               value="http://search.maven.org/remotecontent?filepath="/>
 
