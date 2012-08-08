@@ -1,34 +1,31 @@
 package edu.asu.sese.diskEvolution.controller;
 
 import edu.asu.sese.diskEvolution.model.*;
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
 public class DiskSimulation {
     
-    public DiskSimulation() {
-        setupSimulation();
-    }
-
     private RadialGrid radialGrid;
     private DensityGrid densityGrid;
     private ViscosityGrid viscosityGrid;
     private MassFlowGrid massFlowGrid;
+    private SimulationData data;
+
+    public DiskSimulation() {
+        setupSimulation();
+    }
 
     public void setupSimulation() {
-        double rmin = 0.1 * PhysicalConstants.auInCm;
-        double rmax = 200.0 * PhysicalConstants.auInCm;
-        double deltar0 = 0.1 * PhysicalConstants.auInCm;
-        int intervalCount = 50;
-        radialGrid = new RadialGrid(rmin , rmax , deltar0 , intervalCount);
+        data = new SimulationData();
+        
+        radialGrid = new RadialGrid(data.getRmin(), data.getRmax(), 
+                data.getDeltar0(), data.getIntervalCount());
         
         densityGrid = new DensityGrid(getRadialGrid());
-        double density0 = 1e3;
-    	double radius0 = PhysicalConstants.auInCm;
-    	double exponent = -1.5;
-    	getDensityGrid().initializeWithPowerLaw(density0, radius0, exponent);
+    	densityGrid.initializeWithPowerLaw(
+    	        data.getDensity0(), data.getRadius0(), data.getExponent());
         
         viscosityGrid = new ViscosityGrid(getRadialGrid());
-        viscosityGrid.initializeWithPowerLaw(1e12, radius0, 1.0);
+        viscosityGrid.initializeWithPowerLaw(1e12, data.getRadius0(), 1.0);
         
         massFlowGrid = new MassFlowGrid(getRadialGrid());
     }
@@ -39,6 +36,10 @@ public class DiskSimulation {
 
     public DensityGrid getDensityGrid() {
         return densityGrid;
+    }
+
+    public  SimulationData getSimulationData() {
+        return data;
     }
 
 
