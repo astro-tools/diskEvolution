@@ -1,8 +1,11 @@
 package edu.asu.sese.diskEvolution.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
-public class SimulationData {
+public class Parameters {
     private double rmin;
     private double rmax;
     private double deltar0;
@@ -10,8 +13,11 @@ public class SimulationData {
     private double density0;
     private double radius0;
     private double exponent;
+    
+    private List<ParameterObserver> observerList =
+            new LinkedList<ParameterObserver>();
 
-    public SimulationData() {
+    public Parameters() {
         initializeDensityParameters();
         initializeGridParameters();
     }
@@ -35,6 +41,7 @@ public class SimulationData {
 
     public void setRmin(double rmin) {
         this.rmin = rmin;
+        notifyObserversRadialParamterChanged();
     }
 
     public double getRmax() {
@@ -43,6 +50,7 @@ public class SimulationData {
 
     public void setRmax(double rmax) {
         this.rmax = rmax;
+        notifyObserversRadialParamterChanged();
     }
 
     public double getDeltar0() {
@@ -51,6 +59,7 @@ public class SimulationData {
 
     public void setDeltar0(double deltar0) {
         this.deltar0 = deltar0;
+        notifyObserversRadialParamterChanged();
     }
 
     public int getIntervalCount() {
@@ -59,6 +68,7 @@ public class SimulationData {
 
     public void setIntervalCount(int intervalCount) {
         this.intervalCount = intervalCount;
+        notifyObserversRadialParamterChanged();
     }
 
     public double getDensity0() {
@@ -83,5 +93,16 @@ public class SimulationData {
 
     public void setExponent(double exponent) {
         this.exponent = exponent;
+    }
+
+    public void addObserver(ParameterObserver observer) {
+        observerList.add(observer);        
+    }
+
+    private void notifyObserversRadialParamterChanged() {
+        for (ParameterObserver observer: observerList) {
+            observer.notifyRadialParameterChanged();
+        }
+        
     }
 }

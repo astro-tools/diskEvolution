@@ -7,12 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
-import edu.asu.sese.diskEvolution.model.SimulationData;
+import edu.asu.sese.diskEvolution.model.Parameters;
 
-public class SimulationDataView extends JPanel {
+public class ParametersView extends JPanel {
     private static final long serialVersionUID = 1L;
     
-    private SimulationData data;
+    private Parameters data;
 
     private JTextField rminField;
     private JTextField rmaxField;
@@ -24,7 +24,7 @@ public class SimulationDataView extends JPanel {
 
     private JTextField exponentField;
 
-    public SimulationDataView(DiskSimulation simulation) {
+    public ParametersView(DiskSimulation simulation) {
         data = simulation.getSimulationData();
         setupLabelsAndFields();
         setFieldValuesFromData();

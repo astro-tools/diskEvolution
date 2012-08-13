@@ -33,7 +33,7 @@ public class GraphicalApplication extends JFrame {
     }
 
     private void setupInputView() {
-        JPanel panel = new SimulationDataView(simulation);
+        JPanel panel = new ParametersView(simulation);
         add(panel, BorderLayout.LINE_START);        
     }
 

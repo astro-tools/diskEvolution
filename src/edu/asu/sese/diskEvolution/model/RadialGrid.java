@@ -32,6 +32,10 @@ public class RadialGrid {
         }
     }
 
+    public RadialGrid(Parameters p) {
+        this(p.getRmin(), p.getRmax(), p.getDeltar0(), p.getIntervalCount());
+    }
+
     public final double[] getBoundaries() {
         return boundary;
     }
