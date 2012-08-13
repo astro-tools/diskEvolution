@@ -1,10 +1,14 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.Parameters;
@@ -12,7 +16,7 @@ import edu.asu.sese.diskEvolution.model.Parameters;
 public class ParametersView extends JPanel {
     private static final long serialVersionUID = 1L;
     
-    private Parameters data;
+    private Parameters parameters;
 
     private JTextField rminField;
     private JTextField rmaxField;
@@ -25,29 +29,31 @@ public class ParametersView extends JPanel {
     private JTextField exponentField;
 
     public ParametersView(DiskSimulation simulation) {
-        data = simulation.getSimulationData();
-        setupLabelsAndFields();
+        parameters = simulation.getSimulationData();
+        ActionListener listener = createListener();
+        setupLabelsAndFields(listener);
         setFieldValuesFromData();
     }
 
     private void setFieldValuesFromData() {
-        rminField.setText(Double.toString(data.getRmin()));
-        rmaxField.setText(Double.toString(data.getRmax()));
-        deltar0Field.setText(Double.toString(data.getDeltar0()));
-        intervalCountField.setText(Double.toString(data.getIntervalCount()));
+        rminField.setText(Double.toString(parameters.getRmin()));
+        rmaxField.setText(Double.toString(parameters.getRmax()));
+        deltar0Field.setText(Double.toString(parameters.getDeltar0()));
+        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));
         
-        density0Field.setText(Double.toString(data.getDensity0()));
-        radius0Field.setText(Double.toString(data.getRadius0()));
-        exponentField.setText(Double.toString(data.getExponent()));
+        density0Field.setText(Double.toString(parameters.getDensity0()));
+        radius0Field.setText(Double.toString(parameters.getRadius0()));
+        exponentField.setText(Double.toString(parameters.getExponent()));
     }
 
-    private void setupLabelsAndFields() {
+    private void setupLabelsAndFields(ActionListener listener) {
         GridLayout layoutManager = new GridLayout(0, 2, 4, 4);
         setLayout(layoutManager);
       
         JLabel rminLabel = new JLabel("<html>r<sub>min</sub>");
         add(rminLabel);
         rminField = new JTextField();
+        rminField.addActionListener(listener);
         add(rminField);
 
         JLabel rmaxLabel = new JLabel("<html>r<sub>max</sub>");
@@ -80,6 +86,28 @@ public class ParametersView extends JPanel {
         exponentField = new JTextField();
         add(exponentField);
                 
+    }
+
+    public ActionListener createListener() {
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                updateParameterValuesFromFields();
+            }
+        };
+        return listener;
+    }
+
+    protected void updateParameterValuesFromFields() {
+        String string = rminField.getText();
+        try {
+            double rmin = Double.parseDouble(string);
+            parameters.setRmin(rmin);
+            System.out.println("rmin = " + Double.toString(parameters.getRmin()));
+        } catch (NumberFormatException exception) {
+            // do nothing
+        }
+        rminField.setText(Double.toString(parameters.getRmin()));
     }
 
 }
