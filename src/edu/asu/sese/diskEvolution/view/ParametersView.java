@@ -59,31 +59,37 @@ public class ParametersView extends JPanel {
         JLabel rmaxLabel = new JLabel("<html>r<sub>max</sub>");
         add(rmaxLabel);
         rmaxField = new JTextField();
+        rmaxField.addActionListener(listener);
         add(rmaxField);
         
         JLabel deltar0Label = new JLabel("<html>Δ r<sub>0</sub>");
         add(deltar0Label);
         deltar0Field = new JTextField();
+        deltar0Field.addActionListener(listener);
         add(deltar0Field);
         
         JLabel intervalCountLabel = new JLabel("<html>N<sub>interval</sub>");
         add(intervalCountLabel);
         intervalCountField = new JTextField();
+        intervalCountField.addActionListener(listener);
         add(intervalCountField);
         
         JLabel density0Label = new JLabel("<html>ρ<sub>0</sub>");
         add(density0Label);
         density0Field = new JTextField();
+        density0Field.addActionListener(listener);
         add(density0Field);
 
         JLabel radius0Label = new JLabel("<html>r<sub>0</sub>");
         add(radius0Label);
         radius0Field = new JTextField();
+        radius0Field.addActionListener(listener);
         add(radius0Field);
         
         JLabel exponentLabel = new JLabel("<html>p (Σ ~ r<sup>p</sup>)");
         add(exponentLabel);
         exponentField = new JTextField();
+        exponentField.addActionListener(listener);
         add(exponentField);
                 
     }
@@ -107,7 +113,15 @@ public class ParametersView extends JPanel {
         } catch (NumberFormatException exception) {
             // do nothing
         }
-        rminField.setText(Double.toString(parameters.getRmin()));
+        rminField.setText(Double.toString(parameters.getRmin()));   
+        string = rmaxField.getText();
+        try {
+            double rmax = Double.parseDouble(string);
+            parameters.setRmax(rmax);
+            System.out.println("rmax = " + Double.toString(parameters.getRmax()));
+        } catch (NumberFormatException exception) {
+            // do nothing
+        }
+        rmaxField.setText(Double.toString(parameters.getRmax()));
     }
-
 }
