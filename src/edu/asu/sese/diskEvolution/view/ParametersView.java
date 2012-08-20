@@ -21,11 +21,9 @@ public class ParametersView extends JPanel {
     private JTextField rminField;
     private JTextField rmaxField;
     private JTextField deltar0Field;
-    private JTextField intervalCountField;
-    
+    private JTextField intervalCountField;    
     private JTextField density0Field;
     private JTextField radius0Field;
-
     private JTextField exponentField;
 
     public ParametersView(DiskSimulation simulation) {
@@ -39,8 +37,7 @@ public class ParametersView extends JPanel {
         rminField.setText(Double.toString(parameters.getRmin()));
         rmaxField.setText(Double.toString(parameters.getRmax()));
         deltar0Field.setText(Double.toString(parameters.getDeltar0()));
-        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));
-        
+        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));        
         density0Field.setText(Double.toString(parameters.getDensity0()));
         radius0Field.setText(Double.toString(parameters.getRadius0()));
         exponentField.setText(Double.toString(parameters.getExponent()));
@@ -114,14 +111,61 @@ public class ParametersView extends JPanel {
             // do nothing
         }
         rminField.setText(Double.toString(parameters.getRmin()));   
+        
         string = rmaxField.getText();
         try {
             double rmax = Double.parseDouble(string);
             parameters.setRmax(rmax);
             System.out.println("rmax = " + Double.toString(parameters.getRmax()));
         } catch (NumberFormatException exception) {
-            // do nothing
         }
-        rmaxField.setText(Double.toString(parameters.getRmax()));
+        rmaxField.setText(Double.toString(parameters.getRmax()));        
+       
+        string = deltar0Field.getText();
+        try {
+            double deltar0 = Double.parseDouble(string);
+            parameters.setDeltar0(deltar0);
+            System.out.println("deltar0 = " + Double.toString(parameters.getDeltar0()));
+        } catch (NumberFormatException exception) {
+
+        }
+        deltar0Field.setText(Double.toString(parameters.getDeltar0()));
+       
+        string = intervalCountField.getText();
+        try {
+            int intervalCount = Integer.parseInt(string);
+            parameters.setIntervalCount(intervalCount);
+            System.out.println("intervalCount = " + Double.toString(parameters.getIntervalCount()));
+        } catch (NumberFormatException exception) {
+        }
+        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));        
+        
+        string = density0Field.getText();
+        try {
+            double density0 = Double.parseDouble(string);
+            parameters.setDensity0(density0);
+            System.out.println("density0 = " + Double.toString(parameters.getDensity0()));
+        } catch (NumberFormatException exception) {
+        }
+        density0Field.setText(Double.toString(parameters.getDensity0()));  
+        
+        string = radius0Field.getText();
+        try {
+            double radius0 = Double.parseDouble(string);
+            parameters.setRadius0(radius0);
+            System.out.println("radius0 = " + Double.toString(parameters.getRadius0()));
+        } catch (NumberFormatException exception) {
+        }
+        radius0Field.setText(Double.toString(parameters.getRadius0()));  
+        
+        string = exponentField.getText();
+        try {
+            double exponent = Double.parseDouble(string);
+            parameters.setExponent(exponent);
+            System.out.println("exponent = " + Double.toString(parameters.getExponent()));
+        } catch (NumberFormatException exception) {
+        }
+        exponentField.setText(Double.toString(parameters.getExponent()));  
+        
     }
 }
