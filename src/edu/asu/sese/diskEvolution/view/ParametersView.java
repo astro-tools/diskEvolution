@@ -12,6 +12,7 @@ import javax.swing.event.DocumentListener;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.Parameters;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
 public class ParametersView extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -34,12 +35,12 @@ public class ParametersView extends JPanel {
     }
 
     private void setFieldValuesFromData() {
-        rminField.setText(Double.toString(parameters.getRmin()));
-        rmaxField.setText(Double.toString(parameters.getRmax()));
-        deltar0Field.setText(Double.toString(parameters.getDeltar0()));
-        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));        
+        rminField.setText(Double.toString(parameters.getRmin()/PhysicalConstants.auInCm));
+        rmaxField.setText(Double.toString(parameters.getRmax()/PhysicalConstants.auInCm));
+        deltar0Field.setText(Double.toString(parameters.getDeltar0()/PhysicalConstants.auInCm));
+        intervalCountField.setText(Integer.toString(parameters.getIntervalCount()));
         density0Field.setText(Double.toString(parameters.getDensity0()));
-        radius0Field.setText(Double.toString(parameters.getRadius0()));
+        radius0Field.setText(Double.toString(parameters.getRadius0()/PhysicalConstants.auInCm));
         exponentField.setText(Double.toString(parameters.getExponent()));
     }
 
@@ -104,41 +105,37 @@ public class ParametersView extends JPanel {
     protected void updateParameterValuesFromFields() {
         String string = rminField.getText();
         try {
-            double rmin = Double.parseDouble(string);
+            double rmin = Double.parseDouble(string) * PhysicalConstants.auInCm;
             parameters.setRmin(rmin);
             System.out.println("rmin = " + Double.toString(parameters.getRmin()));
         } catch (NumberFormatException exception) {
             // do nothing
         }
-        rminField.setText(Double.toString(parameters.getRmin()));   
         
         string = rmaxField.getText();
         try {
-            double rmax = Double.parseDouble(string);
+            double rmax = Double.parseDouble(string) * PhysicalConstants.auInCm;
             parameters.setRmax(rmax);
             System.out.println("rmax = " + Double.toString(parameters.getRmax()));
         } catch (NumberFormatException exception) {
         }
-        rmaxField.setText(Double.toString(parameters.getRmax()));        
        
         string = deltar0Field.getText();
         try {
-            double deltar0 = Double.parseDouble(string);
+            double deltar0 = Double.parseDouble(string) * PhysicalConstants.auInCm;
             parameters.setDeltar0(deltar0);
             System.out.println("deltar0 = " + Double.toString(parameters.getDeltar0()));
         } catch (NumberFormatException exception) {
 
         }
-        deltar0Field.setText(Double.toString(parameters.getDeltar0()));
        
         string = intervalCountField.getText();
         try {
             int intervalCount = Integer.parseInt(string);
             parameters.setIntervalCount(intervalCount);
-            System.out.println("intervalCount = " + Double.toString(parameters.getIntervalCount()));
+            System.out.println("intervalCount = " + Integer.toString(parameters.getIntervalCount()));
         } catch (NumberFormatException exception) {
         }
-        intervalCountField.setText(Double.toString(parameters.getIntervalCount()));        
         
         string = density0Field.getText();
         try {
@@ -147,16 +144,14 @@ public class ParametersView extends JPanel {
             System.out.println("density0 = " + Double.toString(parameters.getDensity0()));
         } catch (NumberFormatException exception) {
         }
-        density0Field.setText(Double.toString(parameters.getDensity0()));  
         
         string = radius0Field.getText();
         try {
-            double radius0 = Double.parseDouble(string);
+            double radius0 = Double.parseDouble(string) * PhysicalConstants.auInCm;
             parameters.setRadius0(radius0);
             System.out.println("radius0 = " + Double.toString(parameters.getRadius0()));
         } catch (NumberFormatException exception) {
         }
-        radius0Field.setText(Double.toString(parameters.getRadius0()));  
         
         string = exponentField.getText();
         try {
@@ -164,8 +159,7 @@ public class ParametersView extends JPanel {
             parameters.setExponent(exponent);
             System.out.println("exponent = " + Double.toString(parameters.getExponent()));
         } catch (NumberFormatException exception) {
-        }
-        exponentField.setText(Double.toString(parameters.getExponent()));  
-        
+        }        
+        setFieldValuesFromData();
     }
 }
