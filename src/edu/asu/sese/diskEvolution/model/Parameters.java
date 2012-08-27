@@ -1,9 +1,10 @@
 package edu.asu.sese.diskEvolution.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
 public class Parameters {
     private double rmin;
@@ -13,11 +14,10 @@ public class Parameters {
     private double density0;
     private double radius0;
     private double exponent;
+    private Observable radialParameterObservable;
     
-    private List<ParameterObserver> observerList =
-            new LinkedList<ParameterObserver>();
-
     public Parameters() {
+        radialParameterObservable = new SimpleObservable();
         initializeDensityParameters();
         initializeGridParameters();
     }
@@ -41,7 +41,7 @@ public class Parameters {
 
     public void setRmin(double rmin) {
         this.rmin = rmin;
-        notifyObserversRadialParamterChanged();
+        notifyObserversThatRadialParameterChanged();
     }
 
     public double getRmax() {
@@ -50,7 +50,7 @@ public class Parameters {
 
     public void setRmax(double rmax) {
         this.rmax = rmax;
-        notifyObserversRadialParamterChanged();
+        notifyObserversThatRadialParameterChanged();
     }
 
     public double getDeltar0() {
@@ -59,7 +59,7 @@ public class Parameters {
 
     public void setDeltar0(double deltar0) {
         this.deltar0 = deltar0;
-        notifyObserversRadialParamterChanged();
+        notifyObserversThatRadialParameterChanged();
     }
 
     public int getIntervalCount() {
@@ -68,7 +68,7 @@ public class Parameters {
 
     public void setIntervalCount(int intervalCount) {
         this.intervalCount = intervalCount;
-        notifyObserversRadialParamterChanged();
+        notifyObserversThatRadialParameterChanged();
     }
 
     public double getDensity0() {
@@ -95,14 +95,12 @@ public class Parameters {
         this.exponent = exponent;
     }
 
-    public void addObserver(ParameterObserver observer) {
-        observerList.add(observer);        
+    public void addRadialParameterObserver(Observer observer) {
+        radialParameterObservable.addObserver(observer);
     }
 
-    private void notifyObserversRadialParamterChanged() {
-        for (ParameterObserver observer: observerList) {
-            observer.notifyRadialParameterChanged();
-        }
-        
+    private void notifyObserversThatRadialParameterChanged() {
+        radialParameterObservable.notifyObservers();
     }
+
 }
