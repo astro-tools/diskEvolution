@@ -40,8 +40,9 @@ public class Parameters {
     }
 
     public void setRmin(double rmin) {
+        boolean changed = Math.abs(this.rmin - rmin) > 1e2;
         this.rmin = rmin;
-        notifyObserversThatRadialParameterChanged();
+        if (changed) notifyObserversThatRadialParameterChanged();
     }
 
     public double getRmax() {
@@ -49,8 +50,9 @@ public class Parameters {
     }
 
     public void setRmax(double rmax) {
+        boolean changed = Math.abs(this.rmax - rmax) > 1e2;
         this.rmax = rmax;
-        notifyObserversThatRadialParameterChanged();
+        if (changed) notifyObserversThatRadialParameterChanged();
     }
 
     public double getDeltar0() {
@@ -58,8 +60,9 @@ public class Parameters {
     }
 
     public void setDeltar0(double deltar0) {
+        boolean changed = Math.abs(this.deltar0 - deltar0) > 1e2;
         this.deltar0 = deltar0;
-        notifyObserversThatRadialParameterChanged();
+        if (changed) notifyObserversThatRadialParameterChanged();
     }
 
     public int getIntervalCount() {
@@ -67,8 +70,9 @@ public class Parameters {
     }
 
     public void setIntervalCount(int intervalCount) {
+        boolean changed = (this.intervalCount != intervalCount);
         this.intervalCount = intervalCount;
-        notifyObserversThatRadialParameterChanged();
+        if (changed) notifyObserversThatRadialParameterChanged();
     }
 
     public double getDensity0() {
