@@ -1,6 +1,8 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
@@ -13,6 +15,7 @@ public class DiskView extends JPanel {
     RadialPlotView plot;
     private MidpointGrid densityGrid;
     private RadialGrid radialGrid;
+    private DiskSimulation simulation;
 
     public DiskView(RadialGrid radialGrid, MidpointGrid densityGrid) {
         this.radialGrid = radialGrid;
@@ -23,6 +26,14 @@ public class DiskView extends JPanel {
 
     public DiskView(DiskSimulation simulation) {
         this(simulation.getRadialGrid(), simulation.getDensityGrid());
+        this.simulation = simulation;
+        Observer observer = new Observer() {
+            @Override
+            public void update(Observable observable, Object object) {
+                updatePlot();
+            }
+        };
+        simulation.addObserver(observer);
     }
 
     private void setFrameContents() {
@@ -31,6 +42,14 @@ public class DiskView extends JPanel {
 
         plot = new RadialPlotView(radialGrid, densityGrid);
         add(plot, BorderLayout.CENTER);
+    }
+    
+    private void updatePlot() {
+        radialGrid = simulation.getRadialGrid();
+        densityGrid = simulation.getDensityGrid();
+        setFrameContents();
+        System.out.println("trying to update plot!");
+        System.out.println("radial grid rmin is:" + radialGrid.getMinimumRadius());
     }
 
 }

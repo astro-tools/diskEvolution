@@ -37,13 +37,6 @@ public class RadialGrid {
 
     public RadialGrid(Parameters p) {
         this(p.getRmin(), p.getRmax(), p.getDeltar0(), p.getIntervalCount());
-        Observer observer = new Observer() {
-            @Override
-            public void update(Observable observable, Object object) {
-                System.out.println("Something changed!");
-            }
-        };
-        p.addRadialParameterObserver(observer);
     }
 
     public final double[] getBoundaries() {

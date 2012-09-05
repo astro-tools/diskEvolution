@@ -1,8 +1,12 @@
 package edu.asu.sese.diskEvolution.controller;
 
-import edu.asu.sese.diskEvolution.model.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class DiskSimulation {
+import edu.asu.sese.diskEvolution.model.*;
+import edu.asu.sese.diskEvolution.util.SimpleObservable;
+
+public class DiskSimulation extends SimpleObservable {
     
     private RadialGrid radialGrid;
     private DensityGrid densityGrid;
@@ -16,7 +20,11 @@ public class DiskSimulation {
 
     public void setupSimulation() {
         parameters = new Parameters();
-        
+        setupGrids();
+        watchForChangingParameters();
+    }
+
+    private void setupGrids() {
         radialGrid = new RadialGrid(parameters);
         
         densityGrid = new DensityGrid(getRadialGrid());
@@ -28,6 +36,18 @@ public class DiskSimulation {
         massFlowGrid = new MassFlowGrid(getRadialGrid());
     }
 
+    private void watchForChangingParameters() {
+        Observer observer = new Observer() {
+            @Override
+            public void update(Observable observable, Object object) {
+                System.out.println("Something changed!");
+                setupGrids();
+                notifyObservers();
+            }
+        };
+        parameters.addRadialParameterObserver(observer);
+    }
+
     public RadialGrid getRadialGrid() {
         return radialGrid;
     }
@@ -36,7 +56,7 @@ public class DiskSimulation {
         return densityGrid;
     }
 
-    public  Parameters getSimulationData() {
+    public Parameters getSimulationData() {
         return parameters;
     }
 
