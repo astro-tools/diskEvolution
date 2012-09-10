@@ -47,7 +47,9 @@ public class DiskView extends JPanel {
     private void updatePlot() {
         radialGrid = simulation.getRadialGrid();
         densityGrid = simulation.getDensityGrid();
-        setFrameContents();
+
+        plot.updateData(radialGrid, densityGrid);
+        
         System.out.println("trying to update plot!");
         System.out.println("radial grid rmin is:" + radialGrid.getMinimumRadius());
     }

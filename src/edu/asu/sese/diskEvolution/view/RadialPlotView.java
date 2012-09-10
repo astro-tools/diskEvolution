@@ -12,6 +12,7 @@ import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
+    private static XYSeriesCollection dataset;
       
     
     public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
@@ -19,7 +20,7 @@ public class RadialPlotView extends ChartPanel {
     }    
 
     public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, MidpointGrid densityGrid) {
-        XYSeriesCollection dataset = createDataset(radialGrid, densityGrid);
+        dataset = createDataset(radialGrid, densityGrid);
 
         String title = "Surface Density";
         String domainTitle = "r (AU)";
@@ -32,6 +33,7 @@ public class RadialPlotView extends ChartPanel {
                 showLegend, useTooltips, generateURLs);
         
         convertToLogLogChart(domainTitle, rangeTitle, chart);
+        
         return chart;
     }
 
@@ -46,15 +48,27 @@ public class RadialPlotView extends ChartPanel {
 
     public static XYSeriesCollection createDataset(RadialGrid radialGrid,
             MidpointGrid densityGrid) {
+        XYSeries series = createDataSeries(radialGrid, densityGrid);
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+        return dataset;
+    }
+
+    private static XYSeries createDataSeries(RadialGrid radialGrid,
+            MidpointGrid densityGrid) {
         XYSeries series = new XYSeries("Surface Density");
         int intervalCount = radialGrid.getIntervalCount();
         for (int i = 0; i < intervalCount; ++i) {
             series.add(radialGrid.getMidpoint(i) / PhysicalConstants.auInCm,
                     densityGrid.getValue(i));
         }
-        XYSeriesCollection dataset = new XYSeriesCollection();
+        return series;
+    }
+
+    public void updateData(RadialGrid radialGrid, MidpointGrid densityGrid) {
+        dataset.removeAllSeries();
+        XYSeries series = createDataSeries(radialGrid, densityGrid);
         dataset.addSeries(series);
-        return dataset;
     }
 
 }
