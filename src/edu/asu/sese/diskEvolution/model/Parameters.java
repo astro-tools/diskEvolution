@@ -15,9 +15,11 @@ public class Parameters {
     private double radius0;
     private double exponent;
     private Observable radialParameterObservable;
+    private Observable densityParameterObservable;
     
     public Parameters() {
         radialParameterObservable = new SimpleObservable();
+        densityParameterObservable = new SimpleObservable();
         initializeDensityParameters();
         initializeGridParameters();
     }
@@ -80,7 +82,9 @@ public class Parameters {
     }
 
     public void setDensity0(double density0) {
+        boolean changed = Math.abs(this.density0 - density0) > 1.0;
         this.density0 = density0;
+        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getRadius0() {
@@ -88,7 +92,9 @@ public class Parameters {
     }
 
     public void setRadius0(double radius0) {
+        boolean changed = Math.abs(this.radius0 - radius0) > 1e3;
         this.radius0 = radius0;
+        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getExponent() {
@@ -96,7 +102,9 @@ public class Parameters {
     }
 
     public void setExponent(double exponent) {
+        boolean changed = Math.abs(this.exponent - exponent) > 1e-6;
         this.exponent = exponent;
+        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public void addRadialParameterObserver(Observer observer) {
@@ -105,6 +113,14 @@ public class Parameters {
 
     private void notifyObserversThatRadialParameterChanged() {
         radialParameterObservable.notifyObservers();
+    }
+
+    public void addDensityParameterObserver(Observer observer) {
+        densityParameterObservable.addObserver(observer);
+    }
+    
+    private void notifyObserversThatDensityParameterChanged() {
+        densityParameterObservable.notifyObservers();
     }
 
 }

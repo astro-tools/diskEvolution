@@ -27,8 +27,7 @@ public class DiskSimulation extends SimpleObservable {
     private void setupGrids() {
         radialGrid = new RadialGrid(parameters);
         
-        densityGrid = new DensityGrid(getRadialGrid());
-    	densityGrid.initializeWithPowerLaw(parameters);
+        setupDensityGrid();
         
         viscosityGrid = new ViscosityGrid(getRadialGrid());
         viscosityGrid.initializeWithPowerLaw(1e12, parameters.getRadius0(), 1.0);
@@ -36,8 +35,13 @@ public class DiskSimulation extends SimpleObservable {
         massFlowGrid = new MassFlowGrid(getRadialGrid());
     }
 
+    private void setupDensityGrid() {
+        densityGrid = new DensityGrid(getRadialGrid());
+    	densityGrid.initializeWithPowerLaw(parameters);
+    }
+
     private void watchForChangingParameters() {
-        Observer observer = new Observer() {
+        Observer radialObserver = new Observer() {
             @Override
             public void update(Observable observable, Object object) {
                 System.out.println("Something changed!");
@@ -45,8 +49,16 @@ public class DiskSimulation extends SimpleObservable {
                 notifyObservers();
             }
         };
-        parameters.addRadialParameterObserver(observer);
-    }
+        parameters.addRadialParameterObserver(radialObserver);
+        Observer densityObserver = new Observer() {
+            @Override
+            public void update(Observable observable, Object object) {
+                System.out.println("Density changed!");
+                setupDensityGrid();
+                notifyObservers();
+            }
+        };
+        parameters.addDensityParameterObserver(densityObserver);    }
 
     public RadialGrid getRadialGrid() {
         return radialGrid;
