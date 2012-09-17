@@ -58,13 +58,9 @@ public class GraphicalApplication extends JFrame {
         menuBar.add(toolsMenu);
         setJMenuBar(menuBar);
         
-        JMenuItem aAction = new JMenuItem("a");
-        JMenuItem bAction = new JMenuItem ("b");
-        JMenuItem cAction = new JMenuItem("c");
-        
-        toolsMenu.add(aAction);
-        toolsMenu.add(bAction);
-        toolsMenu.add(cAction);        
+        JMenuItem evolveAction = new JMenuItem("Evolve");                
+        toolsMenu.add(evolveAction);
+               
     }   
     String inputValue = JOptionPane.showInputDialog("Please input a timestep"); 
 }                                   
