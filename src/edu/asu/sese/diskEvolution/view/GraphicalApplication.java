@@ -1,30 +1,21 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JTabbedPane;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 
 public class GraphicalApplication extends JFrame {
     private static final long serialVersionUID = 1L;
     private DiskSimulation simulation;
-    private DiskView view;
-
+    private InitialConditionsView initialConditionsPanel;
+    private JTabbedPane tabPane;
+    private SimulationRunnerView runnerPanel;
+    
     public GraphicalApplication(DiskSimulation simulation) {
         this.simulation = simulation;
         setupMenuBar();
@@ -38,19 +29,14 @@ public class GraphicalApplication extends JFrame {
     public void setupWindowLayout() {
         BorderLayout layoutManager = new BorderLayout();
         setLayout(layoutManager);
-        setupDiskView();
-        setupInputView();
+        tabPane = new JTabbedPane();
+        initialConditionsPanel = new InitialConditionsView(simulation);
+        tabPane.add("Initial Conditions", initialConditionsPanel);
+        runnerPanel = new SimulationRunnerView();
+        tabPane.add("Run Simulation", runnerPanel);
+        add(tabPane, BorderLayout.CENTER);
     }
 
-    private void setupInputView() {
-        JPanel panel = new ParametersView(simulation);
-        add(panel, BorderLayout.LINE_START);        
-    }
-
-    private void setupDiskView() {
-        view = new DiskView(simulation);
-        add(view, BorderLayout.CENTER);
-    }
     public void setupMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         System.out.println(menuBar);
@@ -58,9 +44,7 @@ public class GraphicalApplication extends JFrame {
         menuBar.add(toolsMenu);
         setJMenuBar(menuBar);
         
-        JMenuItem evolveAction = new JMenuItem("Evolve");                
-        toolsMenu.add(evolveAction);
-               
-    }   
-    String inputValue = JOptionPane.showInputDialog("Please input a timestep"); 
+        JMenuItem evolveAction = new JMenuItem("Evolve");
+        toolsMenu.add(evolveAction);               
+    }
 }                                   
