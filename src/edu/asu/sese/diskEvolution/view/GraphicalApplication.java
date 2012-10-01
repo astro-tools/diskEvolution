@@ -34,9 +34,11 @@ public class GraphicalApplication extends JFrame {
         tabPane.add("Initial Conditions", initialConditionsPanel);
         runnerPanel = new SimulationRunnerView();
         tabPane.add("Run Simulation", runnerPanel);
+        runnerPanel = new ResultsView();
+        tabPane.add("Results", runnerPanel);
         add(tabPane, BorderLayout.CENTER);
     }
-
+    
     public void setupMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         System.out.println(menuBar);
@@ -48,3 +50,5 @@ public class GraphicalApplication extends JFrame {
         toolsMenu.add(evolveAction);               
     }
 }                                   
+
+    
