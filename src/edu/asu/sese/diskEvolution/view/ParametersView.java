@@ -94,7 +94,6 @@ public class ParametersView extends JPanel {
 
     public ActionListener createListener() {
         ActionListener listener = new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent event) {
                 updateParameterValuesFromFields();
             }

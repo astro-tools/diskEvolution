@@ -16,6 +16,7 @@ public class Parameters {
     private double exponent;
     private Observable radialParameterObservable;
     private Observable densityParameterObservable;
+
     
     public Parameters() {
         radialParameterObservable = new SimpleObservable();
