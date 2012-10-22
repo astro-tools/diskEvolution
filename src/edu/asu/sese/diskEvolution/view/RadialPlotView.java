@@ -59,7 +59,7 @@ public class RadialPlotView extends ChartPanel {
         XYSeries series = new XYSeries("Surface Density");
         int intervalCount = radialGrid.getIntervalCount();
         for (int i = 0; i < intervalCount; ++i) {
-            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.auInCm,
+            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.earthRadiusInCm,
                     densityGrid.getValue(i));
         }
         return series;

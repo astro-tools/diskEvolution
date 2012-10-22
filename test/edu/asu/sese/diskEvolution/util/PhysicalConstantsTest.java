@@ -10,7 +10,7 @@ public class PhysicalConstantsTest {
 
 	@Test
 	public void testAuInCmDefined() {
-		assertEquals(1.496e13, PhysicalConstants.auInCm, 1e10);
+		assertEquals(1.496e13, PhysicalConstants.earthRadiusInCm, 1e10);
 	}
 
 }
