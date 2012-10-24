@@ -12,22 +12,14 @@ public class Parameters {
     private double deltar0;
     private int intervalCount;
     private Observable radialParameterObservable;
-    private Observable densityParameterObservable;
     private InitialConditions initialConditions;
 
     
     public Parameters() {
         radialParameterObservable = new SimpleObservable();
-        densityParameterObservable = new SimpleObservable();
         initialConditions = new InitialConditions();
-        initializeDensityParameters();
+        initialConditions.initializeParameters();
         initializeGridParameters();
-    }
-
-    public void initializeDensityParameters() {
-        setDensity0(1e3);
-    	setRadius0(PhysicalConstants.earthRadiusInCm);
-    	setExponent(-1.5);
     }
 
     public void initializeGridParameters() {
@@ -82,10 +74,7 @@ public class Parameters {
     }
 
     public void setDensity0(double density0) {
-        double oldDensity0 = initialConditions.getDensity0();
-        boolean changed = Math.abs(oldDensity0 - density0) > 1.0;
         initialConditions.setDensity0(density0);
-        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getRadius0() {
@@ -93,10 +82,7 @@ public class Parameters {
     }
 
     public void setRadius0(double radius0) {
-        double oldRadius0 = initialConditions.getRadius0();
-        boolean changed = Math.abs(oldRadius0 - radius0) > 1e3;
         initialConditions.setRadius0(radius0);
-        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getExponent() {
@@ -104,10 +90,7 @@ public class Parameters {
     }
 
     public void setExponent(double exponent) {
-        double oldExponent = initialConditions.getExponent();
-        boolean changed = Math.abs(oldExponent - exponent) > 1e-6;
         initialConditions.setExponent(exponent);
-        if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public void addRadialParameterObserver(Observer observer) {
@@ -119,11 +102,6 @@ public class Parameters {
     }
 
     public void addDensityParameterObserver(Observer observer) {
-        densityParameterObservable.addObserver(observer);
+        initialConditions.addObserver(observer);
     }
-    
-    private void notifyObserversThatDensityParameterChanged() {
-        densityParameterObservable.notifyObservers();
-    }
-
 }
