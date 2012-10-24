@@ -11,16 +11,15 @@ public class Parameters {
     private double rmax;
     private double deltar0;
     private int intervalCount;
-    private double density0;
-    private double radius0;
-    private double exponent;
     private Observable radialParameterObservable;
     private Observable densityParameterObservable;
+    private InitialConditions initialConditions;
 
     
     public Parameters() {
         radialParameterObservable = new SimpleObservable();
         densityParameterObservable = new SimpleObservable();
+        initialConditions = new InitialConditions();
         initializeDensityParameters();
         initializeGridParameters();
     }
@@ -79,32 +78,35 @@ public class Parameters {
     }
 
     public double getDensity0() {
-        return density0;
+        return initialConditions.getDensity0();
     }
 
     public void setDensity0(double density0) {
-        boolean changed = Math.abs(this.density0 - density0) > 1.0;
-        this.density0 = density0;
+        double oldDensity0 = initialConditions.getDensity0();
+        boolean changed = Math.abs(oldDensity0 - density0) > 1.0;
+        initialConditions.setDensity0(density0);
         if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getRadius0() {
-        return radius0;
+        return initialConditions.getRadius0();
     }
 
     public void setRadius0(double radius0) {
-        boolean changed = Math.abs(this.radius0 - radius0) > 1e3;
-        this.radius0 = radius0;
+        double oldRadius0 = initialConditions.getRadius0();
+        boolean changed = Math.abs(oldRadius0 - radius0) > 1e3;
+        initialConditions.setRadius0(radius0);
         if (changed) notifyObserversThatDensityParameterChanged();
     }
 
     public double getExponent() {
-        return exponent;
+        return initialConditions.getExponent();
     }
 
     public void setExponent(double exponent) {
-        boolean changed = Math.abs(this.exponent - exponent) > 1e-6;
-        this.exponent = exponent;
+        double oldExponent = initialConditions.getExponent();
+        boolean changed = Math.abs(oldExponent - exponent) > 1e-6;
+        initialConditions.setExponent(exponent);
         if (changed) notifyObserversThatDensityParameterChanged();
     }
 
