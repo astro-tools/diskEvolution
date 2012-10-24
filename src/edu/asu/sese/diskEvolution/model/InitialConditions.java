@@ -23,7 +23,7 @@ public class InitialConditions {
     }
 
     public void setRadius0(double radius0) {
-        boolean changed = Math.abs(radius0 - this.radius0) > 1e3;
+        boolean changed = (Math.abs(radius0 - this.radius0) > 1e2);
         this.radius0 = radius0;
         if (changed) observable.notifyObservers();
     }
@@ -33,7 +33,7 @@ public class InitialConditions {
     }
 
     public void setDensity0(double density0) {
-        boolean changed = Math.abs(density0 - this.density0) > 1.0;
+        boolean changed = (Math.abs(density0 - this.density0) > 1.0);
         this.density0 = density0;
         if (changed) observable.notifyObservers();
     }
@@ -43,7 +43,7 @@ public class InitialConditions {
     }
 
     public void setExponent(double exponent) {
-        boolean changed = Math.abs(exponent - this.exponent) > 1e-6;
+        boolean changed = (Math.abs(exponent - this.exponent) > 1e-6);
         this.exponent = exponent;
         if (changed) observable.notifyObservers();
     }

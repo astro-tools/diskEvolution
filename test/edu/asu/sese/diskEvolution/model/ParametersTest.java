@@ -44,6 +44,39 @@ public class ParametersTest {
     }
 
     @Test
+    public void testThatChangingDeltaR0NotifiesOberserver() {
+        Parameters parameters = createParametersWithRadialObserver();
+        double deltar0 = 0.9 * parameters.getDeltar0();
+        parameters.setDeltar0(deltar0);
+        assertTrue(wasNotified);
+    }
+
+    @Test
+    public void testThatChangingDeltaR0ChangesValue() {
+        Parameters parameters = new Parameters();
+        double deltar0 = 0.9 * parameters.getDeltar0() + 1.0;
+        parameters.setDeltar0(deltar0);
+        assertEquals(deltar0, parameters.getDeltar0(), 1e-12);
+    }
+    
+    @Test
+    public void testThatChangingIntervalCountNotifiesOberserver() {
+        Parameters parameters = createParametersWithRadialObserver();
+        int intervalCount = parameters.getIntervalCount() + 2;
+        parameters.setIntervalCount(intervalCount);
+        assertTrue(wasNotified);
+    }
+
+    @Test
+    public void testThatChangingIntervalCountChangesValue() {
+        Parameters parameters = new Parameters();
+        int intervalCount = parameters.getIntervalCount() + 2;
+        parameters.setIntervalCount(intervalCount);
+        assertEquals(intervalCount, parameters.getIntervalCount());
+    }
+    
+    
+    @Test
     public void testThatChangingRadius0ChangesValue() {
         Parameters parameters = new Parameters();
         double radius0 = 0.9 * parameters.getRadius0() + 1.0;
@@ -104,7 +137,6 @@ public class ParametersTest {
         parameters.addDensityParameterObserver(observer);
         return parameters;
     }
-    
     
     private Observer createObserver() {
         Observer observer = new Observer() {

@@ -1,72 +1,48 @@
 package edu.asu.sese.diskEvolution.model;
 
-import java.util.Observable;
 import java.util.Observer;
 
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
-import edu.asu.sese.diskEvolution.util.SimpleObservable;
-
 public class Parameters {
-    private double rmin;
-    private double rmax;
-    private double deltar0;
-    private int intervalCount;
-    private Observable radialParameterObservable;
     private InitialConditions initialConditions;
-
+    private GridFactory gridFactory;
     
     public Parameters() {
-        radialParameterObservable = new SimpleObservable();
         initialConditions = new InitialConditions();
         initialConditions.initializeParameters();
-        initializeGridParameters();
-    }
-
-    public void initializeGridParameters() {
-        setRmin(0.1 * PhysicalConstants.earthRadiusInCm);
-        setRmax(200.0 * PhysicalConstants.earthRadiusInCm);
-        setDeltar0(0.1 * PhysicalConstants.earthRadiusInCm);
-        setIntervalCount(50);
+        gridFactory = new GridFactory();
+        gridFactory.initializeParameters();
     }
 
     public double getRmin() {
-        return rmin;
+        return gridFactory.getRmin();
     }
 
     public void setRmin(double rmin) {
-        boolean changed = Math.abs(this.rmin - rmin) > 1e2;
-        this.rmin = rmin;
-        if (changed) notifyObserversThatRadialParameterChanged();
+        gridFactory.setRmin(rmin);
     }
 
     public double getRmax() {
-        return rmax;
+        return gridFactory.getRmax();
     }
 
     public void setRmax(double rmax) {
-        boolean changed = Math.abs(this.rmax - rmax) > 1e2;
-        this.rmax = rmax;
-        if (changed) notifyObserversThatRadialParameterChanged();
+        gridFactory.setRmax(rmax);
     }
 
     public double getDeltar0() {
-        return deltar0;
+        return gridFactory.getDeltar0();
     }
 
     public void setDeltar0(double deltar0) {
-        boolean changed = Math.abs(this.deltar0 - deltar0) > 1e2;
-        this.deltar0 = deltar0;
-        if (changed) notifyObserversThatRadialParameterChanged();
+        gridFactory.setDeltar0(deltar0);
     }
 
     public int getIntervalCount() {
-        return intervalCount;
+        return gridFactory.getIntervalCount();
     }
 
     public void setIntervalCount(int intervalCount) {
-        boolean changed = (this.intervalCount != intervalCount);
-        this.intervalCount = intervalCount;
-        if (changed) notifyObserversThatRadialParameterChanged();
+        gridFactory.setIntervalCount(intervalCount);
     }
 
     public double getDensity0() {
@@ -94,11 +70,7 @@ public class Parameters {
     }
 
     public void addRadialParameterObserver(Observer observer) {
-        radialParameterObservable.addObserver(observer);
-    }
-
-    private void notifyObserversThatRadialParameterChanged() {
-        radialParameterObservable.notifyObservers();
+        gridFactory.addObserver(observer);
     }
 
     public void addDensityParameterObserver(Observer observer) {
