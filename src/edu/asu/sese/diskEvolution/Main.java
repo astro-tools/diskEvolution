@@ -10,7 +10,6 @@ public class Main {
         System.out.print("Running DiskSimulation");
         
         new GraphicalApplication(simulation);       
-        new GraphicalApplication(simulation);
        
         final long duration = System.nanoTime() - startTime ;
         System.out.println("Time =" + duration/1000000 + " MilliSeconds");
