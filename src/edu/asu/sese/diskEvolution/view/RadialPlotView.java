@@ -13,6 +13,7 @@ public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
     private static XYSeriesCollection dataset;
+	private static String radialUnitName = "R_Earth";
       
     
     public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
@@ -23,7 +24,7 @@ public class RadialPlotView extends ChartPanel {
         dataset = createDataset(radialGrid, densityGrid);
 
         String title = "Surface Density";
-        String domainTitle = "r (AU)";
+		String domainTitle = "r (" + radialUnitName +")";
         String rangeTitle = "Σ (g/cm²)";
         boolean showLegend = false;
         boolean useTooltips = true;
@@ -59,7 +60,7 @@ public class RadialPlotView extends ChartPanel {
         XYSeries series = new XYSeries("Surface Density");
         int intervalCount = radialGrid.getIntervalCount();
         for (int i = 0; i < intervalCount; ++i) {
-            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.auInCm,
+            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.earthRadiusInCm,
                     densityGrid.getValue(i));
         }
         return series;

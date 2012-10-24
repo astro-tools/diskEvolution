@@ -8,7 +8,8 @@ import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 
 public class InitialConditionsView extends JPanel {
 
-    private DiskView view;
+	private static final long serialVersionUID = 1L;
+	private DiskView view;
     private DiskSimulation simulation;
     
     public InitialConditionsView(DiskSimulation simulation) {

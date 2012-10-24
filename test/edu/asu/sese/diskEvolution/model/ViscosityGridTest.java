@@ -16,9 +16,9 @@ public class ViscosityGridTest {
     
     @Before
     public void setup() { 
-        double rmin = 0.1 * PhysicalConstants.auInCm;
-        double rmax = 40.0 * PhysicalConstants.auInCm;
-        double deltar0 = 0.01 * PhysicalConstants.auInCm;
+        double rmin = 0.1 * PhysicalConstants.earthRadiusInCm;
+        double rmax = 40.0 * PhysicalConstants.earthRadiusInCm;
+        double deltar0 = 0.01 * PhysicalConstants.earthRadiusInCm;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
         grid = new ViscosityGrid(radialGrid);
     }
@@ -36,7 +36,7 @@ public class ViscosityGridTest {
     
     @Test
     public void testInitialization() {
-        grid.initializeWithPowerLaw(1.0e12, PhysicalConstants.auInCm, 1.0);
+        grid.initializeWithPowerLaw(1.0e12, PhysicalConstants.earthRadiusInCm, 1.0);
         double rcheck = Math.sqrt(0.1 * 0.11);
         double expected = 1.0e12 * rcheck;
         assertEquals(expected, grid.getValue(0), 1e-3);

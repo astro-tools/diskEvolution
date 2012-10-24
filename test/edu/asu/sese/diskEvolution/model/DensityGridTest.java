@@ -15,9 +15,9 @@ public class DensityGridTest {
     
     @Before
     public void setup() {
-        double rmin = 0.1 * PhysicalConstants.auInCm;
-        double rmax = 40.0 * PhysicalConstants.auInCm;
-        double deltar0 = 0.01 * PhysicalConstants.auInCm;
+        double rmin = 0.1 * PhysicalConstants.earthRadiusInCm;
+        double rmax = 40.0 * PhysicalConstants.earthRadiusInCm;
+        double deltar0 = 0.01 * PhysicalConstants.earthRadiusInCm;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, zoneCount);
         grid = new DensityGrid(radialGrid);
     }
@@ -35,7 +35,7 @@ public class DensityGridTest {
     
     @Test
     public void testInitialization() {
-        grid.initializeWithPowerLaw(1.0e3, PhysicalConstants.auInCm, -1.5);
+        grid.initializeWithPowerLaw(1.0e3, PhysicalConstants.earthRadiusInCm, -1.5);
         double rcheck = Math.sqrt(0.1 * 0.11);
         double expected = 1.0e3 * Math.pow(rcheck, -1.5);
         assertEquals(expected, grid.getValue(0), 1e-10);
