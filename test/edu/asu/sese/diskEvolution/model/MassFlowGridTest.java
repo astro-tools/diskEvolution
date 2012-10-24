@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class MassFlowGridTest {
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.asu.sese.diskEvolution.model.RadialGrid;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class RadialGridTest {
 

@@ -2,6 +2,8 @@ package edu.asu.sese.diskEvolution.model;
 
 import java.util.Observer;
 
+import edu.asu.sese.diskEvolution.util.GridFactory;
+
 public class Parameters {
     private InitialConditions initialConditions;
     private GridFactory gridFactory;

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DensityGridTest {
     DensityGrid grid;

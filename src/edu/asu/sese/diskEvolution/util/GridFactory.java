@@ -1,10 +1,8 @@
-package edu.asu.sese.diskEvolution.model;
+package edu.asu.sese.diskEvolution.util;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
-import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
 public class GridFactory {
 

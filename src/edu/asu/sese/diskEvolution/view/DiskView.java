@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.MidpointGrid;
-import edu.asu.sese.diskEvolution.model.RadialGrid;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DiskView extends JPanel {
     private static final long serialVersionUID = 1L;

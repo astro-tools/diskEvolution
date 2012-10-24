@@ -6,6 +6,7 @@ import org.junit.*;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 import static org.junit.Assert.*;
 
 public class MassMoverTest {	
