@@ -35,12 +35,12 @@ public class ParametersView extends JPanel {
     }
 
     private void setFieldValuesFromData() {
-        rminField.setText(Double.toString(parameters.getRmin()/PhysicalConstants.auInCm));
-        rmaxField.setText(Double.toString(parameters.getRmax()/PhysicalConstants.auInCm));
-        deltar0Field.setText(Double.toString(parameters.getDeltar0()/PhysicalConstants.auInCm));
+        rminField.setText(Double.toString(parameters.getRmin()/PhysicalConstants.earthRadiusInCm));
+        rmaxField.setText(Double.toString(parameters.getRmax()/PhysicalConstants.earthRadiusInCm));
+        deltar0Field.setText(Double.toString(parameters.getDeltar0()/PhysicalConstants.earthRadiusInCm));
         intervalCountField.setText(Integer.toString(parameters.getIntervalCount()));
         density0Field.setText(Double.toString(parameters.getDensity0()));
-        radius0Field.setText(Double.toString(parameters.getRadius0()/PhysicalConstants.auInCm));
+        radius0Field.setText(Double.toString(parameters.getRadius0()/PhysicalConstants.earthRadiusInCm));
         exponentField.setText(Double.toString(parameters.getExponent()));
     }
 
@@ -104,24 +104,24 @@ public class ParametersView extends JPanel {
     protected void updateParameterValuesFromFields() {
         String string = rminField.getText();
         try {
-            double rmin = Double.parseDouble(string) * PhysicalConstants.auInCm;
-            parameters.setRmin(rmin);
-            System.out.println("rmin = " + Double.toString(parameters.getRmin()));
+            double diskRmin = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
+            parameters.setRmin(diskRmin);
+            System.out.println("DiskRmin = " + Double.toString(parameters.getRmin()));
         } catch (NumberFormatException exception) {
             // do nothing
         }
         
         string = rmaxField.getText();
         try {
-            double rmax = Double.parseDouble(string) * PhysicalConstants.auInCm;
+            double rmax = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setRmax(rmax);
-            System.out.println("rmax = " + Double.toString(parameters.getRmax()));
+            System.out.println("DiskRmax = " + Double.toString(parameters.getRmax()));
         } catch (NumberFormatException exception) {
         }
        
         string = deltar0Field.getText();
         try {
-            double deltar0 = Double.parseDouble(string) * PhysicalConstants.auInCm;
+            double deltar0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setDeltar0(deltar0);
             System.out.println("deltar0 = " + Double.toString(parameters.getDeltar0()));
         } catch (NumberFormatException exception) {
@@ -146,7 +146,7 @@ public class ParametersView extends JPanel {
         
         string = radius0Field.getText();
         try {
-            double radius0 = Double.parseDouble(string) * PhysicalConstants.auInCm;
+            double radius0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setRadius0(radius0);
             System.out.println("radius0 = " + Double.toString(parameters.getRadius0()));
         } catch (NumberFormatException exception) {

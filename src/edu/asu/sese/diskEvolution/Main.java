@@ -1,7 +1,5 @@
 package edu.asu.sese.diskEvolution;
 
-import javax.swing.JOptionPane;
-
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.view.GraphicalApplication;
 
@@ -14,7 +12,7 @@ public class Main {
         new GraphicalApplication(simulation);
        
         final long duration = System.nanoTime() - startTime ;
-        JOptionPane.showMessageDialog(null, "Time =" + duration/1000000 + " MilliSeconds");
+        System.out.println("Time =" + duration/1000000 + " MilliSeconds");
     }
     
 }

@@ -27,14 +27,14 @@ public class Parameters {
 
     public void initializeDensityParameters() {
         setDensity0(1e3);
-    	setRadius0(PhysicalConstants.auInCm);
+    	setRadius0(PhysicalConstants.earthRadiusInCm);
     	setExponent(-1.5);
     }
 
     public void initializeGridParameters() {
-        setRmin(0.1 * PhysicalConstants.auInCm);
-        setRmax(200.0 * PhysicalConstants.auInCm);
-        setDeltar0(0.1 * PhysicalConstants.auInCm);
+        setRmin(0.1 * PhysicalConstants.earthRadiusInCm);
+        setRmax(200.0 * PhysicalConstants.earthRadiusInCm);
+        setDeltar0(0.1 * PhysicalConstants.earthRadiusInCm);
         setIntervalCount(50);
     }
 
