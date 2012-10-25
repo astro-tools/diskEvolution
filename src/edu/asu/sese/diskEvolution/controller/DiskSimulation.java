@@ -45,7 +45,6 @@ public class DiskSimulation extends SimpleObservable {
         Observer radialObserver = new Observer() {
             @Override
             public void update(Observable observable, Object object) {
-                System.out.println("Something changed!");
                 setupGrids();
                 notifyObservers();
             }

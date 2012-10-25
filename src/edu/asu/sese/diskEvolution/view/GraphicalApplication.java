@@ -41,7 +41,6 @@ public class GraphicalApplication extends JFrame {
     
     public void setupMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        System.out.println(menuBar);
         JMenu toolsMenu = new JMenu("Tools");
         menuBar.add(toolsMenu);
         setJMenuBar(menuBar);

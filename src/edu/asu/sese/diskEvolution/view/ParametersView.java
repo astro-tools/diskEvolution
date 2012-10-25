@@ -106,7 +106,6 @@ public class ParametersView extends JPanel {
         try {
             double diskRmin = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setRmin(diskRmin);
-            System.out.println("DiskRmin = " + Double.toString(parameters.getRmin()));
         } catch (NumberFormatException exception) {
             // do nothing
         }
@@ -115,7 +114,6 @@ public class ParametersView extends JPanel {
         try {
             double rmax = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setRmax(rmax);
-            System.out.println("DiskRmax = " + Double.toString(parameters.getRmax()));
         } catch (NumberFormatException exception) {
         }
        
@@ -123,7 +121,6 @@ public class ParametersView extends JPanel {
         try {
             double deltar0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setDeltar0(deltar0);
-            System.out.println("deltar0 = " + Double.toString(parameters.getDeltar0()));
         } catch (NumberFormatException exception) {
 
         }
@@ -132,7 +129,6 @@ public class ParametersView extends JPanel {
         try {
             int intervalCount = Integer.parseInt(string);
             parameters.setIntervalCount(intervalCount);
-            System.out.println("intervalCount = " + Integer.toString(parameters.getIntervalCount()));
         } catch (NumberFormatException exception) {
         }
         
@@ -140,7 +136,6 @@ public class ParametersView extends JPanel {
         try {
             double density0 = Double.parseDouble(string);
             parameters.setDensity0(density0);
-            System.out.println("density0 = " + Double.toString(parameters.getDensity0()));
         } catch (NumberFormatException exception) {
         }
         
@@ -148,7 +143,6 @@ public class ParametersView extends JPanel {
         try {
             double radius0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
             parameters.setRadius0(radius0);
-            System.out.println("radius0 = " + Double.toString(parameters.getRadius0()));
         } catch (NumberFormatException exception) {
         }
         
@@ -156,7 +150,6 @@ public class ParametersView extends JPanel {
         try {
             double exponent = Double.parseDouble(string);
             parameters.setExponent(exponent);
-            System.out.println("exponent = " + Double.toString(parameters.getExponent()));
         } catch (NumberFormatException exception) {
         }        
         setFieldValuesFromData();
