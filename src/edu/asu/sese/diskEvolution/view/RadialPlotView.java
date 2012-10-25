@@ -13,7 +13,7 @@ public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
     private static XYSeriesCollection dataset;
-	private static String radialUnitName = "R_Earth";
+	private static String radialUnitName = "R⊕";
       
     
     public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
