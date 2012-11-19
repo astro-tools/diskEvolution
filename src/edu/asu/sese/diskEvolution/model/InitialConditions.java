@@ -11,10 +11,18 @@ public class InitialConditions {
     private double density0;
     private double exponent;
     private SimpleObservable observable = new SimpleObservable();
+    private double rmin;
+    private double rmax;
+    
+    public InitialConditions() {
+        initializeParameters();
+    }
     
     public void initializeParameters() {
         setDensity0(1e3);
         setRadius0(PhysicalConstants.earthRadiusInCm);
+        setRMin(1.1 * PhysicalConstants.earthRadiusInCm);
+        setRMax(5.0 * PhysicalConstants.earthRadiusInCm);
         setExponent(-1.5);
     }
     
@@ -52,4 +60,28 @@ public class InitialConditions {
         observable.addObserver(observer);
     }
 
+    public void setRMin(double rmin) {
+        boolean changed = (Math.abs(rmin - this.rmin) > 1e2);
+        this.rmin = rmin;
+        if (changed) observable.notifyObservers();
+    }
+
+    public double getRMin() {
+        return rmin;
+    }
+
+
+    public void setRMax(double rmax) {
+        boolean changed = (Math.abs(rmax - this.rmax) > 1e2);
+        this.rmax = rmax;
+        if (changed) observable.notifyObservers();
+    }
+
+    public double getRMax() {
+        return rmax;
+    }
+
+    public double getTotalMass() {
+        return 0.0;
+    }
 }
