@@ -7,40 +7,37 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
-import edu.asu.sese.diskEvolution.model.Parameters;
+import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
-public class ParametersView extends JPanel {
+public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
     
-    private Parameters parameters;
+    private InitialConditions parameters;
 
     private JTextField rminField;
     private JTextField rmaxField;
-    private JTextField deltar0Field;
-    private JTextField intervalCountField;    
     private JTextField density0Field;
     private JTextField radius0Field;
     private JTextField exponentField;
 
-    public ParametersView(DiskSimulation simulation) {
-        parameters = simulation.getSimulationData();
+    public InitialDiskInputView(DiskSimulation simulation) {
+        parameters = simulation.getInitialConditions();
         ActionListener listener = createListener();
         setupLabelsAndFields(listener);
         setFieldValuesFromData();
     }
 
     private void setFieldValuesFromData() {
-        rminField.setText(Double.toString(parameters.getRmin()/PhysicalConstants.earthRadiusInCm));
-        rmaxField.setText(Double.toString(parameters.getRmax()/PhysicalConstants.earthRadiusInCm));
-        deltar0Field.setText(Double.toString(parameters.getDeltar0()/PhysicalConstants.earthRadiusInCm));
-        intervalCountField.setText(Integer.toString(parameters.getIntervalCount()));
+        rminField.setText(Double.toString(parameters.getRMin()
+                /PhysicalConstants.earthRadiusInCm));
+        rmaxField.setText(Double.toString(parameters.getRMax()
+                /PhysicalConstants.earthRadiusInCm));
         density0Field.setText(Double.toString(parameters.getDensity0()));
-        radius0Field.setText(Double.toString(parameters.getRadius0()/PhysicalConstants.earthRadiusInCm));
+        radius0Field.setText(Double.toString(parameters.getRadius0()
+                /PhysicalConstants.earthRadiusInCm));
         exponentField.setText(Double.toString(parameters.getExponent()));
     }
 
@@ -59,19 +56,7 @@ public class ParametersView extends JPanel {
         rmaxField = new JTextField();
         rmaxField.addActionListener(listener);
         add(rmaxField);
-        
-        JLabel deltar0Label = new JLabel("<html>Δ r<sub>0</sub>");
-        add(deltar0Label);
-        deltar0Field = new JTextField();
-        deltar0Field.addActionListener(listener);
-        add(deltar0Field);
-        
-        JLabel intervalCountLabel = new JLabel("<html>N<sub>interval</sub>");
-        add(intervalCountLabel);
-        intervalCountField = new JTextField();
-        intervalCountField.addActionListener(listener);
-        add(intervalCountField);
-        
+                
         JLabel density0Label = new JLabel("<html>ρ<sub>0</sub>");
         add(density0Label);
         density0Field = new JTextField();
@@ -104,34 +89,21 @@ public class ParametersView extends JPanel {
     protected void updateParameterValuesFromFields() {
         String string = rminField.getText();
         try {
-            double diskRmin = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
-            parameters.setRmin(diskRmin);
+            double diskRmin = Double.parseDouble(string) 
+                    * PhysicalConstants.earthRadiusInCm;
+            parameters.setRMin(diskRmin);
         } catch (NumberFormatException exception) {
             // do nothing
         }
         
         string = rmaxField.getText();
         try {
-            double rmax = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
-            parameters.setRmax(rmax);
+            double rmax = Double.parseDouble(string) 
+                    * PhysicalConstants.earthRadiusInCm;
+            parameters.setRMax(rmax);
         } catch (NumberFormatException exception) {
         }
-       
-        string = deltar0Field.getText();
-        try {
-            double deltar0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
-            parameters.setDeltar0(deltar0);
-        } catch (NumberFormatException exception) {
-
-        }
-       
-        string = intervalCountField.getText();
-        try {
-            int intervalCount = Integer.parseInt(string);
-            parameters.setIntervalCount(intervalCount);
-        } catch (NumberFormatException exception) {
-        }
-        
+               
         string = density0Field.getText();
         try {
             double density0 = Double.parseDouble(string);
@@ -141,7 +113,8 @@ public class ParametersView extends JPanel {
         
         string = radius0Field.getText();
         try {
-            double radius0 = Double.parseDouble(string) * PhysicalConstants.earthRadiusInCm;
+            double radius0 = Double.parseDouble(string) 
+                    * PhysicalConstants.earthRadiusInCm;
             parameters.setRadius0(radius0);
         } catch (NumberFormatException exception) {
         }

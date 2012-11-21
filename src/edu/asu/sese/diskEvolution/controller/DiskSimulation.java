@@ -14,6 +14,7 @@ public class DiskSimulation extends SimpleObservable {
     private ViscosityGrid viscosityGrid;
     private MassFlowGrid massFlowGrid;
     private Parameters parameters;
+    private InitialConditions initialConditions;
 
     public DiskSimulation() {
         setupSimulation();
@@ -21,6 +22,7 @@ public class DiskSimulation extends SimpleObservable {
 
     public void setupSimulation() {
         parameters = new Parameters();
+        initialConditions = new InitialConditions();
         setupGrids();
         watchForChangingParameters();
     }
@@ -70,6 +72,10 @@ public class DiskSimulation extends SimpleObservable {
 
     public Parameters getSimulationData() {
         return parameters;
+    }
+
+    public InitialConditions getInitialConditions() {
+        return initialConditions;
     }
 
 

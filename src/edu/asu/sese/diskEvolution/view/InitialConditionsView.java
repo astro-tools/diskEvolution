@@ -26,7 +26,7 @@ public class InitialConditionsView extends JPanel {
     }
 
     private void setupInputView() {
-        JPanel panel = new ParametersView(simulation);
+        JPanel panel = new InitialDiskInputView(simulation);
         add(panel, BorderLayout.LINE_START);        
     }
 
