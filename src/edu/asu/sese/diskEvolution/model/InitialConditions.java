@@ -82,6 +82,9 @@ public class InitialConditions {
     }
 
     public double getTotalMass() {
-        return 0.0;
+        double mass = 2 * Math.PI * density0;
+        mass /= (exponent + 2.0) * Math.pow(radius0, exponent);
+        mass *= Math.pow(rmax, exponent + 2.0) - Math.pow(rmin, exponent + 2.0);
+        return mass;
     }
 }

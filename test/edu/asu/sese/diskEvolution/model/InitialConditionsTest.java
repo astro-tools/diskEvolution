@@ -63,18 +63,18 @@ public class InitialConditionsTest {
         assertEquals(radius0, initialConditions.getRadius0(), 1e-12);
     }
     
+    /// Mass is 2*pi*sigma0 [rmax^(p+2) - rmin^(p+2)]/ (p+2)*r0^p
+    /// For an exponent of p=2, sigma0 of 5 g/cm, r0=3cm, rmax=4 cm, rmin=2cm,
+    /// mass should be 209.43951023931953 g.
     @Test
-    @Ignore
     public void testThatInitialMassIsCorrect() {
-        double radius0 = initialConditions.getRadius0();
-        double density0 = initialConditions.getDensity0();
-        double exponent = initialConditions.getExponent();
-        double rmin = initialConditions.getRMin();
-        double rmax = initialConditions.getRMax();
-        double expect = 2 * Math.PI * density0;
-        expect /= (exponent + 2.0) * Math.pow(radius0, exponent);
-        expect *= Math.pow(rmax, exponent + 2.0) - Math.pow(rmin, exponent + 2.0);
-        assertEquals(expect, initialConditions.getTotalMass(), PhysicalConstants.lunarMass * 1e-6);
+        initialConditions.setRadius0(3.0);
+        initialConditions.setDensity0(5.0);
+        initialConditions.setExponent(2);
+        initialConditions.setRMin(2.0);
+        initialConditions.setRMax(4.0);
+        double expect = 209.43951023931953;
+        assertEquals(expect, initialConditions.getTotalMass(), 1e-12);
     }
     
     private InitialConditions createInitialConditionsWithObserver() {
