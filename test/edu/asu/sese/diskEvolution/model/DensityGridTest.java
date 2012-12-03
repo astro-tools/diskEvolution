@@ -3,6 +3,7 @@ package edu.asu.sese.diskEvolution.model;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
@@ -48,15 +49,17 @@ public class DensityGridTest {
         assertEquals(expected, grid.getValue(0), 1e-10);
     }
     
-//	@Test
-//  public void testTotalMassIsZeroWhenDensityIsZero(){
-//		assertEquals(0.0, grid.getTotalMass(), 1e-12);
-//	}
+	@Test
+	public void testTotalMassIsZeroWhenDensityIsZero(){
+		assertEquals(0.0, grid.getTotalMass(), 1e-12);
+	}
 	
     @Test
     public void testTotalMass() {
-        double mass = 1.52e21;
-        assertEquals(mass, grid.getTotalMass(), 1e19);
+        double density0 = 1.0e3;
+        grid.initializeWithPowerLaw(density0, rmin, 0.0);
+        double expect = Math.PI * (rmax * rmax - rmin * rmin) * density0;
+        assertEquals(expect, grid.getTotalMass(), 1e19);
     }
 
  }

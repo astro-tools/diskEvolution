@@ -29,6 +29,10 @@ public class MidpointGrid {
         }   
     }
 
+    public double getArea(int i) {
+        return radialGrid.getArea(i);
+    }  
+    
     public double[] getValueArray() {
         return value;
     }
