@@ -8,14 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
 public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
     
-    private InitialConditions parameters;
+    private InitialConditions conditions;
 
     private JTextField rminField;
     private JTextField rmaxField;
@@ -23,22 +22,26 @@ public class InitialDiskInputView extends JPanel {
     private JTextField radius0Field;
     private JTextField exponentField;
 
-    public InitialDiskInputView(DiskSimulation simulation) {
-        parameters = simulation.getInitialConditions();
+    public InitialDiskInputView(InitialConditions initialConditions) {
+        this.conditions = initialConditions;
         ActionListener listener = createListener();
         setupLabelsAndFields(listener);
         setFieldValuesFromData();
     }
 
+    private void setTextFieldValue(JTextField field, double value, double scale) {
+        Double scaledValue = value / scale;
+        field.setText(scaledValue.toString());
+    }
+    
     private void setFieldValuesFromData() {
-        rminField.setText(Double.toString(parameters.getRMin()
-                /PhysicalConstants.earthRadiusInCm));
-        rmaxField.setText(Double.toString(parameters.getRMax()
-                /PhysicalConstants.earthRadiusInCm));
-        density0Field.setText(Double.toString(parameters.getDensity0()));
-        radius0Field.setText(Double.toString(parameters.getRadius0()
-                /PhysicalConstants.earthRadiusInCm));
-        exponentField.setText(Double.toString(parameters.getExponent()));
+        double lengthScale = PhysicalConstants.earthRadiusInCm;
+        setTextFieldValue(rminField, conditions.getRMin(), lengthScale);
+        setTextFieldValue(rmaxField, conditions.getRMax(), lengthScale);
+        setTextFieldValue(radius0Field, conditions.getRadius0(), lengthScale);
+        setTextFieldValue(density0Field, conditions.getDensity0(), 1.0);
+        density0Field.setText(Double.toString(conditions.getDensity0()));
+        exponentField.setText(Double.toString(conditions.getExponent()));
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
@@ -91,7 +94,7 @@ public class InitialDiskInputView extends JPanel {
         try {
             double diskRmin = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
-            parameters.setRMin(diskRmin);
+            conditions.setRMin(diskRmin);
         } catch (NumberFormatException exception) {
             // do nothing
         }
@@ -100,14 +103,14 @@ public class InitialDiskInputView extends JPanel {
         try {
             double rmax = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
-            parameters.setRMax(rmax);
+            conditions.setRMax(rmax);
         } catch (NumberFormatException exception) {
         }
                
         string = density0Field.getText();
         try {
             double density0 = Double.parseDouble(string);
-            parameters.setDensity0(density0);
+            conditions.setDensity0(density0);
         } catch (NumberFormatException exception) {
         }
         
@@ -115,14 +118,14 @@ public class InitialDiskInputView extends JPanel {
         try {
             double radius0 = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
-            parameters.setRadius0(radius0);
+            conditions.setRadius0(radius0);
         } catch (NumberFormatException exception) {
         }
         
         string = exponentField.getText();
         try {
             double exponent = Double.parseDouble(string);
-            parameters.setExponent(exponent);
+            conditions.setExponent(exponent);
         } catch (NumberFormatException exception) {
         }        
         setFieldValuesFromData();

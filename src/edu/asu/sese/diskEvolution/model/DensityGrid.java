@@ -1,5 +1,6 @@
 package edu.asu.sese.diskEvolution.model;
 
+import edu.asu.sese.diskEvolution.util.MidpointGrid;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 

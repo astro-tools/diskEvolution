@@ -1,11 +1,10 @@
-package edu.asu.sese.diskEvolution.model;
+package edu.asu.sese.diskEvolution.util;
 
-import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class MidpointGrid {
 
     protected int zoneCount;
-    protected double[] value;
+    private double[] value;
     protected RadialGrid radialGrid;
 
     public MidpointGrid(RadialGrid radialGrid) {
@@ -19,15 +18,19 @@ public class MidpointGrid {
     }
 
     public double getValue(int i) {
-        return value[i];
+        return getValueArray()[i];
     }
 
     public void initializeWithPowerLaw(double value0, double radius0, 
             double exponent) {
         for (int i = 0; i < zoneCount; ++i) {
             double radius = radialGrid.getMidpoint(i);
-            value[i] = value0 * Math.pow(radius/radius0, exponent);
+            getValueArray()[i] = value0 * Math.pow(radius/radius0, exponent);
         }   
+    }
+
+    public double[] getValueArray() {
+        return value;
     }
 
 }

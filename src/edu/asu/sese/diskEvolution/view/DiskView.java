@@ -7,7 +7,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
-import edu.asu.sese.diskEvolution.model.MidpointGrid;
+import edu.asu.sese.diskEvolution.util.MidpointGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DiskView extends JPanel {

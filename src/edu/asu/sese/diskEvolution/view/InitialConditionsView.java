@@ -5,14 +5,17 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
+import edu.asu.sese.diskEvolution.model.InitialConditions;
 
 public class InitialConditionsView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private DiskView view;
     private DiskSimulation simulation;
+    private InitialConditions initialConditions;
     
     public InitialConditionsView(DiskSimulation simulation) {
+        initialConditions = simulation.getInitialConditions();
         this.simulation = simulation;
         BorderLayout layoutManager = new BorderLayout();
         setLayout(layoutManager);
@@ -26,7 +29,7 @@ public class InitialConditionsView extends JPanel {
     }
 
     private void setupInputView() {
-        JPanel panel = new InitialDiskInputView(simulation);
+        JPanel panel = new InitialDiskInputView(initialConditions);
         add(panel, BorderLayout.LINE_START);        
     }
 

@@ -5,7 +5,7 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.xy.*;
 
-import edu.asu.sese.diskEvolution.model.MidpointGrid;
+import edu.asu.sese.diskEvolution.util.MidpointGrid;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 

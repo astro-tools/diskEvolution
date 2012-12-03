@@ -34,9 +34,9 @@ public class MassMoverTest {
 	
 	@Test
 	public void testDensityUnchangedWhenFlowIsZero() {
-		double [] oldValue = Arrays.copyOf(density.value, intervalCount);
+		double [] oldValue = Arrays.copyOf(density.getValueArray(), intervalCount);
 		mover.moveMass();
-		assertArrayEquals(oldValue, density.value, 1e-3);
+		assertArrayEquals(oldValue, density.getValueArray(), 1e-3);
 	}
 
 }

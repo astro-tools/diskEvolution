@@ -1,4 +1,4 @@
-package edu.asu.sese.diskEvolution.model;
+package edu.asu.sese.diskEvolution.util;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
