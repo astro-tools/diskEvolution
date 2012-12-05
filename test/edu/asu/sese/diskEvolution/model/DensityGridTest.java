@@ -48,7 +48,7 @@ public class DensityGridTest {
         double expected = 1.0e3 * Math.pow(rcheck, -1.5);
         assertEquals(expected, grid.getValue(0), 1e-10);
     }
-    
+
 	@Test
 	public void testTotalMassIsZeroWhenDensityIsZero(){
 		assertEquals(0.0, grid.getTotalMass(), 1e-12);
@@ -62,7 +62,6 @@ public class DensityGridTest {
         assertEquals(expect, grid.getTotalMass(), 1e10);
     }
     
-    @Ignore
     @Test 
     public void testTotalMassWithRinAndRout() {
         double density0 = 1.0e3;
@@ -74,3 +73,4 @@ public class DensityGridTest {
     }
 
  }
+

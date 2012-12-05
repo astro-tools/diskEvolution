@@ -24,11 +24,20 @@ public class DensityGrid extends MidpointGrid {
         return mass;
     }
 
-    public void initializeWithPowerLaw(double density0, double rmin, double d,
+    public void initializeWithPowerLaw(double density0, double radius0, double d,
             double rin, double rout) {
-        // Note: this ignores rin and rout!
-        super.initializeWithPowerLaw(density0, rmin, d);
-        // Now need to set empty bins (inside rin or outside rout) to zero.
+        super.initializeWithPowerLaw(density0, radius0, d);
+        RadialGrid grid = getRadialGrid();
+        for (int index =0; index < zoneCount; index++){
+            if (grid.getBoundaryPoint(index+1) < rin 
+         		   || grid.getBoundaryPoint(index) > rout) {
+         	   setValue(index, 0.0);
+            }	
+        }
+     
     }
 
+
+
 }
+

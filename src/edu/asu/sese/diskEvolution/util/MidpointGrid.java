@@ -20,6 +20,11 @@ public class MidpointGrid {
     public double getValue(int i) {
         return getValueArray()[i];
     }
+    
+    public void setValue(int i, double v) {
+         value[i] = v;
+         
+    }
 
     public void initializeWithPowerLaw(double value0, double radius0, 
             double exponent) {
@@ -36,5 +41,9 @@ public class MidpointGrid {
     public double[] getValueArray() {
         return value;
     }
+    
+	public RadialGrid getRadialGrid() {
+		return radialGrid;
+	}
 
 }
