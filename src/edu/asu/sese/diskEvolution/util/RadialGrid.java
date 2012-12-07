@@ -86,7 +86,7 @@ public class RadialGrid {
     private static double geometricSeries(double scale, int n) {
         return ((Math.pow(scale,n)-1)/(scale -1));
     }
-
+    
     private static double scaleDerivativeOfGeometricSeries(
             double scale, int n) {
         return n * Math.pow(scale, n-1)/(scale-1)
