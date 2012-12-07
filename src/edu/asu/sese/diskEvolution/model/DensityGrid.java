@@ -24,33 +24,58 @@ public class DensityGrid extends MidpointGrid {
         return mass;
     }
 
-    public void initializeWithPowerLaw(double density0, double radius0, double d,
-            double rin, double rout) {
+    public void initializeWithPowerLaw(double density0, double radius0, 
+            double d, double rin, double rout) {
         super.initializeWithPowerLaw(density0, radius0, d);
-        RadialGrid grid = getRadialGrid();
+        RadialGrid radialGrid = getRadialGrid();
         
-        for (int i =0; i < zoneCount; i++){
-        	double innerBoundary = grid.getBoundaryPoint(i);
-        	double outerBoundary = grid.getBoundaryPoint(i+1);
+        for (int i = 0; i < zoneCount; i++) {
+        	double innerBoundary = radialGrid.getBoundaryPoint(i);
+        	double outerBoundary = radialGrid.getBoundaryPoint(i+1);
             double density = getValue(i);
         	
-        	if (innerBoundary < rin || outerBoundary > rout) {
-        		if ((outerBoundary > rin && innerBoundary < rin) ||
-            			(innerBoundary < rout && outerBoundary > rout)){ 
-            		
-            		if (innerBoundary < rin && outerBoundary > rin){
-            		density = getValue(i)*(Math.pow(outerBoundary, 2) - Math.pow(rin, 2))/
-            				(Math.pow(outerBoundary, 2) - Math.pow(innerBoundary, 2));
-            		}
-            		else if (innerBoundary < rout && outerBoundary > rout){
-            			density = getValue(i)*(Math.pow(rout, 2)-Math.pow(innerBoundary, 2))/
-            					(Math.pow(outerBoundary, 2) - Math.pow(innerBoundary, 2));
-            		}            		
-            	}
-            	
-            	else {density = 0.0;}
-            	setValue(i, density);
-            }   
+            if (outsideDisk(innerBoundary, outerBoundary, rin, rout)) {
+                density = 0.0;
+            }
+            
+            if (onInnerEdge(innerBoundary, outerBoundary, rin)) {
+                density *= fractionWithinInnerEdge(
+                        rin, innerBoundary, outerBoundary);
+            }
+            
+        	if (onOuterEdge(innerBoundary, outerBoundary, rout)) {
+        	    density *= fractionWithinOuterEdge(
+        	            rout, innerBoundary, outerBoundary);
+        	}
+        	
+            setValue(i, density);   
         }
+    }
+
+    private boolean outsideDisk(double innerBoundary, double outerBoundary,
+            double rin, double rout) {
+        return (outerBoundary < rin) || (innerBoundary > rout);
+    }
+
+    private boolean onInnerEdge(double innerBoundary, double outerBoundary,
+            double rin) {
+        return (innerBoundary < rin) && (outerBoundary > rin);
+    }
+
+    private boolean onOuterEdge(double innerBoundary, double outerBoundary,
+            double rout) {
+        return (innerBoundary < rout) && (outerBoundary > rout);
+    }
+
+    private double fractionWithinInnerEdge(double rin, double innerBoundary,
+            double outerBoundary) {
+        return (outerBoundary * outerBoundary - rin * rin)/
+        		(outerBoundary * outerBoundary - innerBoundary * innerBoundary);
+    }
+
+    private double fractionWithinOuterEdge(double rout, double innerBoundary,
+            double outerBoundary) {
+        return (rout * rout - innerBoundary * innerBoundary)/
+        		(outerBoundary * outerBoundary - innerBoundary * innerBoundary);
     }
 }
