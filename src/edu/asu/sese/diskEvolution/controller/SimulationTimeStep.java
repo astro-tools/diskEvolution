@@ -1,19 +1,31 @@
 package edu.asu.sese.diskEvolution.controller;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
+import edu.asu.sese.diskEvolution.model.MassFlowGrid;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
+
 public class SimulationTimeStep {
-	
-public int timeStepInput;
-	
-	public int getTimeStepInput() {
-        return timeStepInput();
-    }
+	  private MassFlowGrid massFlowGrid;
+	    private RadialGrid radialGrid;
+	    private DensityGrid densityGrid;
 
-    private int timeStepInput() {
-    	return 0;
+	
+public int timeMax = 20;
+public double timestep;
+
+	public void intializeTimeStep() {
+		for (int i = 0; i < timeMax; ++i) {
+			timestep = 0.0;
+//			timestep += timestep + timestep*getMdot(i);
+			timestep = timestep + 0.02739726027; //10*days/year
+			
+			
+			
+		}
 	}
+	
 
-	public void setTimeStepInput(int timeStepInput) {
-        this.timeStepInput = timeStepInput;
 
-    }
+
+   
 }
