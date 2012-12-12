@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.Unit;
 
 public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -29,38 +30,43 @@ public class InitialDiskInputView extends JPanel {
     }
 
     private void setFieldValuesFromData() {
-        double lengthScale = PhysicalConstants.earthRadiusInCm;
-        rminInputView.setValue(conditions.getRMin(), lengthScale);
-        rmaxInputView.setValue(conditions.getRMax(), lengthScale);
-        radius0InputView.setValue(conditions.getRadius0(), lengthScale);
-        density0InputView.setValue(conditions.getDensity0(), 1.0);
-        exponentInputView.setValue(conditions.getExponent(), 1.0);
+        rminInputView.setValue(conditions.getRMin());
+        rmaxInputView.setValue(conditions.getRMax());
+        radius0InputView.setValue(conditions.getRadius0());
+        density0InputView.setValue(conditions.getDensity0());
+        exponentInputView.setValue(conditions.getExponent());
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
         inputListView = new ScalarListInputView();
         add(inputListView);
       
-        rminInputView = new ScalarInputView("<html>r<sub>min</sub>");
+        Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
+                PhysicalConstants.earthRadiusInCm);
+        Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
+        Unit noUnit = new Unit("", "", 1.0);
+        
+        rminInputView = 
+                new ScalarInputView("<html>r<sub>min</sub>", earthRadius);
         inputListView.add(rminInputView);
 
-        density0InputView = new ScalarInputView("<html>ρ<sub>0</sub>");
+        density0InputView = 
+                new ScalarInputView("<html>ρ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
 
-        rmaxInputView = new ScalarInputView("<html>r<sub>max</sub>");
+        rmaxInputView = 
+                new ScalarInputView("<html>r<sub>max</sub>", earthRadius);
         inputListView.add(rmaxInputView);
 
-        radius0InputView = new ScalarInputView("<html>r<sub>0</sub>");
+        radius0InputView = 
+                new ScalarInputView("<html>r<sub>0</sub>", earthRadius);
         inputListView.add(radius0InputView);
         
-        exponentInputView = new ScalarInputView("<html>p (Σ ~ r<sup>p</sup>)");
+        exponentInputView = 
+                new ScalarInputView("<html>p (Σ ~ r<sup>p</sup>)", noUnit);
         inputListView.add(exponentInputView);
         
-        rminInputView.addActionListener(listener);
-        rmaxInputView.addActionListener(listener);
-        density0InputView.addActionListener(listener);
-        radius0InputView.addActionListener(listener);
-        exponentInputView.addActionListener(listener);                      
+        inputListView.addActionListener(listener);
     }
 
     public ActionListener createListener() {
@@ -73,13 +79,14 @@ public class InitialDiskInputView extends JPanel {
     }
 
     protected void updateParameterValuesFromFields() {
+        System.out.println("value changed");
+        
         String string = rminInputView.getText();
         try {
             double diskRmin = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
             conditions.setRMin(diskRmin);
         } catch (NumberFormatException exception) {
-            // do nothing
         }
         
         string = rmaxInputView.getText();

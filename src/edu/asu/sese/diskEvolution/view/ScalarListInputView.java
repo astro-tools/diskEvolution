@@ -1,20 +1,32 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
 public class ScalarListInputView extends JPanel {
     private static final long serialVersionUID = 1L;
+    private List<ScalarInputView> scalarViews;
 
     public ScalarListInputView() {
-        GridLayout layoutManager = new GridLayout(0, 2, 4, 4);
+        scalarViews = new ArrayList<ScalarInputView>();
+        GridLayout layoutManager = new GridLayout(0, 3, 4, 4);
         setLayout(layoutManager);
     }
 
     public void add(ScalarInputView rminInputView) {
+        scalarViews.add(rminInputView);
         add(rminInputView.getLabel());
         add(rminInputView.getTextField());
+        add(rminInputView.getUnitLabel());
     }
 
+    public void addActionListener(ActionListener listener) {
+        for (ScalarInputView view : scalarViews) {
+            view.addActionListener(listener);
+        }
+    }
 }

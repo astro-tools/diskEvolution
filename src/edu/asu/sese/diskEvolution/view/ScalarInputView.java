@@ -5,14 +5,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import edu.asu.sese.diskEvolution.util.Unit;
+
 public class ScalarInputView {
     
     private JLabel label;
     private JTextField textField;
+    private Unit unit;
+    private JLabel unitLabel;
 
-    public ScalarInputView(String labelText) {
+    public ScalarInputView(String labelText, Unit unit) {
+        this.unit = unit;
         label = new JLabel(labelText);
         textField = new JTextField();
+        unitLabel = new JLabel("<html>" + unit.getHtmlLabel() + "</html>");
     }
 
     public JLabel getLabel() {
@@ -27,7 +33,6 @@ public class ScalarInputView {
         return textField;
     }
 
-
     public void addActionListener(ActionListener listener) {
         textField.addActionListener(listener);
     }
@@ -40,9 +45,13 @@ public class ScalarInputView {
         textField.setText(string);
     }
 
-    public void setValue(double value, double scale) {
-        Double scaledValue = value / scale;
+    public void setValue(double value) {
+        Double scaledValue = value / unit.getScale();
         setFieldText(scaledValue.toString());        
+    }
+
+    public JLabel getUnitLabel() {
+        return unitLabel;
     }
 
 }
