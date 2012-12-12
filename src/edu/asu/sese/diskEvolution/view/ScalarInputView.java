@@ -40,4 +40,9 @@ public class ScalarInputView {
         textField.setText(string);
     }
 
+    public void setValue(double value, double scale) {
+        Double scaledValue = value / scale;
+        setFieldText(scaledValue.toString());        
+    }
+
 }

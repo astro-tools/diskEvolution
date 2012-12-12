@@ -30,18 +30,11 @@ public class InitialDiskInputView extends JPanel {
 
     private void setFieldValuesFromData() {
         double lengthScale = PhysicalConstants.earthRadiusInCm;
-        setScalarInputViewValue(rminInputView, conditions.getRMin(), lengthScale);
-        setScalarInputViewValue(rmaxInputView, conditions.getRMax(), lengthScale);
-        setScalarInputViewValue(radius0InputView, conditions.getRadius0(), lengthScale);
-        setScalarInputViewValue(density0InputView, conditions.getDensity0(), 1.0);
-        density0InputView.setText(Double.toString(conditions.getDensity0()));
-        exponentInputView.setText(Double.toString(conditions.getExponent()));
-    }
-
-    private void setScalarInputViewValue(ScalarInputView view,
-            double value, double scale) {
-        Double scaledValue = value / scale;
-        view.setFieldText(scaledValue.toString());
+        rminInputView.setValue(conditions.getRMin(), lengthScale);
+        rmaxInputView.setValue(conditions.getRMax(), lengthScale);
+        radius0InputView.setValue(conditions.getRadius0(), lengthScale);
+        density0InputView.setValue(conditions.getDensity0(), 1.0);
+        exponentInputView.setValue(conditions.getExponent(), 1.0);
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
