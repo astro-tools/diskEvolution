@@ -1,16 +1,17 @@
 package edu.asu.sese.diskEvolution.view;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.Unit;
 
 public class SimulationRunnerView extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JTextField timeStepInputField;
+//	private JTextField timeStepInputView;
+	private ScalarInputView timeStepInputView;
 
 	public SimulationRunnerView() {
 		ActionListener listener = null;
@@ -19,15 +20,13 @@ public class SimulationRunnerView extends JPanel {
 	
 	
 	private void setupLabelsAndFields(ActionListener listener) {
-		GridLayout layoutManager = new GridLayout(0, 2, 4, 4);
-		setLayout(layoutManager);
-
-		JLabel TimeStepInputLabel = new JLabel(
-				"<html>Time<> Step<> Input</>");
-		add(TimeStepInputLabel);
-		timeStepInputField = new JTextField();
-		timeStepInputField.addActionListener(listener);
-		add(timeStepInputField);
+	    ScalarListInputView list = new ScalarListInputView();
+	    add(list);
+	    
+	    Unit unit = new Unit("yr", "yr", PhysicalConstants.year);
+	    timeStepInputView = new ScalarInputView("Time Step", unit);
+	    list.add(timeStepInputView);
+	    list.addActionListener(listener);
 	}
 
 	private double getTimeStepInput() {
@@ -44,7 +43,7 @@ public class SimulationRunnerView extends JPanel {
 	}
 
 	protected void updateParameterValuesFromFields() {
-		String string = timeStepInputField.getText();
+		String string = timeStepInputView.getText();
 		try {
 			double timeStepInput = Double.parseDouble(string);
 			setTimeStepInput(timeStepInput);
