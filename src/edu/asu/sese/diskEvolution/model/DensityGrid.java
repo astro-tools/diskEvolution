@@ -48,7 +48,7 @@ public class DensityGrid extends MidpointGrid {
         	            rout, innerBoundary, outerBoundary);
         	}
         	
-            setValue(i, density);   
+            setValue(i, density);
         }
     }
 
