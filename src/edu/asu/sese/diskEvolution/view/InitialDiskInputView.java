@@ -51,7 +51,7 @@ public class InitialDiskInputView extends JPanel {
         inputListView.add(rminInputView);
 
         density0InputView = 
-                new ScalarInputView("<html>ρ<sub>0</sub>", gramsPerCm2);
+                new ScalarInputView("<html>Σ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
 
         rmaxInputView = 

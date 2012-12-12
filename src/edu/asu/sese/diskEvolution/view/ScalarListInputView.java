@@ -17,11 +17,11 @@ public class ScalarListInputView extends JPanel {
         setLayout(layoutManager);
     }
 
-    public void add(ScalarInputView rminInputView) {
-        scalarViews.add(rminInputView);
-        add(rminInputView.getLabel());
-        add(rminInputView.getTextField());
-        add(rminInputView.getUnitLabel());
+    public void add(ScalarInputView view) {
+        scalarViews.add(view);
+        add(view.getLabel());
+        add(view.getTextField());
+        add(view.getUnitLabel());
     }
 
     public void addActionListener(ActionListener listener) {
