@@ -1,6 +1,5 @@
 package edu.asu.sese.diskEvolution.view;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +19,8 @@ public class InitialDiskInputView extends JPanel {
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
     
-
+    private ScalarListInputView inputListView;
+    
     public InitialDiskInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
         ActionListener listener = createListener();
@@ -38,34 +38,29 @@ public class InitialDiskInputView extends JPanel {
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
-        GridLayout layoutManager = new GridLayout(0, 2, 4, 4);
-        setLayout(layoutManager);
+        inputListView = new ScalarListInputView();
+        add(inputListView);
       
         rminInputView = new ScalarInputView("<html>r<sub>min</sub>");
-        add(rminInputView.getLabel());
-        add(rminInputView.getTextField());
-        rminInputView.addActionListener(listener);
+        inputListView.add(rminInputView);
+
+        density0InputView = new ScalarInputView("<html>ρ<sub>0</sub>");
+        inputListView.add(density0InputView);
 
         rmaxInputView = new ScalarInputView("<html>r<sub>max</sub>");
-        add(rmaxInputView.getLabel());
-        add(rmaxInputView.getTextField());
-        rmaxInputView.addActionListener(listener);
-                
-        density0InputView = new ScalarInputView("<html>ρ<sub>0</sub>");
-        add(density0InputView.getLabel());
-        add(density0InputView.getTextField());
-        density0InputView.addActionListener(listener);
+        inputListView.add(rmaxInputView);
 
         radius0InputView = new ScalarInputView("<html>r<sub>0</sub>");
-        add(radius0InputView.getLabel());
-        add(radius0InputView.getTextField());
-        radius0InputView.addActionListener(listener);
+        inputListView.add(radius0InputView);
         
         exponentInputView = new ScalarInputView("<html>p (Σ ~ r<sup>p</sup>)");
-        add(exponentInputView.getLabel());
-        add(exponentInputView.getTextField());
-        exponentInputView.addActionListener(listener);
-                
+        inputListView.add(exponentInputView);
+        
+        rminInputView.addActionListener(listener);
+        rmaxInputView.addActionListener(listener);
+        density0InputView.addActionListener(listener);
+        radius0InputView.addActionListener(listener);
+        exponentInputView.addActionListener(listener);                      
     }
 
     public ActionListener createListener() {
