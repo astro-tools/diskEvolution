@@ -4,9 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
@@ -16,11 +14,12 @@ public class InitialDiskInputView extends JPanel {
     
     private InitialConditions conditions;
 
-    private JTextField rminField;
-    private JTextField rmaxField;
-    private JTextField density0Field;
-    private JTextField radius0Field;
-    private JTextField exponentField;
+    private ScalarInputView rminInputView;
+    private ScalarInputView rmaxInputView;
+    private ScalarInputView density0InputView;
+    private ScalarInputView radius0InputView;
+    private ScalarInputView exponentInputView;
+    
 
     public InitialDiskInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
@@ -29,54 +28,50 @@ public class InitialDiskInputView extends JPanel {
         setFieldValuesFromData();
     }
 
-    private void setTextFieldValue(JTextField field, double value, double scale) {
-        Double scaledValue = value / scale;
-        field.setText(scaledValue.toString());
-    }
-    
     private void setFieldValuesFromData() {
         double lengthScale = PhysicalConstants.earthRadiusInCm;
-        setTextFieldValue(rminField, conditions.getRMin(), lengthScale);
-        setTextFieldValue(rmaxField, conditions.getRMax(), lengthScale);
-        setTextFieldValue(radius0Field, conditions.getRadius0(), lengthScale);
-        setTextFieldValue(density0Field, conditions.getDensity0(), 1.0);
-        density0Field.setText(Double.toString(conditions.getDensity0()));
-        exponentField.setText(Double.toString(conditions.getExponent()));
+        setScalarInputViewValue(rminInputView, conditions.getRMin(), lengthScale);
+        setScalarInputViewValue(rmaxInputView, conditions.getRMax(), lengthScale);
+        setScalarInputViewValue(radius0InputView, conditions.getRadius0(), lengthScale);
+        setScalarInputViewValue(density0InputView, conditions.getDensity0(), 1.0);
+        density0InputView.setText(Double.toString(conditions.getDensity0()));
+        exponentInputView.setText(Double.toString(conditions.getExponent()));
+    }
+
+    private void setScalarInputViewValue(ScalarInputView view,
+            double value, double scale) {
+        Double scaledValue = value / scale;
+        view.setFieldText(scaledValue.toString());
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
         GridLayout layoutManager = new GridLayout(0, 2, 4, 4);
         setLayout(layoutManager);
       
-        JLabel rminLabel = new JLabel("<html>r<sub>min</sub>");
-        add(rminLabel);
-        rminField = new JTextField();
-        rminField.addActionListener(listener);
-        add(rminField);
+        rminInputView = new ScalarInputView("<html>r<sub>min</sub>");
+        add(rminInputView.getLabel());
+        add(rminInputView.getTextField());
+        rminInputView.addActionListener(listener);
 
-        JLabel rmaxLabel = new JLabel("<html>r<sub>max</sub>");
-        add(rmaxLabel);
-        rmaxField = new JTextField();
-        rmaxField.addActionListener(listener);
-        add(rmaxField);
+        rmaxInputView = new ScalarInputView("<html>r<sub>max</sub>");
+        add(rmaxInputView.getLabel());
+        add(rmaxInputView.getTextField());
+        rmaxInputView.addActionListener(listener);
                 
-        JLabel density0Label = new JLabel("<html>ρ<sub>0</sub>");
-        add(density0Label);
-        density0Field = new JTextField();
-        density0Field.addActionListener(listener);
-        add(density0Field);
+        density0InputView = new ScalarInputView("<html>ρ<sub>0</sub>");
+        add(density0InputView.getLabel());
+        add(density0InputView.getTextField());
+        density0InputView.addActionListener(listener);
 
-        JLabel radius0Label = new JLabel("<html>r<sub>0</sub>");
-        add(radius0Label);
-        radius0Field = new JTextField();
-        radius0Field.addActionListener(listener);
-        add(radius0Field);
+        radius0InputView = new ScalarInputView("<html>r<sub>0</sub>");
+        add(radius0InputView.getLabel());
+        add(radius0InputView.getTextField());
+        radius0InputView.addActionListener(listener);
         
-        JLabel exponentLabel = new JLabel("<html>p (Σ ~ r<sup>p</sup>)");
-        add(exponentLabel);
-        exponentField = new JTextField();
-        exponentField.addActionListener(listener);
-        add(exponentField);
+        exponentInputView = new ScalarInputView("<html>p (Σ ~ r<sup>p</sup>)");
+        add(exponentInputView.getLabel());
+        add(exponentInputView.getTextField());
+        exponentInputView.addActionListener(listener);
                 
     }
 
@@ -90,7 +85,7 @@ public class InitialDiskInputView extends JPanel {
     }
 
     protected void updateParameterValuesFromFields() {
-        String string = rminField.getText();
+        String string = rminInputView.getText();
         try {
             double diskRmin = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
@@ -99,7 +94,7 @@ public class InitialDiskInputView extends JPanel {
             // do nothing
         }
         
-        string = rmaxField.getText();
+        string = rmaxInputView.getText();
         try {
             double rmax = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
@@ -107,14 +102,14 @@ public class InitialDiskInputView extends JPanel {
         } catch (NumberFormatException exception) {
         }
                
-        string = density0Field.getText();
+        string = density0InputView.getText();
         try {
             double density0 = Double.parseDouble(string);
             conditions.setDensity0(density0);
         } catch (NumberFormatException exception) {
         }
         
-        string = radius0Field.getText();
+        string = radius0InputView.getText();
         try {
             double radius0 = Double.parseDouble(string) 
                     * PhysicalConstants.earthRadiusInCm;
@@ -122,7 +117,7 @@ public class InitialDiskInputView extends JPanel {
         } catch (NumberFormatException exception) {
         }
         
-        string = exponentField.getText();
+        string = exponentInputView.getText();
         try {
             double exponent = Double.parseDouble(string);
             conditions.setExponent(exponent);
