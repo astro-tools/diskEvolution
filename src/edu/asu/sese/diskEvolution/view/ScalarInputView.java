@@ -22,6 +22,20 @@ public class ScalarInputView {
         unitLabel = new JLabel("<html>" + unit.getHtmlLabel() + "</html>");
     }
 
+    public void setValue(double value) {
+        Double scaledValue = value / unit.getScale();
+        setFieldText(scaledValue.toString());        
+    }
+
+    public double getValue() {
+      String string = textField.getText();
+      return Double.parseDouble(string) * unit.getScale();
+    }
+
+    public void addActionListener(ActionListener listener) {
+        textField.addActionListener(listener);
+    }
+
     public JLabel getLabel() {
         return label;
     }
@@ -34,10 +48,6 @@ public class ScalarInputView {
         return textField;
     }
 
-    public void addActionListener(ActionListener listener) {
-        textField.addActionListener(listener);
-    }
-
     public String getText() {
         return textField.getText();
     }
@@ -46,18 +56,8 @@ public class ScalarInputView {
         textField.setText(string);
     }
 
-    public void setValue(double value) {
-        Double scaledValue = value / unit.getScale();
-        setFieldText(scaledValue.toString());        
-    }
-
     public JLabel getUnitLabel() {
         return unitLabel;
-    }
-
-    public double getValue() {
-      String string = textField.getText();
-      return Double.parseDouble(string) * unit.getScale();
     }
 
 }
