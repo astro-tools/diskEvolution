@@ -79,45 +79,37 @@ public class InitialDiskInputView extends JPanel {
     }
 
     protected void updateParameterValuesFromFields() {
-        System.out.println("value changed");
         
-        String string = rminInputView.getText();
         try {
-            double diskRmin = Double.parseDouble(string) 
-                    * PhysicalConstants.earthRadiusInCm;
-            conditions.setRMin(diskRmin);
+            double diskRMin = rminInputView.getValue();
+            conditions.setRMin(diskRMin);
         } catch (NumberFormatException exception) {
         }
         
-        string = rmaxInputView.getText();
         try {
-            double rmax = Double.parseDouble(string) 
-                    * PhysicalConstants.earthRadiusInCm;
+            double rmax = rmaxInputView.getValue();
             conditions.setRMax(rmax);
         } catch (NumberFormatException exception) {
         }
                
-        string = density0InputView.getText();
         try {
-            double density0 = Double.parseDouble(string);
+            double density0 = density0InputView.getValue();
             conditions.setDensity0(density0);
         } catch (NumberFormatException exception) {
         }
         
-        string = radius0InputView.getText();
         try {
-            double radius0 = Double.parseDouble(string) 
-                    * PhysicalConstants.earthRadiusInCm;
+            double radius0 = radius0InputView.getValue();
             conditions.setRadius0(radius0);
         } catch (NumberFormatException exception) {
         }
         
-        string = exponentInputView.getText();
         try {
-            double exponent = Double.parseDouble(string);
+            double exponent = exponentInputView.getValue();
             conditions.setExponent(exponent);
         } catch (NumberFormatException exception) {
         }        
+
         setFieldValuesFromData();
     }
 }

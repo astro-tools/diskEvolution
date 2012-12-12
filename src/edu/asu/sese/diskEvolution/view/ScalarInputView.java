@@ -16,8 +16,9 @@ public class ScalarInputView {
 
     public ScalarInputView(String labelText, Unit unit) {
         this.unit = unit;
-        label = new JLabel(labelText);
+        label = new JLabel(labelText + " = ");
         textField = new JTextField();
+        textField.setHorizontalAlignment(JTextField.RIGHT);
         unitLabel = new JLabel("<html>" + unit.getHtmlLabel() + "</html>");
     }
 
@@ -52,6 +53,11 @@ public class ScalarInputView {
 
     public JLabel getUnitLabel() {
         return unitLabel;
+    }
+
+    public double getValue() {
+      String string = textField.getText();
+      return Double.parseDouble(string) * unit.getScale();
     }
 
 }
