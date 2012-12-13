@@ -4,33 +4,28 @@ import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class MassMover {
-	  private MassFlowGrid massFlowGrid;
-	  private DensityGrid densityGrid;
+    private MassFlowGrid massFlowGrid;
+    private DensityGrid densityGrid;
 
+    public MassMover(DensityGrid density, MassFlowGrid massFlow,
+            RadialGrid radialGrid) {
+    }
 
-	public MassMover(DensityGrid density, MassFlowGrid massFlow,
-			RadialGrid radialGrid) {
-	}
-	public double mdot1, mdot2;
-	public double moveMass() {
-		int count = massFlowGrid.getCount();
-		double timeStep = 10.0;
-		double value1, value2, difference, density = 0.0;
-		for (int i=1; i<count; ++i) {
+    public void moveMass() {
+        int count = massFlowGrid.getCount();
+        double timeStep = 10.0;
+        double value1, value2, difference, density = 0.0;
+        for (int i = 1; i < count; ++i) {
 
-		 mdot1 = massFlowGrid.getValue(i);
-		 mdot2 = massFlowGrid.getValue(i+1);
-		 value1 = mdot1*timeStep;
-		 value2 = mdot2*timeStep;
-		 difference = value2 - value1;
-		 density = densityGrid.getValue(i);
-		 density += difference;
-		}
-		return density;
-	}
-	
-
-
-
+            double mdot1 = massFlowGrid.getValue(i);
+            double mdot2 = massFlowGrid.getValue(i + 1);
+            value1 = mdot1 * timeStep;
+            value2 = mdot2 * timeStep;
+            difference = value2 - value1;
+            density = densityGrid.getValue(i);
+            density += difference;
+            densityGrid.setValue(i, density);
+        }
+    }
 
 }

@@ -10,7 +10,6 @@ import edu.asu.sese.diskEvolution.util.Unit;
 
 public class SimulationRunnerView extends JPanel {
 	private static final long serialVersionUID = 1L;
-//	private JTextField timeStepInputView;
 	private ScalarInputView timeStepInputView;
 
 	public SimulationRunnerView() {
