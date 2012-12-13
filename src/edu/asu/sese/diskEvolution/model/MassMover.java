@@ -4,18 +4,21 @@ import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class MassMover {
-    private MassFlowGrid massFlowGrid;
     private DensityGrid densityGrid;
+    private MassFlowGrid massFlowGrid;
+    private double timeStep;
 
     public MassMover(DensityGrid density, MassFlowGrid massFlow,
             RadialGrid radialGrid) {
+        this.densityGrid = density;
+        this.massFlowGrid = massFlow;
     }
 
     public void moveMass() {
         int count = massFlowGrid.getCount();
         double timeStep = 10.0;
         double value1, value2, difference, density = 0.0;
-        for (int i = 1; i < count; ++i) {
+        for (int i = 0; i < count - 1; ++i) {
 
             double mdot1 = massFlowGrid.getValue(i);
             double mdot2 = massFlowGrid.getValue(i + 1);
@@ -28,4 +31,11 @@ public class MassMover {
         }
     }
 
+	public double getTimeStep() {
+		return timeStep;
+	}
+	
+	public void setTimeStep(double timeStep) {
+		this.timeStep = timeStep;
+	}
 }
