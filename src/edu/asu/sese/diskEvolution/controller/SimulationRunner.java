@@ -1,6 +1,7 @@
 package edu.asu.sese.diskEvolution.controller;
 
 import edu.asu.sese.diskEvolution.model.TimeStep;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
 public class SimulationRunner {
     private CurrentSimulationTime currentSimulationTime;
@@ -8,6 +9,7 @@ public class SimulationRunner {
 	
 	public SimulationRunner() {
 	    simulationTimeStep = new TimeStep();
+	    simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
 	}
 
 	public void run() {
