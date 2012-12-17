@@ -12,9 +12,10 @@ import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 public class GraphicalApplication extends JFrame {
     private static final long serialVersionUID = 1L;
     private DiskSimulation simulation;
-    private InitialConditionsView initialConditionsPanel;
     private JTabbedPane tabPane;
+    private InitialConditionsView initialConditionsPanel;
     private SimulationRunnerView runnerPanel;
+    private ResultsView resultsPanel;
     
     public GraphicalApplication(DiskSimulation simulation) {
         this.simulation = simulation;
@@ -34,8 +35,8 @@ public class GraphicalApplication extends JFrame {
         tabPane.add("Initial Conditions", initialConditionsPanel);
         runnerPanel = new SimulationRunnerView();
         tabPane.add("Run Simulation", runnerPanel);
-        runnerPanel = new ResultsView();
-        tabPane.add("Results", runnerPanel);
+        resultsPanel = new ResultsView();
+        tabPane.add("Results", resultsPanel);
         add(tabPane, BorderLayout.CENTER);
     }
     
