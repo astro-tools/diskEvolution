@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
+import edu.asu.sese.diskEvolution.controller.SimulationRunner;
 
 public class GraphicalApplication extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -33,7 +34,8 @@ public class GraphicalApplication extends JFrame {
         tabPane = new JTabbedPane();
         initialConditionsPanel = new InitialConditionsView(simulation);
         tabPane.add("Initial Conditions", initialConditionsPanel);
-        runnerPanel = new SimulationRunnerView();
+        SimulationRunner runner = simulation.getRunner();
+        runnerPanel = new SimulationRunnerView(runner);
         tabPane.add("Run Simulation", runnerPanel);
         resultsPanel = new ResultsView();
         tabPane.add("Results", resultsPanel);

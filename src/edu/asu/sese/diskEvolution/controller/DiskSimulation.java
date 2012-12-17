@@ -15,6 +15,7 @@ public class DiskSimulation extends SimpleObservable {
     private MassFlowGrid massFlowGrid;
     private Parameters parameters;
     private InitialConditions initialConditions;
+    private SimulationRunner runner;
 
     public DiskSimulation() {
         setupSimulation();
@@ -25,6 +26,11 @@ public class DiskSimulation extends SimpleObservable {
         initialConditions = new InitialConditions();
         setupGrids();
         watchForChangingParameters();
+        setupRunner();
+    }
+
+    private void setupRunner() {
+        runner = new SimulationRunner();
     }
 
     private void setupGrids() {
@@ -78,5 +84,8 @@ public class DiskSimulation extends SimpleObservable {
         return initialConditions;
     }
 
+    public SimulationRunner getRunner() {
+        return runner;
+    }
 
 }
