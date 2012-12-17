@@ -3,6 +3,9 @@ package edu.asu.sese.diskEvolution.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.InitialConditions;
@@ -37,8 +40,20 @@ public class InitialDiskInputView extends JPanel {
         exponentInputView.setValue(conditions.getExponent());
     }
 
+    String decorateLabel(String text) {
+        return "<html><i><b>" + text + "</b></i></html>";
+    }
+    
     private void setupLabelsAndFields(ActionListener listener) {
+        BoxLayout layout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
+        setLayout(layout);
+        
+        JLabel inputLabel = new JLabel(decorateLabel("Input:"));
+        inputLabel.setAlignmentX(LEFT_ALIGNMENT);
+        add(inputLabel);
+        
         inputListView = new ScalarListInputView();
+        inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
       
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
@@ -67,6 +82,15 @@ public class InitialDiskInputView extends JPanel {
         inputListView.add(exponentInputView);
         
         inputListView.addActionListener(listener);
+        
+        add(Box.createVerticalGlue());
+        
+        JLabel outputLabel = new JLabel(decorateLabel("Output:"));
+        outputLabel.setAlignmentX(LEFT_ALIGNMENT);
+        add(outputLabel);
+
+        add(Box.createVerticalGlue());
+
     }
 
     public ActionListener createListener() {
