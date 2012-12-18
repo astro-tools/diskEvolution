@@ -3,6 +3,7 @@ package edu.asu.sese.diskEvolution.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
@@ -35,6 +36,8 @@ public class SimulationRunnerView extends JPanel {
 	    timeStepInputView = new ScalarInputView("Time Step", unit);
 	    list.add(timeStepInputView);
 	    list.addActionListener(listener);
+	    JButton startButton = new JButton("Evolve");
+        add(startButton);
 	}
 
 	public ActionListener createListener() {
