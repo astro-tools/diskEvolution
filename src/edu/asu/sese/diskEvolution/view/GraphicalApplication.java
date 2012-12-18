@@ -46,10 +46,7 @@ public class GraphicalApplication extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu toolsMenu = new JMenu("Tools");
         menuBar.add(toolsMenu);
-        setJMenuBar(menuBar);
-        
-        JMenuItem evolveAction = new JMenuItem("Evolve");
-        toolsMenu.add(evolveAction);               
+        setJMenuBar(menuBar);       
     }
 }                                   
 
