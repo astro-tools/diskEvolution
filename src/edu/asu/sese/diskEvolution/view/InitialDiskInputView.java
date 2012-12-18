@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.Unit;
@@ -15,6 +16,7 @@ import edu.asu.sese.diskEvolution.util.Unit;
 public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
     
+    private DensityGrid densityGrid;
     private InitialConditions conditions;
 
     private ScalarInputView rminInputView;
@@ -22,8 +24,8 @@ public class InitialDiskInputView extends JPanel {
     private ScalarInputView density0InputView;
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
-    
     private ScalarListInputView inputListView;
+
     
     public InitialDiskInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
@@ -55,7 +57,8 @@ public class InitialDiskInputView extends JPanel {
         inputListView = new ScalarListInputView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
-      
+        
+
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
         Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
@@ -88,12 +91,17 @@ public class InitialDiskInputView extends JPanel {
         JLabel outputLabel = new JLabel(decorateLabel("Output:"));
         outputLabel.setAlignmentX(LEFT_ALIGNMENT);
         add(outputLabel);
-
+        
+//      double mass = densityGrid.getTotalMass();
+        double mass = 5.0E24;
+        JLabel totalMass = new JLabel("Total Mass = " + mass + " g");
+        outputLabel.setAlignmentX(LEFT_ALIGNMENT);
+        add(totalMass);
         add(Box.createVerticalGlue());
 
     }
 
-    public ActionListener createListener() {
+	public ActionListener createListener() {
         ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 updateParameterValuesFromFields();
