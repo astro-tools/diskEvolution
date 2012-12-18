@@ -36,7 +36,7 @@ public class SimulationRunnerView extends JPanel {
 	    timeStepInputView = new ScalarInputView("Time Step", unit);
 	    list.add(timeStepInputView);
 	    list.addActionListener(listener);
-	    JButton startButton = new JButton("Evolve");
+	    JButton startButton = new JButton("Run Simulation");
         add(startButton);
 	}
 
