@@ -51,14 +51,21 @@ public class InitialDiskInputView extends JPanel {
         BoxLayout layout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         setLayout(layout);
         
+        setupInputLabelsAndField(listener);
+        add(Box.createVerticalGlue());
+        setupOutputLabelsAndFields();
+        add(Box.createVerticalGlue());
+    }
+
+    private void setupInputLabelsAndField(ActionListener listener) {
         JLabel inputLabel = new JLabel(decorateLabel("Input:"));
         inputLabel.setAlignmentX(LEFT_ALIGNMENT);
         add(inputLabel);
-        
+    
         inputListView = new ScalarListView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
-
+    
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
         Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
@@ -67,15 +74,15 @@ public class InitialDiskInputView extends JPanel {
         rminInputView = 
                 new ScalarInputView("r<sub>min</sub>", earthRadius);
         inputListView.add(rminInputView);
-
+    
         density0InputView = 
                 new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
-
+    
         rmaxInputView = 
                 new ScalarInputView("r<sub>max</sub>", earthRadius);
         inputListView.add(rmaxInputView);
-
+    
         radius0InputView = 
                 new ScalarInputView("r<sub>0</sub>", earthRadius);
         inputListView.add(radius0InputView);
@@ -85,9 +92,9 @@ public class InitialDiskInputView extends JPanel {
         inputListView.add(exponentInputView);
         
         inputListView.addActionListener(listener);
-        
-        add(Box.createVerticalGlue());
-        
+    }
+
+    private void setupOutputLabelsAndFields() {
         JLabel outputLabel = new JLabel(decorateLabel("Output:"));
         outputLabel.setAlignmentX(LEFT_ALIGNMENT);
         add(outputLabel);        
@@ -101,11 +108,9 @@ public class InitialDiskInputView extends JPanel {
         massOutputView =
                 new ScalarOutputView("M<sub>tot</sub>", lunarMass, "#.##");
         outputListView.add(massOutputView);
-
-        add(Box.createVerticalGlue());
     }
 
-	public ActionListener createListener() {
+    public ActionListener createListener() {
         ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 updateParameterValuesFromFields();
