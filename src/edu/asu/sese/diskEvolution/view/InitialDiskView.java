@@ -68,8 +68,8 @@ public class InitialDiskView extends JPanel {
         double density0 = conditions.getDensity0();
         double radius0 = conditions.getRadius0();
         double exponent = conditions.getExponent();
-        double rin = conditions.getRMin();
-        double rout = conditions.getRMax();
+        double rin = conditions.getRIn();
+        double rout = conditions.getROut();
         densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
     }
 }

@@ -11,8 +11,8 @@ public class InitialConditions {
     private double density0;
     private double exponent;
     private SimpleObservable observable = new SimpleObservable();
-    private double rmin;
-    private double rmax;
+    private double rin;
+    private double rout;
     
     public InitialConditions() {
         initializeParameters();
@@ -21,8 +21,8 @@ public class InitialConditions {
     public void initializeParameters() {
         setDensity0(1e3);
         setRadius0(PhysicalConstants.earthRadiusInCm);
-        setRMin(1.1 * PhysicalConstants.earthRadiusInCm);
-        setRMax(5.0 * PhysicalConstants.earthRadiusInCm);
+        setRIn(1.1 * PhysicalConstants.earthRadiusInCm);
+        setROut(5.0 * PhysicalConstants.earthRadiusInCm);
         setExponent(-1.5);
     }
     
@@ -60,31 +60,31 @@ public class InitialConditions {
         observable.addObserver(observer);
     }
 
-    public void setRMin(double rmin) {
-        boolean changed = (Math.abs(rmin - this.rmin) > 1e2);
-        this.rmin = rmin;
+    public void setRIn(double rmin) {
+        boolean changed = (Math.abs(rmin - this.rin) > 1e2);
+        this.rin = rmin;
         if (changed) observable.notifyObservers();
     }
 
-    public double getRMin() {
-        return rmin;
+    public double getRIn() {
+        return rin;
     }
 
 
-    public void setRMax(double rmax) {
-        boolean changed = (Math.abs(rmax - this.rmax) > 1e2);
-        this.rmax = rmax;
+    public void setROut(double rmax) {
+        boolean changed = (Math.abs(rmax - this.rout) > 1e2);
+        this.rout = rmax;
         if (changed) observable.notifyObservers();
     }
 
-    public double getRMax() {
-        return rmax;
+    public double getROut() {
+        return rout;
     }
 
     public double getTotalMass() {
         double mass = 2 * Math.PI * density0;
         mass /= (exponent + 2.0) * Math.pow(radius0, exponent);
-        mass *= Math.pow(rmax, exponent + 2.0) - Math.pow(rmin, exponent + 2.0);
+        mass *= Math.pow(rout, exponent + 2.0) - Math.pow(rin, exponent + 2.0);
         return mass;
     }
 }

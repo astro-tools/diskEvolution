@@ -17,8 +17,8 @@ public class InitialConditionsInputView extends JPanel {
 
     private InitialConditions conditions;
 
-    private ScalarInputView rminInputView;
-    private ScalarInputView rmaxInputView;
+    private ScalarInputView rInInputView;
+    private ScalarInputView rOutInputView;
     private ScalarInputView density0InputView;
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
@@ -32,8 +32,8 @@ public class InitialConditionsInputView extends JPanel {
     }
 
     private void setFieldValuesFromData() {
-        rminInputView.setValue(conditions.getRMin());
-        rmaxInputView.setValue(conditions.getRMax());
+        rInInputView.setValue(conditions.getRIn());
+        rOutInputView.setValue(conditions.getROut());
         radius0InputView.setValue(conditions.getRadius0());
         density0InputView.setValue(conditions.getDensity0());
         exponentInputView.setValue(conditions.getExponent());
@@ -74,14 +74,14 @@ public class InitialConditionsInputView extends JPanel {
         Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
         Unit noUnit = new Unit("", "", 1.0);
 
-        rminInputView = new ScalarInputView("r<sub>min</sub>", earthRadius);
-        inputListView.add(rminInputView);
+        rInInputView = new ScalarInputView("r<sub>in</sub>", earthRadius);
+        inputListView.add(rInInputView);
 
         density0InputView = new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
 
-        rmaxInputView = new ScalarInputView("r<sub>max</sub>", earthRadius);
-        inputListView.add(rmaxInputView);
+        rOutInputView = new ScalarInputView("r<sub>out</sub>", earthRadius);
+        inputListView.add(rOutInputView);
 
         radius0InputView = new ScalarInputView("r<sub>0</sub>", earthRadius);
         inputListView.add(radius0InputView);
@@ -124,14 +124,14 @@ public class InitialConditionsInputView extends JPanel {
     protected void updateParameterValuesFromFields() {
 
         try {
-            double diskRMin = rminInputView.getValue();
-            conditions.setRMin(diskRMin);
+            double diskRMin = rInInputView.getValue();
+            conditions.setRIn(diskRMin);
         } catch (NumberFormatException exception) {
         }
 
         try {
-            double rmax = rmaxInputView.getValue();
-            conditions.setRMax(rmax);
+            double rmax = rOutInputView.getValue();
+            conditions.setROut(rmax);
         } catch (NumberFormatException exception) {
         }
 

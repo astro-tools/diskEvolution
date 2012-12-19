@@ -23,30 +23,30 @@ public class InitialConditionsTest {
 
     @Test
     public void testThatChangingRMinNotifiesOberserver() {
-        double rmin = 0.9 * initialConditions.getRMin();
-        initialConditions.setRMin(rmin);
+        double rmin = 0.9 * initialConditions.getRIn();
+        initialConditions.setRIn(rmin);
         assertTrue(wasNotified);
     }
 
     @Test
     public void testThatChangingRMinChangesValue() {
-        double rmin = 0.9 * initialConditions.getRMin() + 1.0;
-        initialConditions.setRMin(rmin);
-        assertEquals(rmin, initialConditions.getRMin(), 1e-12);
+        double rmin = 0.9 * initialConditions.getRIn() + 1.0;
+        initialConditions.setRIn(rmin);
+        assertEquals(rmin, initialConditions.getRIn(), 1e-12);
     }
 
     @Test
     public void testThatChangingRMaxNotifiesOberserver() {
-        double rmax = 0.9 * initialConditions.getRMax();
-        initialConditions.setRMax(rmax);
+        double rmax = 0.9 * initialConditions.getROut();
+        initialConditions.setROut(rmax);
         assertTrue(wasNotified);
     }
 
     @Test
     public void testThatChangingRMaxChangesValue() {
-        double rmax = 0.9 * initialConditions.getRMax() + 1.0;
-        initialConditions.setRMax(rmax);
-        assertEquals(rmax, initialConditions.getRMax(), 1e-12);
+        double rmax = 0.9 * initialConditions.getROut() + 1.0;
+        initialConditions.setROut(rmax);
+        assertEquals(rmax, initialConditions.getROut(), 1e-12);
     }
     
     @Test
@@ -71,8 +71,8 @@ public class InitialConditionsTest {
         initialConditions.setRadius0(3.0);
         initialConditions.setDensity0(5.0);
         initialConditions.setExponent(-1.5);
-        initialConditions.setRMin(2.0);
-        initialConditions.setRMax(4.0);
+        initialConditions.setRIn(2.0);
+        initialConditions.setROut(4.0);
         double expect = 191.2498322660473;
         assertEquals(expect, initialConditions.getTotalMass(), 1e-12);
     }
