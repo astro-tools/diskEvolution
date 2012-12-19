@@ -22,8 +22,6 @@ public class InitialDiskInputView extends JPanel {
     private ScalarInputView density0InputView;
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
-    private ScalarListView inputListView;
-
     private ScalarOutputView massOutputView;
 
     public InitialDiskInputView(InitialConditions initialConditions) {
@@ -67,7 +65,7 @@ public class InitialDiskInputView extends JPanel {
         inputLabel.setAlignmentX(LEFT_ALIGNMENT);
         add(inputLabel);
 
-        inputListView = new ScalarListView();
+        ScalarListView inputListView = new ScalarListView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
 
