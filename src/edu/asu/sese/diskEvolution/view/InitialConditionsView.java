@@ -10,13 +10,11 @@ import edu.asu.sese.diskEvolution.model.InitialConditions;
 public class InitialConditionsView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private DiskView view;
-    private DiskSimulation simulation;
+	private InitialDiskView view;
     private InitialConditions initialConditions;
     
     public InitialConditionsView(DiskSimulation simulation) {
         initialConditions = simulation.getInitialConditions();
-        this.simulation = simulation;
         BorderLayout layoutManager = new BorderLayout();
         setLayout(layoutManager);
         setupDiskView();
@@ -24,7 +22,7 @@ public class InitialConditionsView extends JPanel {
     }
 
     private void setupDiskView() {
-        view = new DiskView(simulation);
+        view = new InitialDiskView(initialConditions);
         add(view, BorderLayout.CENTER);
     }
 

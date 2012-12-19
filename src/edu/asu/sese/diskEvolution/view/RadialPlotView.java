@@ -61,7 +61,7 @@ public class RadialPlotView extends ChartPanel {
         int intervalCount = radialGrid.getIntervalCount();
         for (int i = 0; i < intervalCount; ++i) {
             series.add(radialGrid.getMidpoint(i) / PhysicalConstants.earthRadiusInCm,
-                    densityGrid.getValue(i));
+                    densityGrid.getValue(i) + 1e-6);
         }
         return series;
     }
@@ -70,6 +70,15 @@ public class RadialPlotView extends ChartPanel {
         dataset.removeAllSeries();
         XYSeries series = createDataSeries(radialGrid, densityGrid);
         dataset.addSeries(series);
+    }
+
+    public void setRange(double rmin, double rmax, double vmin, double vmax) {
+        XYPlot xyPlot = (XYPlot) getChart().getPlot();
+        NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
+        domain.setRange(rmin / PhysicalConstants.earthRadiusInCm,
+                rmax / PhysicalConstants.earthRadiusInCm);
+        NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
+        range.setRange(vmin, vmax);
     }
 
 }
