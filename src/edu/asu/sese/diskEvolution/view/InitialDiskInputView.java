@@ -14,7 +14,7 @@ import edu.asu.sese.diskEvolution.util.Unit;
 
 public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
-    
+
     private InitialConditions conditions;
 
     private ScalarInputView rminInputView;
@@ -26,7 +26,6 @@ public class InitialDiskInputView extends JPanel {
 
     private ScalarOutputView massOutputView;
 
-    
     public InitialDiskInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
         ActionListener listener = createListener();
@@ -43,71 +42,76 @@ public class InitialDiskInputView extends JPanel {
         massOutputView.setValue(conditions.getTotalMass());
     }
 
-    String decorateLabel(String text) {
-        return "<html><i><b>" + text + "</b></i></html>";
-    }
-    
     private void setupLabelsAndFields(ActionListener listener) {
         BoxLayout layout = new BoxLayout(this, BoxLayout.PAGE_AXIS);
         setLayout(layout);
-        
+
+        setupDescription();
         setupInputLabelsAndField(listener);
         add(Box.createVerticalGlue());
         setupOutputLabelsAndFields();
         add(Box.createVerticalGlue());
     }
 
+    private void setupDescription() {
+        String text = "<html>"
+                + "<p>Set up the initial protolunar disk.</p>" 
+                + "<p align='center'>"
+                + "Σ(r) = Σ<sub>0</sub> (r/r<sub>0</sub>)<sup>p</sup></p> "
+                + "</html>";
+        add(new JLabel(text));
+    }
+
     private void setupInputLabelsAndField(ActionListener listener) {
         JLabel inputLabel = new JLabel(decorateLabel("Input:"));
         inputLabel.setAlignmentX(LEFT_ALIGNMENT);
         add(inputLabel);
-    
+
         inputListView = new ScalarListView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
-    
+
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
         Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
         Unit noUnit = new Unit("", "", 1.0);
-        
-        rminInputView = 
-                new ScalarInputView("r<sub>min</sub>", earthRadius);
+
+        rminInputView = new ScalarInputView("r<sub>min</sub>", earthRadius);
         inputListView.add(rminInputView);
-    
-        density0InputView = 
-                new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
+
+        density0InputView = new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
-    
-        rmaxInputView = 
-                new ScalarInputView("r<sub>max</sub>", earthRadius);
+
+        rmaxInputView = new ScalarInputView("r<sub>max</sub>", earthRadius);
         inputListView.add(rmaxInputView);
-    
-        radius0InputView = 
-                new ScalarInputView("r<sub>0</sub>", earthRadius);
+
+        radius0InputView = new ScalarInputView("r<sub>0</sub>", earthRadius);
         inputListView.add(radius0InputView);
-        
-        exponentInputView = 
-                new ScalarInputView("p (Σ ~ r<sup>p</sup>)", noUnit);
+
+        exponentInputView = new ScalarInputView("p", noUnit);
         inputListView.add(exponentInputView);
-        
+
         inputListView.addActionListener(listener);
     }
 
     private void setupOutputLabelsAndFields() {
         JLabel outputLabel = new JLabel(decorateLabel("Output:"));
         outputLabel.setAlignmentX(LEFT_ALIGNMENT);
-        add(outputLabel);        
-        
+        add(outputLabel);
+
         ScalarListView outputListView = new ScalarListView();
         outputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(outputListView);
 
-        Unit lunarMass= new Unit("M☽", "M<sub>☽</sub>", 
+        Unit lunarMass = new Unit("M☽", "M<sub>☽</sub>",
                 PhysicalConstants.lunarMass);
-        massOutputView =
-                new ScalarOutputView("M<sub>tot</sub>", lunarMass, "#.##");
+        massOutputView = new ScalarOutputView("M<sub>tot</sub>", lunarMass,
+                "#.###");
         outputListView.add(massOutputView);
+    }
+
+    String decorateLabel(String text) {
+        return "<html><i><b>" + text + "</b></i></html>";
     }
 
     public ActionListener createListener() {
@@ -120,36 +124,36 @@ public class InitialDiskInputView extends JPanel {
     }
 
     protected void updateParameterValuesFromFields() {
-        
+
         try {
             double diskRMin = rminInputView.getValue();
             conditions.setRMin(diskRMin);
         } catch (NumberFormatException exception) {
         }
-        
+
         try {
             double rmax = rmaxInputView.getValue();
             conditions.setRMax(rmax);
         } catch (NumberFormatException exception) {
         }
-               
+
         try {
             double density0 = density0InputView.getValue();
             conditions.setDensity0(density0);
         } catch (NumberFormatException exception) {
         }
-        
+
         try {
             double radius0 = radius0InputView.getValue();
             conditions.setRadius0(radius0);
         } catch (NumberFormatException exception) {
         }
-        
+
         try {
             double exponent = exponentInputView.getValue();
             conditions.setExponent(exponent);
         } catch (NumberFormatException exception) {
-        }        
+        }
 
         setFieldValuesFromData();
     }
