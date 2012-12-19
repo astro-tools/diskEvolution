@@ -12,7 +12,7 @@ import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.Unit;
 
-public class InitialDiskInputView extends JPanel {
+public class InitialConditionsInputView extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private InitialConditions conditions;
@@ -24,7 +24,7 @@ public class InitialDiskInputView extends JPanel {
     private ScalarInputView exponentInputView;
     private ScalarOutputView massOutputView;
 
-    public InitialDiskInputView(InitialConditions initialConditions) {
+    public InitialConditionsInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
         ActionListener listener = createListener();
         setupLabelsAndFields(listener);

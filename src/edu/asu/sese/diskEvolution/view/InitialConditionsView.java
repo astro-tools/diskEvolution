@@ -29,7 +29,7 @@ public class InitialConditionsView extends JPanel {
     }
 
     private void setupInputView() {
-        JPanel panel = new InitialDiskInputView(initialConditions);
+        JPanel panel = new InitialConditionsInputView(initialConditions);
         add(panel, BorderLayout.LINE_START);        
     }
 
