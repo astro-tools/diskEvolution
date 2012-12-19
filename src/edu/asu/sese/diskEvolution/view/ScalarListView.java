@@ -7,11 +7,11 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-public class ScalarListInputView extends JPanel {
+public class ScalarListView extends JPanel {
     private static final long serialVersionUID = 1L;
     private List<ScalarInputView> scalarViews;
 
-    public ScalarListInputView() {
+    public ScalarListView() {
         scalarViews = new ArrayList<ScalarInputView>();
         GridLayout layoutManager = new GridLayout(0, 3, 4, 4);
         setLayout(layoutManager);

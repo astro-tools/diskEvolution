@@ -29,7 +29,7 @@ public class SimulationRunnerView extends JPanel {
 
 
     private void setupLabelsAndFields(ActionListener listener) {
-	    ScalarListInputView list = new ScalarListInputView();
+	    ScalarListView list = new ScalarListView();
 	    add(list);
 	    
 	    Unit unit = new Unit("days", "days", PhysicalConstants.day);
