@@ -10,54 +10,41 @@ import edu.asu.sese.diskEvolution.util.Unit;
 public class ScalarInputView {
     
     private JLabel label;
-    private JTextField textField;
+    private JTextField valueField;
     private Unit unit;
     private JLabel unitLabel;
 
     public ScalarInputView(String labelText, Unit unit) {
         this.unit = unit;
         label = new JLabel(labelText + " = ");
-        textField = new JTextField();
-        textField.setHorizontalAlignment(JTextField.RIGHT);
+        valueField = new JTextField();
+        valueField.setHorizontalAlignment(JTextField.RIGHT);
         unitLabel = new JLabel("<html>" + unit.getHtmlLabel() + "</html>");
     }
 
     public void setValue(double value) {
         Double scaledValue = value / unit.getScale();
-        setFieldText(scaledValue.toString());        
+        valueField.setText(scaledValue.toString());        
     }
 
     public double getValue() {
-      String string = textField.getText();
+      String string = valueField.getText();
       return Double.parseDouble(string) * unit.getScale();
     }
 
     public void addActionListener(ActionListener listener) {
-        textField.addActionListener(listener);
+        valueField.addActionListener(listener);
     }
 
     public JLabel getLabel() {
         return label;
     }
-
-    public void setFieldText(String string) {
-        textField.setText(string);
-    }
         
-    public JTextField getTextField() {
-        return textField;
-    }
-
-    public String getText() {
-        return textField.getText();
-    }
-
-    public void setText(String string) {
-        textField.setText(string);
+    public JTextField getValueField() {
+        return valueField;
     }
 
     public JLabel getUnitLabel() {
         return unitLabel;
     }
-
 }

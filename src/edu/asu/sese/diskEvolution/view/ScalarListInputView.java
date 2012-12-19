@@ -20,7 +20,7 @@ public class ScalarListInputView extends JPanel {
     public void add(ScalarInputView view) {
         scalarViews.add(view);
         add(view.getLabel());
-        add(view.getTextField());
+        add(view.getValueField());
         add(view.getUnitLabel());
     }
 
