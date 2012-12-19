@@ -8,7 +8,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.Unit;
@@ -16,7 +15,6 @@ import edu.asu.sese.diskEvolution.util.Unit;
 public class InitialDiskInputView extends JPanel {
     private static final long serialVersionUID = 1L;
     
-    private DensityGrid densityGrid;
     private InitialConditions conditions;
 
     private ScalarInputView rminInputView;
@@ -25,6 +23,8 @@ public class InitialDiskInputView extends JPanel {
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
     private ScalarListInputView inputListView;
+
+    private ScalarOutputView massOutputView;
 
     
     public InitialDiskInputView(InitialConditions initialConditions) {
@@ -40,6 +40,7 @@ public class InitialDiskInputView extends JPanel {
         radius0InputView.setValue(conditions.getRadius0());
         density0InputView.setValue(conditions.getDensity0());
         exponentInputView.setValue(conditions.getExponent());
+        massOutputView.setValue(conditions.getTotalMass());
     }
 
     String decorateLabel(String text) {
@@ -57,7 +58,6 @@ public class InitialDiskInputView extends JPanel {
         inputListView = new ScalarListInputView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
-        
 
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
@@ -65,23 +65,23 @@ public class InitialDiskInputView extends JPanel {
         Unit noUnit = new Unit("", "", 1.0);
         
         rminInputView = 
-                new ScalarInputView("<html>r<sub>min</sub>", earthRadius);
+                new ScalarInputView("r<sub>min</sub>", earthRadius);
         inputListView.add(rminInputView);
 
         density0InputView = 
-                new ScalarInputView("<html>Σ<sub>0</sub>", gramsPerCm2);
+                new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
         inputListView.add(density0InputView);
 
         rmaxInputView = 
-                new ScalarInputView("<html>r<sub>max</sub>", earthRadius);
+                new ScalarInputView("r<sub>max</sub>", earthRadius);
         inputListView.add(rmaxInputView);
 
         radius0InputView = 
-                new ScalarInputView("<html>r<sub>0</sub>", earthRadius);
+                new ScalarInputView("r<sub>0</sub>", earthRadius);
         inputListView.add(radius0InputView);
         
         exponentInputView = 
-                new ScalarInputView("<html>p (Σ ~ r<sup>p</sup>)", noUnit);
+                new ScalarInputView("p (Σ ~ r<sup>p</sup>)", noUnit);
         inputListView.add(exponentInputView);
         
         inputListView.addActionListener(listener);
@@ -90,15 +90,19 @@ public class InitialDiskInputView extends JPanel {
         
         JLabel outputLabel = new JLabel(decorateLabel("Output:"));
         outputLabel.setAlignmentX(LEFT_ALIGNMENT);
-        add(outputLabel);
+        add(outputLabel);        
         
-//      double mass = densityGrid.getTotalMass();
-        double mass = 5.0E24;
-        JLabel totalMass = new JLabel("Total Mass = " + mass + " g");
-        outputLabel.setAlignmentX(LEFT_ALIGNMENT);
-        add(totalMass);
-        add(Box.createVerticalGlue());
+        ScalarListInputView outputListView = new ScalarListInputView();
+        outputListView.setAlignmentX(LEFT_ALIGNMENT);
+        add(outputListView);
 
+        Unit lunarMass= new Unit("M☽", "M<sub>☽</sub>", 
+                PhysicalConstants.lunarMass);
+        massOutputView =
+                new ScalarOutputView("M<sub>tot</sub>", lunarMass, "#.##");
+        outputListView.add(massOutputView);
+
+        add(Box.createVerticalGlue());
     }
 
 	public ActionListener createListener() {

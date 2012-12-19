@@ -24,6 +24,12 @@ public class ScalarListInputView extends JPanel {
         add(view.getUnitLabel());
     }
 
+    public void add(ScalarOutputView view) {
+        add(view.getLabel());
+        add(view.getValueField());
+        add(view.getUnitLabel());
+    }
+
     public void addActionListener(ActionListener listener) {
         for (ScalarInputView view : scalarViews) {
             view.addActionListener(listener);
