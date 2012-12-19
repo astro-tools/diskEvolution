@@ -9,16 +9,16 @@ import javax.swing.JPanel;
 
 public class ScalarListView extends JPanel {
     private static final long serialVersionUID = 1L;
-    private List<ScalarInputView> scalarViews;
+    private List<ScalarInputView> scalarInputViews;
 
     public ScalarListView() {
-        scalarViews = new ArrayList<ScalarInputView>();
+        scalarInputViews = new ArrayList<ScalarInputView>();
         GridLayout layoutManager = new GridLayout(0, 3, 4, 4);
         setLayout(layoutManager);
     }
 
     public void add(ScalarInputView view) {
-        scalarViews.add(view);
+        scalarInputViews.add(view);
         add(view.getLabel());
         add(view.getValueField());
         add(view.getUnitLabel());
@@ -31,7 +31,7 @@ public class ScalarListView extends JPanel {
     }
 
     public void addActionListener(ActionListener listener) {
-        for (ScalarInputView view : scalarViews) {
+        for (ScalarInputView view : scalarInputViews) {
             view.addActionListener(listener);
         }
     }

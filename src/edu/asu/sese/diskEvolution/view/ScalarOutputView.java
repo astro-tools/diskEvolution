@@ -1,7 +1,6 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.text.DecimalFormat;
-import java.util.Formatter;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
