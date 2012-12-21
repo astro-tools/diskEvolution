@@ -68,6 +68,10 @@ public class SimulationRunnerView extends JPanel {
 	    JButton startButton = new JButton("Run Simulation");
 	    startButton.setAlignmentX(CENTER_ALIGNMENT);
 	    add(startButton);
+	    
+	    JButton pauseButton = new JButton("Pause");
+	    pauseButton.setAlignmentX(CENTER_ALIGNMENT);
+	    add(pauseButton);
 	}
 
 	public ActionListener createListener() {
