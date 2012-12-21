@@ -35,20 +35,33 @@ public class SimulationRunnerView extends JPanel {
 
 
     private void setupLabelsAndFields(ActionListener listener) {
+	    setupLoopParameters(listener);
+	    setupGridParameters(listener);
+	    setupExecutionButtons();
+	}
+
+    private void setupLoopParameters(ActionListener listener) {
+        ScalarListView list = new ScalarListView();
+        list.setAlignmentX(LEFT_ALIGNMENT);
+        add(list);
         
-	    ScalarListView list = new ScalarListView();
-	    list.setAlignmentX(LEFT_ALIGNMENT);
-	    add(list);
-	    
-	    Unit time = new Unit("days", "days", PhysicalConstants.day);
-	    Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
-                PhysicalConstants.earthRadiusInCm);
+        Unit day = new Unit("days", "days", PhysicalConstants.day);
+    
+        timeStepInputView = new ScalarInputView("Time Step", day);
+        list.add(timeStepInputView);
+        list.addActionListener(listener);
+    }
+
+    private void setupGridParameters(ActionListener listener) {
+        ScalarListView list = new ScalarListView();
+        list.setAlignmentX(LEFT_ALIGNMENT);
+        add(list);
+
+        Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
+	            PhysicalConstants.earthRadiusInCm);
+        
 	    Unit noUnit = new Unit("", "", 1.0);
-	    
-	    timeStepInputView = new ScalarInputView("Time Step", time);
-	    list.add(timeStepInputView);
-	    list.addActionListener(listener);
-	    
+
 	    rmin = new ScalarInputView("R<sub>min</sub>", earthRadius);
 	    list.add(rmin);
 	    list.addActionListener(listener);
@@ -57,24 +70,26 @@ public class SimulationRunnerView extends JPanel {
 	    list.add(rmax);
 	    list.addActionListener(listener);
 	    
-	    deltar0 = new ScalarInputView("δR<sub>0</sub>", earthRadius);
+	    deltar0 = new ScalarInputView("ΔR<sub>0</sub>", earthRadius);
 	    list.add(deltar0);
 	    list.addActionListener(listener);
 	    
 	    intervalCount = new ScalarInputView("Interval Count", noUnit);
 	    list.add(intervalCount);
 	    list.addActionListener(listener);
-	    
-	    JButton startButton = new JButton("Run Simulation");
-	    startButton.setAlignmentX(CENTER_ALIGNMENT);
-	    add(startButton);
-	    
-	    JButton pauseButton = new JButton("Pause");
-	    pauseButton.setAlignmentX(CENTER_ALIGNMENT);
-	    add(pauseButton);
-	}
+    }
 
-	public ActionListener createListener() {
+    private void setupExecutionButtons() {
+        JButton startButton = new JButton("Run Simulation");
+        startButton.setAlignmentX(CENTER_ALIGNMENT);
+        add(startButton);
+        
+        JButton pauseButton = new JButton("Pause");
+        pauseButton.setAlignmentX(CENTER_ALIGNMENT);
+        add(pauseButton);
+    }
+
+    public ActionListener createListener() {
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				updateParameterValuesFromFields();
