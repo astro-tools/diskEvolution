@@ -1,8 +1,11 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.text.DecimalFormat;
+
 import org.jfree.chart.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
+import org.jfree.chart.util.LogFormat;
 import org.jfree.data.xy.*;
 
 import edu.asu.sese.diskEvolution.util.MidpointGrid;
@@ -41,8 +44,9 @@ public class RadialPlotView extends ChartPanel {
     public static void convertToLogLogChart(String domainTitle,
             String rangeTitle, JFreeChart chart) {
         final XYPlot plot = chart.getXYPlot();
-        final NumberAxis domainAxis = new LogarithmicAxis(domainTitle);
-        final NumberAxis rangeAxis = new LogarithmicAxis(rangeTitle);
+        final NumberAxis domainAxis = new NumberAxis(domainTitle);
+        final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeTitle);
+        rangeAxis.setLog10TickLabelsFlag(true);
         plot.setDomainAxis(domainAxis);
         plot.setRangeAxis(rangeAxis);
     }

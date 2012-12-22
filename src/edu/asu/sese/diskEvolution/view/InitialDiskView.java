@@ -29,9 +29,9 @@ public class InitialDiskView extends JPanel {
 
     public InitialDiskView(InitialConditions conditions) {
         this.conditions = conditions;
-        rmin = PhysicalConstants.earthRadiusInCm * 0.8;
-        rmax = PhysicalConstants.earthRadiusInCm * 10.0;
-        vmin = 0.1;
+        rmin = PhysicalConstants.earthRadiusInCm * 0.0;
+        rmax = PhysicalConstants.earthRadiusInCm * 8.9;
+        vmin = 10.0;
         vmax = 2.0e8;
         double deltar0 = PhysicalConstants.earthRadiusInCm * 0.001;
         int intervalCount = 100;
