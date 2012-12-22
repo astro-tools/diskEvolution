@@ -1,5 +1,6 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ public class ScalarInputView {
         label = new JLabel("<html>" + labelText + " = </html>");
         valueField = new JTextField();
         valueField.setHorizontalAlignment(JTextField.RIGHT);
+        valueField.setColumns(5);
         unitLabel = new JLabel("<html>" + unit.getHtmlLabel() + "</html>");
     }
 
