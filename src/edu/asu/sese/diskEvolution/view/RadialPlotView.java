@@ -1,11 +1,10 @@
 package edu.asu.sese.diskEvolution.view;
 
-import java.text.DecimalFormat;
+import java.awt.Color;
 
 import org.jfree.chart.*;
 import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
-import org.jfree.chart.util.LogFormat;
 import org.jfree.data.xy.*;
 
 import edu.asu.sese.diskEvolution.util.MidpointGrid;
@@ -23,10 +22,11 @@ public class RadialPlotView extends ChartPanel {
         super(createSimpleXYChart(radialGrid, densityGrid));
     }    
 
-    public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, MidpointGrid densityGrid) {
+    public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, 
+            MidpointGrid densityGrid) {
         dataset = createDataset(radialGrid, densityGrid);
 
-        String title = "Surface Density";
+        String title = null;
 		String domainTitle = "r (" + radialUnitName +")";
         String rangeTitle = "Σ (g/cm²)";
         boolean showLegend = false;
@@ -35,6 +35,8 @@ public class RadialPlotView extends ChartPanel {
         JFreeChart chart = ChartFactory.createXYLineChart(title, domainTitle,
                 rangeTitle, dataset, PlotOrientation.VERTICAL,
                 showLegend, useTooltips, generateURLs);
+        
+        chart.getPlot().setBackgroundPaint(Color.white);
         
         convertToLogLogChart(domainTitle, rangeTitle, chart);
         
