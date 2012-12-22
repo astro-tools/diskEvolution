@@ -20,6 +20,10 @@ public class SimulationRunnerView extends JPanel {
 	private ScalarInputView deltar0;
 	private ScalarInputView intervalCount;
     private SimulationRunner runner;
+    private ScalarInputView durationView;
+    private ScalarInputView snapshotIntervalView;
+    private ScalarOutputView iterationCountView;
+    private ScalarOutputView imageCountViewer;
 
 	public SimulationRunnerView(SimulationRunner runner) {
 	    this.runner = runner;
@@ -44,11 +48,29 @@ public class SimulationRunnerView extends JPanel {
         ScalarListView list = new ScalarListView();
         list.setAlignmentX(LEFT_ALIGNMENT);
         add(list);
+        list.addLabel("Loop parameters:");
         
-        Unit day = new Unit("days", "days", PhysicalConstants.day);
+        Unit year = new Unit("yr", "yr", PhysicalConstants.year);
+        Unit hour = new Unit("h", "h", PhysicalConstants.hour);
+        Unit noUnit = new Unit("", "", 1.0);
     
-        timeStepInputView = new ScalarInputView("Time Step", day);
+        timeStepInputView = new ScalarInputView("Δ t", hour);
         list.add(timeStepInputView);
+        
+        durationView = new ScalarInputView("T<sub>tot</sub>", year);
+        list.add(durationView);
+
+        iterationCountView = 
+                new ScalarOutputView("N<sub>iter</sub>", noUnit, "#");
+        list.add(iterationCountView);
+        
+        snapshotIntervalView = new ScalarInputView("T<sub>image</sub>", year);
+        list.add(snapshotIntervalView);
+
+        imageCountViewer = 
+                new ScalarOutputView("N<sub>image</sub>", noUnit, "#");
+        list.add(imageCountViewer);
+
         list.addActionListener(listener);
     }
 
@@ -56,6 +78,7 @@ public class SimulationRunnerView extends JPanel {
         ScalarListView list = new ScalarListView();
         list.setAlignmentX(LEFT_ALIGNMENT);
         add(list);
+        list.addLabel("Grid parameters:");
 
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
 	            PhysicalConstants.earthRadiusInCm);
@@ -70,11 +93,11 @@ public class SimulationRunnerView extends JPanel {
 	    list.add(rmax);
 	    list.addActionListener(listener);
 	    
-	    deltar0 = new ScalarInputView("ΔR<sub>0</sub>", earthRadius);
+	    deltar0 = new ScalarInputView("Δ R<sub>0</sub>", earthRadius);
 	    list.add(deltar0);
 	    list.addActionListener(listener);
 	    
-	    intervalCount = new ScalarInputView("Interval Count", noUnit);
+	    intervalCount = new ScalarInputView("N<sub>interval</sub>", noUnit);
 	    list.add(intervalCount);
 	    list.addActionListener(listener);
     }
