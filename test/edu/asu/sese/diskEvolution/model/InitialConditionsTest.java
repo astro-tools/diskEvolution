@@ -63,14 +63,14 @@ public class InitialConditionsTest {
         assertEquals(radius0, initialConditions.getRadius0(), 1e-12);
     }
     
-    /// Mass is 2*pi*sigma0 [rmax^(p+2) - rmin^(p+2)]/ (p+2)*r0^p
-    /// For an exponent of p=-1.5, sigma0 of 5 g/cm, r0=3cm, rmax=4 cm, rmin=2cm,
+    /// Mass is 2*pi*sigma0 [rmax^(-p+2) - rmin^(p+2)]/ (-p+2)*r0^p
+    /// For an exponent of p=1.5, sigma0 of 5 g/cm, r0=3cm, rmax=4 cm, rmin=2cm,
     /// mass should be 191.2498322660473 g.
     @Test
     public void testThatInitialMassIsCorrect() {
         initialConditions.setRadius0(3.0);
         initialConditions.setDensity0(5.0);
-        initialConditions.setExponent(-1.5);
+        initialConditions.setExponent(1.5);
         initialConditions.setRIn(2.0);
         initialConditions.setROut(4.0);
         double expect = 191.2498322660473;

@@ -23,7 +23,7 @@ public class InitialConditions {
         setRadius0(PhysicalConstants.earthRadiusInCm);
         setRIn(1.0 * PhysicalConstants.earthRadiusInCm);
         setROut(5.0 * PhysicalConstants.earthRadiusInCm);
-        setExponent(-1.0);
+        setExponent(1.0);
     }
     
     public double getRadius0() {
@@ -83,8 +83,9 @@ public class InitialConditions {
 
     public double getTotalMass() {
         double mass = 2 * Math.PI * density0;
-        mass /= (exponent + 2.0) * Math.pow(radius0, exponent);
-        mass *= Math.pow(rout, exponent + 2.0) - Math.pow(rin, exponent + 2.0);
+        mass /= (-exponent + 2.0) * Math.pow(radius0, -exponent);
+        mass *= Math.pow(rout, -exponent + 2.0) 
+                - Math.pow(rin, -exponent + 2.0);
         return mass;
     }
 }

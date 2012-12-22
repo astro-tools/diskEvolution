@@ -55,7 +55,7 @@ public class InitialConditionsInputView extends JPanel {
         String text = "<html>"
                 + "<p>Set up the initial disk.</p>" 
                 + "<p align='center'>"
-                + "Σ(r) = Σ<sub>0</sub> (r/r<sub>0</sub>)<sup>p</sup></p> "
+                + "Σ(r) = Σ<sub>0</sub> (r/r<sub>0</sub>)<sup>-p</sup></p> "
                 + "</html>";
         add(new JLabel(text));
     }

@@ -13,7 +13,7 @@ public class DensityGrid extends MidpointGrid {
 
     public void initializeWithPowerLaw(Parameters p) {
         super.initializeWithPowerLaw(p.getDensity0(), 
-                p.getRadius0(), p.getExponent());
+                p.getRadius0(), -p.getExponent());
     }
     
     public double getTotalMass() {
@@ -26,7 +26,7 @@ public class DensityGrid extends MidpointGrid {
 
     public void initializeWithPowerLaw(double density0, double radius0, 
             double d, double rin, double rout) {
-        super.initializeWithPowerLaw(density0, radius0, d);
+        super.initializeWithPowerLaw(density0, radius0, -d);
         RadialGrid radialGrid = getRadialGrid();
         
         for (int i = 0; i < zoneCount; i++) {
