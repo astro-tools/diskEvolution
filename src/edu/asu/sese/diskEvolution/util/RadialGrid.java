@@ -66,12 +66,14 @@ public class RadialGrid {
         return midpoint[i];
     }
 
-    private static double calculateScaleFactorUsingNewtonsMethod(
+    public static double calculateScaleFactorUsingNewtonsMethod(
             double range, double firstStep, int count) {
-        double scaleFactor = Math.log(range) / Math.log(firstStep);
+        double scaleFactor = Math.pow(0.1 * count * range / firstStep, 
+                1.0 / count);
+
         double target = range / firstStep;
         double currentValue = geometricSeries(scaleFactor, count);
-        while (Math.abs(target - currentValue) / target > 1e-14) {
+        while (Math.abs(target - currentValue) / target > 1e-12) {
             double slope =
                     scaleDerivativeOfGeometricSeries(scaleFactor, count);
             scaleFactor += (target - currentValue) / slope;
@@ -81,7 +83,7 @@ public class RadialGrid {
     }
 
     private static double geometricSeries(double scale, int n) {
-        return ((Math.pow(scale,n)-1)/(scale -1));
+        return (Math.pow(scale,n) - 1.0) / (scale - 1.0);
     }
     
     private static double scaleDerivativeOfGeometricSeries(

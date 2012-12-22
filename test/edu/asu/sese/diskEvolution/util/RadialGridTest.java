@@ -2,6 +2,7 @@ package edu.asu.sese.diskEvolution.util;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.asu.sese.diskEvolution.util.RadialGrid;
@@ -21,6 +22,25 @@ public class RadialGridTest {
         deltar0 = 0.1;
         intervalCount = 10;
         grid = new RadialGrid(rmin, rmax, deltar0, intervalCount);
+    }
+    
+    @Test
+    public void testCalculateScaleFactor() {
+        double factor = RadialGrid.calculateScaleFactorUsingNewtonsMethod(
+                rmax - rmin, deltar0, intervalCount);
+        double expected = 1.4521273829893704;
+        assertEquals(expected, factor, 1e-10);
+    }
+    
+    @Test
+    public void testCalculateScaleFactorWithManyPoints() {
+        deltar0 = 0.01;
+        intervalCount = 1000;
+
+        double factor = RadialGrid.calculateScaleFactorUsingNewtonsMethod(
+                rmax - rmin, deltar0, intervalCount);
+        double expected = 0.9997852445843816;
+        assertEquals(expected, factor, 1e-10);
     }
     
     @Test

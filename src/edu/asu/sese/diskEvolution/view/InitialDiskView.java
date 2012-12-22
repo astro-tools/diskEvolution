@@ -33,8 +33,8 @@ public class InitialDiskView extends JPanel {
         rmax = PhysicalConstants.earthRadiusInCm * 8.9;
         vmin = 10.0;
         vmax = 2.0e8;
-        double deltar0 = PhysicalConstants.earthRadiusInCm * 0.001;
-        int intervalCount = 100;
+        double deltar0 = PhysicalConstants.earthRadiusInCm * 0.01;
+        int intervalCount = 1000;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, intervalCount);
         densityGrid = new DensityGrid(radialGrid);
         initializeDensityFromConditions();
