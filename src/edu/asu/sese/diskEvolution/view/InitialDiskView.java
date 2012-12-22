@@ -29,10 +29,10 @@ public class InitialDiskView extends JPanel {
 
     public InitialDiskView(InitialConditions conditions) {
         this.conditions = conditions;
-        rmin = PhysicalConstants.earthRadiusInCm * 1.0;
+        rmin = PhysicalConstants.earthRadiusInCm * 0.8;
         rmax = PhysicalConstants.earthRadiusInCm * 10.0;
         vmin = 0.1;
-        vmax = 2.0e5;
+        vmax = 2.0e8;
         double deltar0 = PhysicalConstants.earthRadiusInCm * 0.001;
         int intervalCount = 100;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, intervalCount);
