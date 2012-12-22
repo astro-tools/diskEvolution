@@ -3,6 +3,8 @@ package edu.asu.sese.diskEvolution.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -24,19 +26,34 @@ public class SimulationRunnerView extends JPanel {
     private ScalarInputView snapshotIntervalView;
     private ScalarOutputView iterationCountView;
     private ScalarOutputView imageCountViewer;
+    private JPanel inputPanel;
+    private JPanel buttonPanel;
+    private JButton startButton;
+    private JButton pauseButton;
 
 	public SimulationRunnerView(SimulationRunner runner) {
 	    this.runner = runner;
 		ActionListener listener = createListener();
+		setupPanels();
 		setupLabelsAndFields(listener);
         setFieldValuesFromData();
 	}
 	
 	private void setFieldValuesFromData() {
-        double timeStep = runner.getSimulationTimeStep();
-        timeStepInputView.setValue(timeStep);
-    }
+	    double timeStep = runner.getSimulationTimeStep();
+	    timeStepInputView.setValue(timeStep);
+	}
 
+	private void setupPanels() {
+	    setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+	    inputPanel = new JPanel();
+	    inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.LINE_AXIS));
+	    add(inputPanel);
+	    add(Box.createVerticalGlue());
+	    buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
+        add(buttonPanel);
+    }
 
     private void setupLabelsAndFields(ActionListener listener) {
 	    setupLoopParameters(listener);
@@ -47,7 +64,7 @@ public class SimulationRunnerView extends JPanel {
     private void setupLoopParameters(ActionListener listener) {
         ScalarListView list = new ScalarListView();
         list.setAlignmentX(LEFT_ALIGNMENT);
-        add(list);
+        inputPanel.add(list);
         list.addLabel("Loop parameters:");
         
         Unit year = new Unit("yr", "yr", PhysicalConstants.year);
@@ -77,7 +94,7 @@ public class SimulationRunnerView extends JPanel {
     private void setupGridParameters(ActionListener listener) {
         ScalarListView list = new ScalarListView();
         list.setAlignmentX(LEFT_ALIGNMENT);
-        add(list);
+        inputPanel.add(list);
         list.addLabel("Grid parameters:");
 
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
@@ -103,13 +120,11 @@ public class SimulationRunnerView extends JPanel {
     }
 
     private void setupExecutionButtons() {
-        JButton startButton = new JButton("Run Simulation");
-        startButton.setAlignmentX(CENTER_ALIGNMENT);
-        add(startButton);
-        
-        JButton pauseButton = new JButton("Pause");
-        pauseButton.setAlignmentX(CENTER_ALIGNMENT);
-        add(pauseButton);
+        buttonPanel.add(Box.createHorizontalGlue());
+        pauseButton = new JButton("Pause");
+        buttonPanel.add(pauseButton);
+        startButton = new JButton("Run Simulation");
+        buttonPanel.add(startButton);
     }
 
     public ActionListener createListener() {
