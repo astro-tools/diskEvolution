@@ -1,8 +1,5 @@
 package edu.asu.sese.diskEvolution.util;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import edu.asu.sese.diskEvolution.model.Parameters;
 
 public class RadialGrid {

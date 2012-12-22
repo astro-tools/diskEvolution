@@ -19,11 +19,11 @@ public class InitialConditions {
     }
     
     public void initializeParameters() {
-        setDensity0(1e3);
+        setDensity0(1e7);
         setRadius0(PhysicalConstants.earthRadiusInCm);
-        setRIn(1.1 * PhysicalConstants.earthRadiusInCm);
+        setRIn(1.0 * PhysicalConstants.earthRadiusInCm);
         setROut(5.0 * PhysicalConstants.earthRadiusInCm);
-        setExponent(-1.5);
+        setExponent(-1.0);
     }
     
     public double getRadius0() {
