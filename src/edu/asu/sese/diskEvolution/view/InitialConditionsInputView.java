@@ -53,7 +53,7 @@ public class InitialConditionsInputView extends JPanel {
 
     private void setupDescription() {
         String text = "<html>"
-                + "<p>Set up the initial protolunar disk.</p>" 
+                + "<p>Set up the initial disk.</p>" 
                 + "<p align='center'>"
                 + "Σ(r) = Σ<sub>0</sub> (r/r<sub>0</sub>)<sup>p</sup></p> "
                 + "</html>";
@@ -61,14 +61,13 @@ public class InitialConditionsInputView extends JPanel {
     }
 
     private void setupInputLabelsAndField(ActionListener listener) {
-        JLabel inputLabel = new JLabel(decorateLabel("Input:"));
-        inputLabel.setAlignmentX(LEFT_ALIGNMENT);
-        add(inputLabel);
 
         ScalarListView inputListView = new ScalarListView();
         inputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(inputListView);
 
+        inputListView.addLabel("Input:");
+        
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
         Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
@@ -93,13 +92,12 @@ public class InitialConditionsInputView extends JPanel {
     }
 
     private void setupOutputLabelsAndFields() {
-        JLabel outputLabel = new JLabel(decorateLabel("Output:"));
-        outputLabel.setAlignmentX(LEFT_ALIGNMENT);
-        add(outputLabel);
 
         ScalarListView outputListView = new ScalarListView();
         outputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(outputListView);
+
+        outputListView.addLabel("Output:");
 
         Unit lunarMass = new Unit("M☽", "M<sub>☽</sub>",
                 PhysicalConstants.lunarMass);
