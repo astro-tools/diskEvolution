@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
+import edu.asu.sese.diskEvolution.plot.RadialPlotView;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 

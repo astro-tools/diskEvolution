@@ -1,4 +1,4 @@
-package edu.asu.sese.diskEvolution.view;
+package edu.asu.sese.diskEvolution.plot;
 
 import java.awt.Color;
 
