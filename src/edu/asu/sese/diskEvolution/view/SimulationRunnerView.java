@@ -81,7 +81,7 @@ public class SimulationRunnerView extends JPanel {
                 new ScalarOutputView("N<sub>iter</sub>", noUnit, "#");
         list.add(iterationCountView);
         
-        snapshotIntervalView = new ScalarInputView("T<sub>image</sub>", year);
+        snapshotIntervalView = new ScalarInputView("Δ T<sub>image</sub>", year);
         list.add(snapshotIntervalView);
 
         imageCountViewer = 
@@ -122,6 +122,7 @@ public class SimulationRunnerView extends JPanel {
     private void setupExecutionButtons() {
         buttonPanel.add(Box.createHorizontalGlue());
         pauseButton = new JButton("Pause");
+        pauseButton.setEnabled(false);
         buttonPanel.add(pauseButton);
         startButton = new JButton("Run Simulation");
         buttonPanel.add(startButton);
