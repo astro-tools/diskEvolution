@@ -1,6 +1,7 @@
 package edu.asu.sese.diskEvolution.controller;
 
 import edu.asu.sese.diskEvolution.model.TimeStep;
+import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 
 public class SimulationRunner {
@@ -8,8 +9,12 @@ public class SimulationRunner {
 	private TimeStep simulationTimeStep;
     private double totalDuration;
     private double snapshotInterval;
+    
+    private GridFactory gridFactory;
 	
 	public SimulationRunner() {
+	    gridFactory = new GridFactory();
+	    gridFactory.initializeParameters();
 	    simulationTimeStep = new TimeStep();
 	    simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
 	    totalDuration = 30.0 * PhysicalConstants.year;
@@ -42,6 +47,10 @@ public class SimulationRunner {
 
     public void setSnapshotIntervalView(double snapshotInterval) {
         this.snapshotInterval = snapshotInterval;
+    }
+
+    public GridFactory getGridFactory() {
+        return gridFactory;
     }
 
 }

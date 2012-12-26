@@ -14,10 +14,10 @@ public class GridFactory {
 
 
     public void initializeParameters() {
-        setRmin(0.1 * PhysicalConstants.earthRadiusInCm);
-        setRmax(200.0 * PhysicalConstants.earthRadiusInCm);
+        setRmin(1.0 * PhysicalConstants.earthRadiusInCm);
+        setRmax(50.0 * PhysicalConstants.earthRadiusInCm);
         setDeltar0(0.1 * PhysicalConstants.earthRadiusInCm);
-        setIntervalCount(50);
+        setIntervalCount(100);
     }
     
     public double getRmin() {

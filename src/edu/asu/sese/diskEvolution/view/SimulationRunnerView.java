@@ -6,22 +6,24 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
+import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.Unit;
 
 public class SimulationRunnerView extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	private SimulationRunner runner;
+	private GridFactory gridFactory;
+
 	private ScalarInputView timeStepInputView;
-	private ScalarInputView rmin;
-	private ScalarInputView rmax;
-	private ScalarInputView deltar0;
-	private ScalarInputView intervalCount;
-    private SimulationRunner runner;
+	private ScalarInputView rminView;
+	private ScalarInputView rmaxView;
+	private ScalarInputView deltar0View;
+	private ScalarInputView intervalCountView;
     private ScalarInputView durationView;
     private ScalarInputView snapshotIntervalView;
     private ScalarOutputView iterationCountView;
@@ -33,6 +35,7 @@ public class SimulationRunnerView extends JPanel {
 
 	public SimulationRunnerView(SimulationRunner runner) {
 	    this.runner = runner;
+	    gridFactory = runner.getGridFactory();
 		ActionListener listener = createListener();
 		setupPanels();
 		setupLabelsAndFields(listener);
@@ -54,6 +57,11 @@ public class SimulationRunnerView extends JPanel {
 	    
 	    double imageCount = Math.ceil(totalDuration / snapshotInterval);
 	    imageCountView.setValue(imageCount);
+	 
+	    rminView.setValue(gridFactory.getRmin());
+	    rmaxView.setValue(gridFactory.getRmax());
+	    intervalCountView.setValue(gridFactory.getIntervalCount());
+	    deltar0View.setValue(gridFactory.getDeltar0());
 	}
 
 	private void setupPanels() {
@@ -114,20 +122,20 @@ public class SimulationRunnerView extends JPanel {
         
 	    Unit noUnit = new Unit("", "", 1.0);
 
-	    rmin = new ScalarInputView("R<sub>min</sub>", earthRadius);
-	    list.add(rmin);
+	    rminView = new ScalarInputView("R<sub>min</sub>", earthRadius);
+	    list.add(rminView);
 	    list.addActionListener(listener);
 	   
-	    rmax = new ScalarInputView("R<sub>max</sub>", earthRadius);
-	    list.add(rmax);
+	    rmaxView = new ScalarInputView("R<sub>max</sub>", earthRadius);
+	    list.add(rmaxView);
 	    list.addActionListener(listener);
 	    
-	    deltar0 = new ScalarInputView("Δ R<sub>0</sub>", earthRadius);
-	    list.add(deltar0);
+	    deltar0View = new ScalarInputView("Δ R<sub>0</sub>", earthRadius);
+	    list.add(deltar0View);
 	    list.addActionListener(listener);
 	    
-	    intervalCount = new ScalarInputView("N<sub>interval</sub>", noUnit);
-	    list.add(intervalCount);
+	    intervalCountView = new ScalarInputView("N<sub>interval</sub>", noUnit);
+	    list.add(intervalCountView);
 	    list.addActionListener(listener);
     }
 
@@ -165,6 +173,27 @@ public class SimulationRunnerView extends JPanel {
 	        runner.setSnapshotIntervalView(snapshotInterval);
 	    } catch (NumberFormatException exception) {
 	    }
+	    try {
+	        double rmin = rminView.getValue();
+	        gridFactory.setRmin(rmin);
+	    } catch (NumberFormatException exception) {
+	    }
+	    try {
+	        double rmax = rmaxView.getValue();
+	        gridFactory.setRmax(rmax);
+	    } catch (NumberFormatException exception) {
+	    }
+	    try {
+	        double deltar0 = deltar0View.getValue();
+	        gridFactory.setDeltar0(deltar0);
+	    } catch (NumberFormatException exception) {
+        }
+	    try {
+	        int intervalCount = (int)intervalCountView.getValue();
+	        gridFactory.setIntervalCount(intervalCount);
+	    } catch (NumberFormatException exception) {
+        }
+	    
         setFieldValuesFromData();
 	}
 
