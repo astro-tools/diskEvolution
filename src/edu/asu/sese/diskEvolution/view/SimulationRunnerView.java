@@ -42,6 +42,8 @@ public class SimulationRunnerView extends JPanel {
 	private void setFieldValuesFromData() {
 	    double timeStep = runner.getSimulationTimeStep();
 	    timeStepInputView.setValue(timeStep);
+	    double totalDuration = runner.getTotalDuration();
+	    durationView.setValue(totalDuration);
 	}
 
 	private void setupPanels() {
@@ -143,6 +145,11 @@ public class SimulationRunnerView extends JPanel {
             runner.setSimulationTimeStep(timeStep);
         } catch (NumberFormatException exception) {
         }
+	    try {
+	        double duration = durationView.getValue();
+	        runner.setTotalDuration(duration);
+	    } catch (NumberFormatException exception) {
+	    }
         setFieldValuesFromData();
 	}
 

@@ -6,10 +6,12 @@ import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 public class SimulationRunner {
     private CurrentSimulationTime currentSimulationTime;
 	private TimeStep simulationTimeStep;
+    private double totalDuration;
 	
 	public SimulationRunner() {
 	    simulationTimeStep = new TimeStep();
 	    simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
+	    totalDuration = 30.0 * PhysicalConstants.year;
 	}
 
 	public void run() {
@@ -22,6 +24,14 @@ public class SimulationRunner {
 
     public void setSimulationTimeStep(double timeStep) {
         simulationTimeStep.setTime(timeStep);
+    }
+
+    public double getTotalDuration() {
+        return totalDuration;
+    }
+
+    public void setTotalDuration(double duration) {
+        totalDuration = duration;
     }
 
 }
