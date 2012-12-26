@@ -7,11 +7,13 @@ public class SimulationRunner {
     private CurrentSimulationTime currentSimulationTime;
 	private TimeStep simulationTimeStep;
     private double totalDuration;
+    private double snapshotInterval;
 	
 	public SimulationRunner() {
 	    simulationTimeStep = new TimeStep();
 	    simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
 	    totalDuration = 30.0 * PhysicalConstants.year;
+	    snapshotInterval = 1.0 * PhysicalConstants.year;
 	}
 
 	public void run() {
@@ -32,6 +34,14 @@ public class SimulationRunner {
 
     public void setTotalDuration(double duration) {
         totalDuration = duration;
+    }
+
+    public double getSnapshotInterval() {
+        return snapshotInterval;
+    }
+
+    public void setSnapshotIntervalView(double snapshotInterval) {
+        this.snapshotInterval = snapshotInterval;
     }
 
 }

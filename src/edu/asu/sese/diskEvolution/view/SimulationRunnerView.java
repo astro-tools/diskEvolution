@@ -25,7 +25,7 @@ public class SimulationRunnerView extends JPanel {
     private ScalarInputView durationView;
     private ScalarInputView snapshotIntervalView;
     private ScalarOutputView iterationCountView;
-    private ScalarOutputView imageCountViewer;
+    private ScalarOutputView imageCountView;
     private JPanel inputPanel;
     private JPanel buttonPanel;
     private JButton startButton;
@@ -42,10 +42,18 @@ public class SimulationRunnerView extends JPanel {
 	private void setFieldValuesFromData() {
 	    double timeStep = runner.getSimulationTimeStep();
 	    timeStepInputView.setValue(timeStep);
+	    
 	    double totalDuration = runner.getTotalDuration();
 	    durationView.setValue(totalDuration);
-	    int iterationCount = (int)Math.ceil(totalDuration / timeStep);
+	    
+	    double iterationCount = Math.ceil(totalDuration / timeStep);
 	    iterationCountView.setValue(iterationCount);
+	    
+	    double snapshotInterval = runner.getSnapshotInterval();
+	    snapshotIntervalView.setValue(snapshotInterval);
+	    
+	    double imageCount = Math.ceil(totalDuration / snapshotInterval);
+	    imageCountView.setValue(imageCount);
 	}
 
 	private void setupPanels() {
@@ -88,9 +96,9 @@ public class SimulationRunnerView extends JPanel {
         snapshotIntervalView = new ScalarInputView("Δ T<sub>image</sub>", year);
         list.add(snapshotIntervalView);
 
-        imageCountViewer = 
+        imageCountView = 
                 new ScalarOutputView("N<sub>image</sub>", noUnit, "#");
-        list.add(imageCountViewer);
+        list.add(imageCountView);
 
         list.addActionListener(listener);
     }
@@ -152,8 +160,12 @@ public class SimulationRunnerView extends JPanel {
 	        runner.setTotalDuration(duration);
 	    } catch (NumberFormatException exception) {
 	    }
+	    try {
+	        double snapshotInterval = snapshotIntervalView.getValue();
+	        runner.setSnapshotIntervalView(snapshotInterval);
+	    } catch (NumberFormatException exception) {
+	    }
         setFieldValuesFromData();
 	}
-
 
 }
