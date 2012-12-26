@@ -1,6 +1,5 @@
 package edu.asu.sese.diskEvolution.view;
 
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
@@ -14,8 +13,10 @@ public class ScalarInputView {
     private JTextField valueField;
     private Unit unit;
     private JLabel unitLabel;
+    private boolean isInteger;
 
     public ScalarInputView(String labelText, Unit unit) {
+        this.isInteger = false;
         this.unit = unit;
         label = new JLabel("<html>" + labelText + " = </html>");
         valueField = new JTextField();
@@ -25,13 +26,23 @@ public class ScalarInputView {
     }
 
     public void setValue(double value) {
-        Double scaledValue = value / unit.getScale();
-        valueField.setText(scaledValue.toString());        
+        if (isInteger) {
+            Integer intValue = (int) value;
+            valueField.setText(intValue.toString());
+        } else {
+            Double scaledValue = value / unit.getScale();
+            valueField.setText(scaledValue.toString());
+        }
     }
 
     public double getValue() {
       String string = valueField.getText();
       return Double.parseDouble(string) * unit.getScale();
+    }
+    
+    public int getIntegerValue() {
+        String string = valueField.getText();
+        return Integer.parseInt(string);
     }
 
     public void addActionListener(ActionListener listener) {
@@ -48,5 +59,13 @@ public class ScalarInputView {
 
     public JLabel getUnitLabel() {
         return unitLabel;
+    }
+
+    public boolean isInteger() {
+        return isInteger;
+    }
+
+    public void setInteger(boolean isInteger) {
+        this.isInteger = isInteger;
     }
 }

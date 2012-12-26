@@ -135,6 +135,7 @@ public class SimulationRunnerView extends JPanel {
 	    list.addActionListener(listener);
 	    
 	    intervalCountView = new ScalarInputView("N<sub>interval</sub>", noUnit);
+	    intervalCountView.setInteger(true);
 	    list.add(intervalCountView);
 	    list.addActionListener(listener);
     }
@@ -189,7 +190,7 @@ public class SimulationRunnerView extends JPanel {
 	    } catch (NumberFormatException exception) {
         }
 	    try {
-	        int intervalCount = (int)intervalCountView.getValue();
+	        int intervalCount = intervalCountView.getIntegerValue();
 	        gridFactory.setIntervalCount(intervalCount);
 	    } catch (NumberFormatException exception) {
         }
