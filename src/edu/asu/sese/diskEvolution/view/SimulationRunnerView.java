@@ -44,6 +44,8 @@ public class SimulationRunnerView extends JPanel {
 	    timeStepInputView.setValue(timeStep);
 	    double totalDuration = runner.getTotalDuration();
 	    durationView.setValue(totalDuration);
+	    int iterationCount = (int)Math.ceil(totalDuration / timeStep);
+	    iterationCountView.setValue(iterationCount);
 	}
 
 	private void setupPanels() {
