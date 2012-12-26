@@ -15,30 +15,42 @@ public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
     private static XYSeriesCollection dataset;
-	private static String radialUnitName = "R⊕";
-      
     
-    public RadialPlotView(RadialGrid radialGrid, MidpointGrid densityGrid) {
-        super(createSimpleXYChart(radialGrid, densityGrid));
+    public RadialPlotView(RadialGrid domainGrid, MidpointGrid rangeGrid, 
+            String domainLabel, String rangeLabel) {
+        super(createSimpleXYChart(domainGrid, rangeGrid, domainLabel, rangeLabel));
     }    
 
+    public void setAxisLimits(double domainMin, double domainMax, double rangeMin, double rangeMax) {
+        XYPlot xyPlot = (XYPlot) getChart().getPlot();
+        NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
+        domain.setRange(domainMin / PhysicalConstants.earthRadiusInCm,
+                domainMax / PhysicalConstants.earthRadiusInCm);
+        NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
+        range.setRange(rangeMin, rangeMax);
+    }
+
+    public void updateData(RadialGrid radialGrid, MidpointGrid densityGrid) {
+        dataset.removeAllSeries();
+        XYSeries series = createDataSeries(radialGrid, densityGrid);
+        dataset.addSeries(series);
+    }
+
     public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, 
-            MidpointGrid densityGrid) {
+            MidpointGrid densityGrid, String domainLabel, String rangeLabel) {
         dataset = createDataset(radialGrid, densityGrid);
 
         String title = null;
-		String domainTitle = "r (" + radialUnitName +")";
-        String rangeTitle = "Σ (g/cm²)";
         boolean showLegend = false;
         boolean useTooltips = true;
         boolean generateURLs = false;
-        JFreeChart chart = ChartFactory.createXYLineChart(title, domainTitle,
-                rangeTitle, dataset, PlotOrientation.VERTICAL,
+        JFreeChart chart = ChartFactory.createXYLineChart(title, domainLabel,
+                rangeLabel, dataset, PlotOrientation.VERTICAL,
                 showLegend, useTooltips, generateURLs);
         
         chart.getPlot().setBackgroundPaint(Color.white);
         
-        convertToLogLogChart(domainTitle, rangeTitle, chart);
+        convertToLogLogChart(domainLabel, rangeLabel, chart);
         
         return chart;
     }
@@ -70,21 +82,6 @@ public class RadialPlotView extends ChartPanel {
                     densityGrid.getValue(i) + 1e-6);
         }
         return series;
-    }
-
-    public void updateData(RadialGrid radialGrid, MidpointGrid densityGrid) {
-        dataset.removeAllSeries();
-        XYSeries series = createDataSeries(radialGrid, densityGrid);
-        dataset.addSeries(series);
-    }
-
-    public void setRange(double rmin, double rmax, double vmin, double vmax) {
-        XYPlot xyPlot = (XYPlot) getChart().getPlot();
-        NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
-        domain.setRange(rmin / PhysicalConstants.earthRadiusInCm,
-                rmax / PhysicalConstants.earthRadiusInCm);
-        NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
-        range.setRange(vmin, vmax);
     }
 
 }

@@ -54,8 +54,10 @@ public class InitialDiskView extends JPanel {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        plot = new RadialPlotView(radialGrid, densityGrid);        
-        plot.setRange(rmin, rmax, vmin, vmax);
+        String radialLabel = "r (R⊕)";;
+        String densityLabel = "Σ (g/cm²)";
+        plot = new RadialPlotView(radialGrid, densityGrid, radialLabel, densityLabel);        
+        plot.setAxisLimits(rmin, rmax, vmin, vmax);
 
         add(plot, BorderLayout.CENTER);
     }
