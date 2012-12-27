@@ -66,7 +66,14 @@ public class RadialPlotView extends ChartPanel {
     }
 
     private static String addUnitString(String label, UnitInterface unit) {
-        return (label==null) ? null : label + " (" + unit.getLabel() + ")";
+        String labelText = null;
+        if (label!=null) {
+            labelText = label;
+            if (unit.getLabel() != "") {
+                labelText += " (" + unit.getLabel() + ")";
+            }
+        }
+        return labelText;
     }
 
     private static void convertToLogLogChart(String domainTitle,

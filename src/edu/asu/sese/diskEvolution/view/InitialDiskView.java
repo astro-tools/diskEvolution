@@ -65,7 +65,7 @@ public class InitialDiskView extends JPanel {
         String densityLabel = "Σ (g/cm²)";
         Unit densityUnit = new Unit("g/cm²", "g/cm²", 1.0);
         plot = new RadialPlotView(adaptedRadialGrid, densityGrid, 
-                radialLabel, densityLabel, radialUnit, densityUnit);        
+                radialLabel, densityLabel, radialUnit, densityUnit);       
         plot.setAxisLimits(rmin, rmax, vmin, vmax);
 
         add(plot, BorderLayout.CENTER);
@@ -82,6 +82,7 @@ public class InitialDiskView extends JPanel {
         double exponent = conditions.getExponent();
         double rin = conditions.getRIn();
         double rout = conditions.getROut();
-        densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
+        densityGrid.initializeWithPowerLaw(
+                density0, radius0, exponent, rin, rout);
     }
 }
