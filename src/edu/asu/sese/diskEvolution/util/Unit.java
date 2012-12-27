@@ -1,6 +1,8 @@
 package edu.asu.sese.diskEvolution.util;
 
-public class Unit {
+import edu.asu.sese.diskEvolution.plot.UnitInterface;
+
+public class Unit implements UnitInterface {
 
     private String label;
     private String htmlLabel;
@@ -16,10 +18,12 @@ public class Unit {
         return htmlLabel;
     }
 
+    @Override
     public String getLabel() {
         return label;
     }
 
+    @Override
     public double getScale() {
         return scale;
     }

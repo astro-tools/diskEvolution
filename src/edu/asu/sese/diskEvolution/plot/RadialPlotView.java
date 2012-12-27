@@ -7,55 +7,69 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.xy.*;
 
-import edu.asu.sese.diskEvolution.util.MidpointGrid;
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
-import edu.asu.sese.diskEvolution.util.RadialGrid;
-
 public class RadialPlotView extends ChartPanel {
     
     private static final long serialVersionUID = 1L;
     private static XYSeriesCollection dataset;
+    private UnitInterface domainUnit;
+    private UnitInterface rangeUnit;
     
-    public RadialPlotView(RadialGrid domainGrid, MidpointGrid rangeGrid, 
-            String domainLabel, String rangeLabel) {
-        super(createSimpleXYChart(domainGrid, rangeGrid, domainLabel, rangeLabel));
+    public RadialPlotView(GridInterface domainGrid, GridInterface rangeGrid, 
+            String domainLabel, String rangeLabel, 
+            UnitInterface domainUnit, UnitInterface rangeUnit) {
+        super(createSimpleXYChart(domainGrid, rangeGrid, domainLabel, 
+                rangeLabel, domainUnit, rangeUnit));
+        this.domainUnit = domainUnit;
+        this.rangeUnit = rangeUnit;
     }    
 
-    public void setAxisLimits(double domainMin, double domainMax, double rangeMin, double rangeMax) {
+    public void setAxisLimits(double domainMin, double domainMax, 
+            double rangeMin, double rangeMax) {
         XYPlot xyPlot = (XYPlot) getChart().getPlot();
         NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
-        domain.setRange(domainMin / PhysicalConstants.earthRadiusInCm,
-                domainMax / PhysicalConstants.earthRadiusInCm);
+        domain.setRange(domainMin / domainUnit.getScale(),
+                domainMax / domainUnit.getScale());
         NumberAxis range = (NumberAxis) xyPlot.getRangeAxis();
-        range.setRange(rangeMin, rangeMax);
+        range.setRange(rangeMin / rangeUnit.getScale(),
+                rangeMax / rangeUnit.getScale());
     }
 
-    public void updateData(RadialGrid radialGrid, MidpointGrid densityGrid) {
+    public void updateData(GridInterface radialGrid, 
+            GridInterface densityGrid) {
         dataset.removeAllSeries();
-        XYSeries series = createDataSeries(radialGrid, densityGrid);
+        XYSeries series = createDataSeries(radialGrid, densityGrid, 
+                domainUnit, rangeUnit);
         dataset.addSeries(series);
     }
 
-    public static JFreeChart createSimpleXYChart(RadialGrid radialGrid, 
-            MidpointGrid densityGrid, String domainLabel, String rangeLabel) {
-        dataset = createDataset(radialGrid, densityGrid);
+    private static JFreeChart createSimpleXYChart(GridInterface domainGrid, 
+            GridInterface rangeGrid, String domainLabel, String rangeLabel, 
+            UnitInterface domainUnit, UnitInterface rangeUnit) {
+        dataset = createDataset(domainGrid, rangeGrid, domainUnit, rangeUnit);
 
         String title = null;
         boolean showLegend = false;
+        String domainLabelText = addUnitString(domainLabel, domainUnit);
+        String rangeLabelText = addUnitString(rangeLabel, rangeUnit);
         boolean useTooltips = true;
         boolean generateURLs = false;
-        JFreeChart chart = ChartFactory.createXYLineChart(title, domainLabel,
-                rangeLabel, dataset, PlotOrientation.VERTICAL,
+        JFreeChart chart = ChartFactory.createXYLineChart(title, 
+                domainLabelText, rangeLabelText, 
+                dataset, PlotOrientation.VERTICAL,
                 showLegend, useTooltips, generateURLs);
         
         chart.getPlot().setBackgroundPaint(Color.white);
         
-        convertToLogLogChart(domainLabel, rangeLabel, chart);
+        convertToLogLogChart(domainLabelText, rangeLabel, chart);
         
         return chart;
     }
 
-    public static void convertToLogLogChart(String domainTitle,
+    private static String addUnitString(String label, UnitInterface unit) {
+        return (label==null) ? null : label + " (" + unit.getLabel() + ")";
+    }
+
+    private static void convertToLogLogChart(String domainTitle,
             String rangeTitle, JFreeChart chart) {
         final XYPlot plot = chart.getXYPlot();
         final NumberAxis domainAxis = new NumberAxis(domainTitle);
@@ -65,21 +79,24 @@ public class RadialPlotView extends ChartPanel {
         plot.setRangeAxis(rangeAxis);
     }
 
-    public static XYSeriesCollection createDataset(RadialGrid radialGrid,
-            MidpointGrid densityGrid) {
-        XYSeries series = createDataSeries(radialGrid, densityGrid);
+    private static XYSeriesCollection createDataset(
+            GridInterface domainGrid, GridInterface rangeGrid, 
+            UnitInterface domainUnit, UnitInterface rangeUnit) {
+        XYSeries series = 
+                createDataSeries(domainGrid, rangeGrid, domainUnit, rangeUnit);
         XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
         return dataset;
     }
 
-    private static XYSeries createDataSeries(RadialGrid radialGrid,
-            MidpointGrid densityGrid) {
-        XYSeries series = new XYSeries("Surface Density");
-        int intervalCount = radialGrid.getIntervalCount();
+    private static XYSeries createDataSeries(
+            GridInterface domainGrid, GridInterface rangeGrid, 
+            UnitInterface domainUnit, UnitInterface rangeUnit) {
+        XYSeries series = new XYSeries("series name");
+        int intervalCount = domainGrid.getCount();
         for (int i = 0; i < intervalCount; ++i) {
-            series.add(radialGrid.getMidpoint(i) / PhysicalConstants.earthRadiusInCm,
-                    densityGrid.getValue(i) + 1e-6);
+            series.add(domainGrid.getValue(i) / domainUnit.getScale(),
+                    rangeGrid.getValue(i) / rangeUnit.getScale() + 1e-6);
         }
         return series;
     }

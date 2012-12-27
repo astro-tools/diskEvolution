@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.plot.RadialPlotView;
+import edu.asu.sese.diskEvolution.util.MidpointAdaptor;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
+import edu.asu.sese.diskEvolution.util.Unit;
 
 public class InitialDiskView extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -22,10 +24,12 @@ public class InitialDiskView extends JPanel {
     private double rmax;
     private double vmin;
     private double vmax;
+    private MidpointAdaptor adaptedRadialGrid;
 
     public InitialDiskView(RadialGrid radialGrid, DensityGrid densityGrid) {
         this.radialGrid = radialGrid;
         this.densityGrid = densityGrid;
+        adaptedRadialGrid = new MidpointAdaptor(radialGrid);
     }
 
     public InitialDiskView(InitialConditions conditions) {
@@ -37,6 +41,7 @@ public class InitialDiskView extends JPanel {
         double deltar0 = PhysicalConstants.earthRadiusInCm * 0.01;
         int intervalCount = 1000;
         radialGrid = new RadialGrid(rmin, rmax, deltar0, intervalCount);
+        adaptedRadialGrid = new MidpointAdaptor(radialGrid);
         densityGrid = new DensityGrid(radialGrid);
         initializeDensityFromConditions();
 
@@ -54,9 +59,13 @@ public class InitialDiskView extends JPanel {
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
 
-        String radialLabel = "r (R⊕)";;
+        String radialLabel = "r";
+        Unit radialUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
+                PhysicalConstants.earthRadiusInCm);
         String densityLabel = "Σ (g/cm²)";
-        plot = new RadialPlotView(radialGrid, densityGrid, radialLabel, densityLabel);        
+        Unit densityUnit = new Unit("g/cm²", "g/cm²", 1.0);
+        plot = new RadialPlotView(adaptedRadialGrid, densityGrid, 
+                radialLabel, densityLabel, radialUnit, densityUnit);        
         plot.setAxisLimits(rmin, rmax, vmin, vmax);
 
         add(plot, BorderLayout.CENTER);
@@ -64,7 +73,7 @@ public class InitialDiskView extends JPanel {
     
     private void updatePlot() {
         initializeDensityFromConditions();
-        plot.updateData(radialGrid, densityGrid);
+        plot.updateData(adaptedRadialGrid, densityGrid);
     }
 
     private void initializeDensityFromConditions() {

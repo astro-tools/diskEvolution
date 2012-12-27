@@ -1,7 +1,9 @@
 package edu.asu.sese.diskEvolution.util;
 
+import edu.asu.sese.diskEvolution.plot.GridInterface;
 
-public class MidpointGrid {
+
+public class MidpointGrid implements GridInterface {
 
     protected int zoneCount;
     private double[] value;
@@ -13,10 +15,12 @@ public class MidpointGrid {
         value = new double[zoneCount];
     }
 
+    @Override
     public int getCount() {
         return zoneCount;
     }
 
+    @Override
     public double getValue(int i) {
         return getValueArray()[i];
     }
