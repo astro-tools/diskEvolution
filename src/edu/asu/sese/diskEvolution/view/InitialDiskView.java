@@ -68,7 +68,7 @@ public class InitialDiskView extends JPanel {
                 radialLabel, densityLabel, radialUnit, densityUnit);       
         plot.setAxisLimits(rmin, rmax, vmin, vmax);
 
-        add(plot, BorderLayout.CENTER);
+        add(plot.getChartPanel(), BorderLayout.CENTER);
     }
     
     private void updatePlot() {

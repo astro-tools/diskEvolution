@@ -7,25 +7,37 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.xy.*;
 
-public class RadialPlotView extends ChartPanel {
-    
-    private static final long serialVersionUID = 1L;
-    private static XYSeriesCollection dataset;
+public class RadialPlotView {
+    private ChartPanel chartPanel;
+    private XYSeriesCollection datasetCollection;
+    private GridInterface domainGrid;
+    private GridInterface rangeGrid;
+    private String domainLabel;
+    private String rangeLabel;
     private UnitInterface domainUnit;
     private UnitInterface rangeUnit;
+    private JFreeChart chart;
     
     public RadialPlotView(GridInterface domainGrid, GridInterface rangeGrid, 
             String domainLabel, String rangeLabel, 
             UnitInterface domainUnit, UnitInterface rangeUnit) {
-        super(createSimpleXYChart(domainGrid, rangeGrid, domainLabel, 
-                rangeLabel, domainUnit, rangeUnit));
+        this.domainGrid = domainGrid;
+        this.rangeGrid = rangeGrid;
+        this.domainLabel = domainLabel;
+        this.rangeLabel = rangeLabel;
         this.domainUnit = domainUnit;
         this.rangeUnit = rangeUnit;
+        createSimpleXYChart();
+        chartPanel = new ChartPanel(chart);
     }    
 
+    public ChartPanel getChartPanel() {
+        return chartPanel;
+    }
+        
     public void setAxisLimits(double domainMin, double domainMax, 
             double rangeMin, double rangeMax) {
-        XYPlot xyPlot = (XYPlot) getChart().getPlot();
+        XYPlot xyPlot = (XYPlot) chartPanel.getChart().getPlot();
         NumberAxis domain = (NumberAxis) xyPlot.getDomainAxis();
         domain.setRange(domainMin / domainUnit.getScale(),
                 domainMax / domainUnit.getScale());
@@ -36,36 +48,31 @@ public class RadialPlotView extends ChartPanel {
 
     public void updateData(GridInterface radialGrid, 
             GridInterface densityGrid) {
-        dataset.removeAllSeries();
-        XYSeries series = createDataSeries(radialGrid, densityGrid, 
-                domainUnit, rangeUnit);
-        dataset.addSeries(series);
+        datasetCollection.removeAllSeries();
+        XYSeries series = createDataSet();
+        datasetCollection.addSeries(series);
     }
 
-    private static JFreeChart createSimpleXYChart(GridInterface domainGrid, 
-            GridInterface rangeGrid, String domainLabel, String rangeLabel, 
-            UnitInterface domainUnit, UnitInterface rangeUnit) {
-        dataset = createDataset(domainGrid, rangeGrid, domainUnit, rangeUnit);
+    private void createSimpleXYChart() {
+        datasetCollection = createDatasetCollection();
 
         String title = null;
         boolean showLegend = false;
-        String domainLabelText = addUnitString(domainLabel, domainUnit);
-        String rangeLabelText = addUnitString(rangeLabel, rangeUnit);
+        String domainLabelText = makeLabelWithUnit(domainLabel, domainUnit);
+        String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
         boolean useTooltips = true;
         boolean generateURLs = false;
-        JFreeChart chart = ChartFactory.createXYLineChart(title, 
+        chart = ChartFactory.createXYLineChart(title, 
                 domainLabelText, rangeLabelText, 
-                dataset, PlotOrientation.VERTICAL,
+                datasetCollection, PlotOrientation.VERTICAL,
                 showLegend, useTooltips, generateURLs);
         
         chart.getPlot().setBackgroundPaint(Color.white);
         
-        convertToLogLogChart(domainLabelText, rangeLabel, chart);
-        
-        return chart;
+        convertToLogLogChart();;
     }
 
-    private static String addUnitString(String label, UnitInterface unit) {
+    private static String makeLabelWithUnit(String label, UnitInterface unit) {
         String labelText = null;
         if (label!=null) {
             labelText = label;
@@ -76,29 +83,25 @@ public class RadialPlotView extends ChartPanel {
         return labelText;
     }
 
-    private static void convertToLogLogChart(String domainTitle,
-            String rangeTitle, JFreeChart chart) {
+    private void convertToLogLogChart() {
         final XYPlot plot = chart.getXYPlot();
-        final NumberAxis domainAxis = new NumberAxis(domainTitle);
-        final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeTitle);
+        String domainLabelText = makeLabelWithUnit(domainLabel, domainUnit);
+        final NumberAxis domainAxis = new NumberAxis(domainLabelText);
+        String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
+        final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeLabelText);
         rangeAxis.setLog10TickLabelsFlag(true);
         plot.setDomainAxis(domainAxis);
         plot.setRangeAxis(rangeAxis);
     }
 
-    private static XYSeriesCollection createDataset(
-            GridInterface domainGrid, GridInterface rangeGrid, 
-            UnitInterface domainUnit, UnitInterface rangeUnit) {
-        XYSeries series = 
-                createDataSeries(domainGrid, rangeGrid, domainUnit, rangeUnit);
+    private XYSeriesCollection createDatasetCollection() {
+        XYSeries series = createDataSet();
         XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
         return dataset;
     }
 
-    private static XYSeries createDataSeries(
-            GridInterface domainGrid, GridInterface rangeGrid, 
-            UnitInterface domainUnit, UnitInterface rangeUnit) {
+    private  XYSeries createDataSet() {
         XYSeries series = new XYSeries("series name");
         int intervalCount = domainGrid.getCount();
         for (int i = 0; i < intervalCount; ++i) {
