@@ -1,6 +1,7 @@
 package edu.asu.sese.diskEvolution.plot;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import org.jfree.chart.*;
 import org.jfree.chart.axis.*;
@@ -66,10 +67,9 @@ public class PlotView {
                 domainLabelText, rangeLabelText, 
                 datasetCollection, PlotOrientation.VERTICAL,
                 showLegend, useTooltips, generateURLs);
+        changeStyle(chart);
         
         chart.getPlot().setBackgroundPaint(Color.white);
-        
-        convertToLogLogChart();;
     }
 
     private static String makeLabelWithUnit(String label, UnitInterface unit) {
@@ -83,14 +83,11 @@ public class PlotView {
         return labelText;
     }
 
-    private void convertToLogLogChart() {
+    public void makeRangeAxisLogarithmic() {
         final XYPlot plot = chart.getXYPlot();
-        String domainLabelText = makeLabelWithUnit(domainLabel, domainUnit);
-        final NumberAxis domainAxis = new NumberAxis(domainLabelText);
         String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
         final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeLabelText);
         rangeAxis.setLog10TickLabelsFlag(true);
-        plot.setDomainAxis(domainAxis);
         plot.setRangeAxis(rangeAxis);
     }
 
@@ -111,4 +108,23 @@ public class PlotView {
         return series;
     }
 
+    public static void changeStyle(JFreeChart chart) {
+        final StandardChartTheme chartTheme =
+                (StandardChartTheme)
+                org.jfree.chart.StandardChartTheme.createJFreeTheme();
+
+        final Font font = new Font("Tahoma", Font.PLAIN, 11);
+        final Color color=new Color(0,0,0);
+
+        chartTheme.setExtraLargeFont(font);
+        chartTheme.setLargeFont(font);
+        chartTheme.setRegularFont(font);
+        chartTheme.setSmallFont(font);
+
+        chartTheme.setAxisLabelPaint(color);
+        chartTheme.setLegendItemPaint(color);
+        chartTheme.setItemLabelPaint(color);
+        chartTheme.apply(chart);
+    }
+    
 }

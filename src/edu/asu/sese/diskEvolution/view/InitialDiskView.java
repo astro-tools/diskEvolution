@@ -66,6 +66,7 @@ public class InitialDiskView extends JPanel {
         Unit densityUnit = new Unit("g/cm²", "g/cm²", 1.0);
         plot = new PlotView(adaptedRadialGrid, densityGrid, 
                 radialLabel, densityLabel, radialUnit, densityUnit);       
+        plot.makeRangeAxisLogarithmic();
         plot.setAxisLimits(rmin, rmax, vmin, vmax);
 
         add(plot.getChartPanel(), BorderLayout.CENTER);
