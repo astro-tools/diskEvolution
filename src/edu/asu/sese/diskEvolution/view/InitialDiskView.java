@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
-import edu.asu.sese.diskEvolution.plot.RadialPlotView;
+import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.util.MidpointAdaptor;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
@@ -16,7 +16,7 @@ import edu.asu.sese.diskEvolution.util.Unit;
 
 public class InitialDiskView extends JPanel {
     private static final long serialVersionUID = 1L;
-    RadialPlotView plot;
+    PlotView plot;
     private DensityGrid densityGrid;
     private RadialGrid radialGrid;
     private InitialConditions conditions;
@@ -64,7 +64,7 @@ public class InitialDiskView extends JPanel {
                 PhysicalConstants.earthRadiusInCm);
         String densityLabel = "Σ";
         Unit densityUnit = new Unit("g/cm²", "g/cm²", 1.0);
-        plot = new RadialPlotView(adaptedRadialGrid, densityGrid, 
+        plot = new PlotView(adaptedRadialGrid, densityGrid, 
                 radialLabel, densityLabel, radialUnit, densityUnit);       
         plot.setAxisLimits(rmin, rmax, vmin, vmax);
 

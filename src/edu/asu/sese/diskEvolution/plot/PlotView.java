@@ -7,7 +7,7 @@ import org.jfree.chart.axis.*;
 import org.jfree.chart.plot.*;
 import org.jfree.data.xy.*;
 
-public class RadialPlotView {
+public class PlotView {
     private ChartPanel chartPanel;
     private XYSeriesCollection datasetCollection;
     private GridInterface domainGrid;
@@ -18,7 +18,7 @@ public class RadialPlotView {
     private UnitInterface rangeUnit;
     private JFreeChart chart;
     
-    public RadialPlotView(GridInterface domainGrid, GridInterface rangeGrid, 
+    public PlotView(GridInterface domainGrid, GridInterface rangeGrid, 
             String domainLabel, String rangeLabel, 
             UnitInterface domainUnit, UnitInterface rangeUnit) {
         this.domainGrid = domainGrid;
