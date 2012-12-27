@@ -15,8 +15,7 @@ public class InitialConditionsView extends JPanel {
     
     public InitialConditionsView(DiskSimulation simulation) {
         initialConditions = simulation.getInitialConditions();
-        BorderLayout layoutManager = new BorderLayout();
-        setLayout(layoutManager);
+        setLayout(new BorderLayout());
         setupDiskView();
         setupInputView();
     }

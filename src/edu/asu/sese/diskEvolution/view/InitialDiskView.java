@@ -62,7 +62,7 @@ public class InitialDiskView extends JPanel {
         String radialLabel = "r";
         Unit radialUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
                 PhysicalConstants.earthRadiusInCm);
-        String densityLabel = "Σ (g/cm²)";
+        String densityLabel = "Σ";
         Unit densityUnit = new Unit("g/cm²", "g/cm²", 1.0);
         plot = new RadialPlotView(adaptedRadialGrid, densityGrid, 
                 radialLabel, densityLabel, radialUnit, densityUnit);       
