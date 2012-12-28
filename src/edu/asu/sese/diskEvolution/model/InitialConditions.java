@@ -9,7 +9,7 @@ public class InitialConditions {
 
     private double radius0;
     private double density0;
-    private double exponent;
+    private double densityExponent;
     private SimpleObservable observable = new SimpleObservable();
     private double rin;
     private double rout;
@@ -23,7 +23,7 @@ public class InitialConditions {
         setRadius0(PhysicalConstants.earthRadiusInCm);
         setRIn(1.0 * PhysicalConstants.earthRadiusInCm);
         setROut(5.0 * PhysicalConstants.earthRadiusInCm);
-        setExponent(1.0);
+        setExponent(-1.0);
     }
     
     public double getRadius0() {
@@ -47,12 +47,12 @@ public class InitialConditions {
     }
 
     public double getExponent() {
-        return exponent;
+        return densityExponent;
     }
 
     public void setExponent(double exponent) {
-        boolean changed = (Math.abs(exponent - this.exponent) > 1e-6);
-        this.exponent = exponent;
+        boolean changed = (Math.abs(exponent - this.densityExponent) > 1e-6);
+        this.densityExponent = exponent;
         if (changed) observable.notifyObservers();
     }
 
@@ -83,9 +83,9 @@ public class InitialConditions {
 
     public double getTotalMass() {
         double mass = 2 * Math.PI * density0;
-        mass /= (-exponent + 2.0) * Math.pow(radius0, -exponent);
-        mass *= Math.pow(rout, -exponent + 2.0) 
-                - Math.pow(rin, -exponent + 2.0);
+        mass /= (densityExponent + 2.0) * Math.pow(radius0, densityExponent);
+        mass *= Math.pow(rout, densityExponent + 2.0) 
+                - Math.pow(rin, densityExponent + 2.0);
         return mass;
     }
 }

@@ -36,7 +36,7 @@ public class InitialConditionsInputView extends JPanel {
         rOutInputView.setValue(conditions.getROut());
         radius0InputView.setValue(conditions.getRadius0());
         density0InputView.setValue(conditions.getDensity0());
-        exponentInputView.setValue(conditions.getExponent());
+        exponentInputView.setValue(-conditions.getExponent());
         massOutputView.setValue(conditions.getTotalMass());
     }
 
@@ -147,7 +147,7 @@ public class InitialConditionsInputView extends JPanel {
 
         try {
             double exponent = exponentInputView.getValue();
-            conditions.setExponent(exponent);
+            conditions.setExponent(-exponent);
         } catch (NumberFormatException exception) {
         }
 

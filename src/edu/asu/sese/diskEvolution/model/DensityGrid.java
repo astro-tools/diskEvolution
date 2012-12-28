@@ -1,7 +1,6 @@
 package edu.asu.sese.diskEvolution.model;
 
 import edu.asu.sese.diskEvolution.util.MidpointGrid;
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 
@@ -9,11 +8,6 @@ public class DensityGrid extends MidpointGrid {
     
     public DensityGrid(RadialGrid radialGrid) {
         super(radialGrid);
-    }
-
-    public void initializeWithPowerLaw(Parameters p) {
-        super.initializeWithPowerLaw(p.getDensity0(), 
-                p.getRadius0(), -p.getExponent());
     }
     
     public double getTotalMass() {
@@ -25,8 +19,8 @@ public class DensityGrid extends MidpointGrid {
     }
 
     public void initializeWithPowerLaw(double density0, double radius0, 
-            double d, double rin, double rout) {
-        super.initializeWithPowerLaw(density0, radius0, -d);
+            double exponent, double rin, double rout) {
+        super.initializeWithPowerLaw(density0, radius0, exponent);
         RadialGrid radialGrid = getRadialGrid();
         
         for (int i = 0; i < zoneCount; i++) {

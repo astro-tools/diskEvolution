@@ -87,7 +87,6 @@ public class MassFlowCalculatorTest {
         }
     }
 
-    
     @Test
     public void testMassFlowIsNotOutwardAtStar() {
         densityGrid.initializeWithPowerLaw(1.0 , 1.0, -2.0);

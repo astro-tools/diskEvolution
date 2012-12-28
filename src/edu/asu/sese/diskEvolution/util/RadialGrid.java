@@ -1,7 +1,5 @@
 package edu.asu.sese.diskEvolution.util;
 
-import edu.asu.sese.diskEvolution.model.Parameters;
-
 public class RadialGrid {
 
     private double[] boundary;
@@ -34,8 +32,9 @@ public class RadialGrid {
         }
     }
 
-    public RadialGrid(Parameters p) {
-        this(p.getRmin(), p.getRmax(), p.getDeltar0(), p.getIntervalCount());
+    public RadialGrid(GridFactory factory) {
+        this(factory.getRmin(), factory.getRmax(), 
+                factory.getDeltar0(), factory.getIntervalCount());
     }
 
     public final double[] getBoundaries() {

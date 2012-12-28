@@ -70,7 +70,7 @@ public class InitialConditionsTest {
     public void testThatInitialMassIsCorrect() {
         initialConditions.setRadius0(3.0);
         initialConditions.setDensity0(5.0);
-        initialConditions.setExponent(1.5);
+        initialConditions.setExponent(-1.5);
         initialConditions.setRIn(2.0);
         initialConditions.setROut(4.0);
         double expect = 191.2498322660473;
