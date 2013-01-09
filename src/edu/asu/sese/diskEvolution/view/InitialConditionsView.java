@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import edu.asu.sese.diskEvolution.controller.DiskSimulation;
+import edu.asu.sese.diskEvolution.controller.Application;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 
 public class InitialConditionsView extends JPanel {
@@ -13,7 +13,7 @@ public class InitialConditionsView extends JPanel {
 	private InitialDiskView view;
     private InitialConditions initialConditions;
     
-    public InitialConditionsView(DiskSimulation simulation) {
+    public InitialConditionsView(Application simulation) {
         initialConditions = simulation.getInitialConditions();
         setLayout(new BorderLayout());
         setupDiskView();

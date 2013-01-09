@@ -11,9 +11,9 @@ public class SimulationRunner {
     private double snapshotInterval;
     
     private GridFactory gridFactory;
-    private DiskSimulation simulation;
+    private Application simulation;
 	
-	public SimulationRunner(DiskSimulation diskSimulation) {
+	public SimulationRunner(Application diskSimulation) {
 	    this.simulation = diskSimulation;
 	    gridFactory = new GridFactory();
 	    gridFactory.initializeParameters();

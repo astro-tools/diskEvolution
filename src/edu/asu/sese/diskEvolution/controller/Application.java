@@ -5,7 +5,7 @@ import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
-public class DiskSimulation extends SimpleObservable {
+public class Application extends SimpleObservable {
 
     private RadialGrid radialGrid;
     private DensityGrid densityGrid;
@@ -15,7 +15,7 @@ public class DiskSimulation extends SimpleObservable {
     private GridFactory factory;
     private SimulationRunner runner;
 
-    public DiskSimulation() {
+    public Application() {
         setupSimulation();
     }
 
