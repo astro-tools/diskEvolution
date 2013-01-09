@@ -33,6 +33,7 @@ public class SimulationRunner {
 	public void run() {
 	    simulation = new DiskSimulation(gridFactory, initialConditions);
         currentSimulationTime = new CurrentSimulationTime();
+        System.out.println("Running simulation...");
     }
 
     public double getSimulationTimeStep() {

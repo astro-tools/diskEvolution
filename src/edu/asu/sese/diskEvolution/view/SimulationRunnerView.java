@@ -146,6 +146,14 @@ public class SimulationRunnerView extends JPanel {
         pauseButton.setEnabled(false);
         buttonPanel.add(pauseButton);
         startButton = new JButton("Run Simulation");
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                startButton.setEnabled(false);
+                runner.run();
+            }
+        };
+        startButton.addActionListener(listener);
         buttonPanel.add(startButton);
     }
 
