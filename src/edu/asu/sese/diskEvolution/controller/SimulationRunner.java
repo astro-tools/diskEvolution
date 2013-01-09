@@ -1,5 +1,6 @@
 package edu.asu.sese.diskEvolution.controller;
 
+import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.TimeStep;
 import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
@@ -11,19 +12,26 @@ public class SimulationRunner {
     private double snapshotInterval;
     
     private GridFactory gridFactory;
-    private Application simulation;
+    private Application application;
+    private DiskSimulation simulation;
+    private InitialConditions initialConditions;
 	
 	public SimulationRunner(Application diskSimulation) {
-	    this.simulation = diskSimulation;
-	    gridFactory = new GridFactory();
-	    gridFactory.initializeParameters();
+	    this.application = diskSimulation;
+	    gridFactory = application.getGridFactory();
+	    initialConditions = application.getInitialConditions();
 	    simulationTimeStep = new TimeStep();
-	    simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
-	    totalDuration = 30.0 * PhysicalConstants.year;
-	    snapshotInterval = 1.0 * PhysicalConstants.year;
+	    setDefaultParameters();
 	}
 
+    private void setDefaultParameters() {
+        simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
+	    totalDuration = 30.0 * PhysicalConstants.year;
+	    snapshotInterval = 1.0 * PhysicalConstants.year;
+    }
+
 	public void run() {
+	    simulation = new DiskSimulation(gridFactory, initialConditions);
         currentSimulationTime = new CurrentSimulationTime();
     }
 
