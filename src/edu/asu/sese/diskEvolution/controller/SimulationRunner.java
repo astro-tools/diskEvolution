@@ -43,6 +43,7 @@ public class SimulationRunner {
 	    createMassFlowCalculator();
         System.out.println("Running simulation...");
         massFlowCalculator.calculate();
+        massMover.setTimeStep(simulationTimeStep.getTime());
         massMover.moveMass();
     }
 
@@ -51,7 +52,8 @@ public class SimulationRunner {
         RadialGrid radialGrid = simulation.getRadialGrid();
         DensityGrid densityGrid = simulation.getDensityGrid();
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
-        massFlowCalculator = new MassFlowCalculator(massFlowGrid, radialGrid, densityGrid, viscosityGrid);
+        massFlowCalculator = new MassFlowCalculator(
+                massFlowGrid, radialGrid, densityGrid, viscosityGrid);
     }
 
     private void createMassMover() {

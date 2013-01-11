@@ -16,7 +16,6 @@ public class MassMover {
 
     public void moveMass() {
         int count = massFlowGrid.getCount();
-        double timeStep = 10.0;
         double value1, value2, difference, density = 0.0;
         for (int i = 0; i < count - 1; ++i) {
 
