@@ -10,6 +10,13 @@ public class DensityGrid extends MidpointGrid {
         super(radialGrid);
     }
     
+    public DensityGrid(DensityGrid densityGrid) {
+        super(densityGrid.radialGrid);
+        for (int i = 0; i < zoneCount; ++i) {
+            setValue(i, densityGrid.getValue(i));
+        }
+    }
+
     public double getTotalMass() {
         double mass = 0.0;
         for (int i = 0; i < zoneCount; ++i) {
