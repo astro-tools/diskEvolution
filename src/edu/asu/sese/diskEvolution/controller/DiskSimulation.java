@@ -49,4 +49,12 @@ public class DiskSimulation {
         return densityGrid;
     }
 
+    public MassFlowGrid getMassFlowGrid() {
+        return massFlowGrid;
+    }
+
+    public ViscosityGrid getViscosityGrid() {
+        return viscosityGrid;
+    }
+
 }
