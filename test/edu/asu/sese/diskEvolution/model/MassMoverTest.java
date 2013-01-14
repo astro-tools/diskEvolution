@@ -41,12 +41,19 @@ public class MassMoverTest {
 	
 	@Test
 	public void testDensityChangeWithMassMovement(){
-		double density = densityGrid.getValue(9);
+		int index = 9;
+        double oldDensity = densityGrid.getValue(index);
+		double outerFlowRate = 100.0;
+		double innerFlowRate = 150.0;
+		double timeStep = 80.0;
+        massFlow.setValue(index + 1, outerFlowRate);
+        massFlow.setValue(index, innerFlowRate);
+        mover.setTimeStep(timeStep);
 		mover.moveMass();
-		double value = densityGrid.getValue(9) + (240.0*PhysicalConstants.hour* 
-				(massFlow.getValue(10)- massFlow.getValue(9)));
-		assertEquals(value, density, 1e-13);
-		
-		}		
+		double massFlowDifference = outerFlowRate - innerFlowRate;
+        double expect = oldDensity + timeStep * massFlowDifference;
+        double newDensity = densityGrid.getValue(index);
+		assertEquals(expect, newDensity, 1e-13);		
+	}		
 
 }
