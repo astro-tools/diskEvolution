@@ -26,7 +26,7 @@ public class ResultsView extends JPanel {
     }
 
     private void setupDiskView() {
-        diskView = new DiskView();
+        diskView = new DiskView(null);
         add(diskView.getComponent());
     }
 }

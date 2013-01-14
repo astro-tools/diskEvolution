@@ -3,6 +3,7 @@ package edu.asu.sese.diskEvolution.view;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.plot.ArrayGrid;
 import edu.asu.sese.diskEvolution.plot.GridInterface;
 import edu.asu.sese.diskEvolution.plot.PlotView;
@@ -17,8 +18,10 @@ public class DiskView {
     private GridInterface rangeGrid;
     private UnitInterface domainUnit;
     private UnitInterface rangeUnit;
+    private DensityGrid densityGrid;
 
-    DiskView() {
+    DiskView(DensityGrid densityGrid) {
+        this.densityGrid = densityGrid;
         createDensityGraphs();
     }
 
