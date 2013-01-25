@@ -3,9 +3,9 @@ package edu.asu.sese.diskEvolution.view;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+
 public class ResultsView extends JPanel {
     private static final long serialVersionUID = 1L;
     private MassView massView;
