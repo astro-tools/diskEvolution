@@ -6,13 +6,17 @@ import java.util.Observer;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
-public class SnapshotSelector implements Observer {
+public class SnapshotSelector implements Observer, ChangeListener {
     
     private JSlider slider;
     private SnapshotCollection collection;
+    private SimpleObservable observable = new SimpleObservable();
 
     SnapshotSelector(SnapshotCollection collection) {
         this.collection = collection;
@@ -26,6 +30,7 @@ public class SnapshotSelector implements Observer {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setSnapToTicks(true);
+        slider.addChangeListener(this);        
         update();
     }
 
@@ -36,6 +41,7 @@ public class SnapshotSelector implements Observer {
     @Override
     public void update(Observable arg0, Object arg1) {
         update();
+        observable.notifyObservers();
     }
 
     private void update() {
@@ -60,6 +66,20 @@ public class SnapshotSelector implements Observer {
         } else {
             slider.setMajorTickSpacing(1);
         }
+    }
+
+
+    public void addObserver(Observer observer) {
+        observable.addObserver(observer);
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        observable.notifyObservers();
+    }
+
+    public int getIndex() {
+        return slider.getValue();
     }
 
 }

@@ -1,12 +1,15 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 
-public class ResultsView extends JPanel {
+public class ResultsView extends JPanel implements Observer {
     private static final long serialVersionUID = 1L;
     private MassView massView;
     private DiskView diskView;
@@ -19,11 +22,12 @@ public class ResultsView extends JPanel {
         setupDiskView();
         setupSnapshotSelector();
         setupMassView();
+        selector.addObserver(this);
     }
 
-    private void setupMassView() {
-        massView = new MassView();
-        add(massView.getComponent());
+    private void setupDiskView() {
+        diskView = new DiskView();
+        add(diskView.getComponent());
     }
 
     private void setupSnapshotSelector() {
@@ -31,8 +35,14 @@ public class ResultsView extends JPanel {
         add(selector.getComponent());
     }
 
-    private void setupDiskView() {
-        diskView = new DiskView(null);
-        add(diskView.getComponent());
+    private void setupMassView() {
+        massView = new MassView();
+        add(massView.getComponent());
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        int selected = selector.getIndex();
+        System.out.println("slider changed: " + selected);
     }
 }
