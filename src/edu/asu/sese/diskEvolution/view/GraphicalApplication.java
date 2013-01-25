@@ -38,7 +38,7 @@ public class GraphicalApplication extends JFrame {
         SimulationRunner runner = simulation.getRunner();
         runnerPanel = new SimulationRunnerView(runner);
         tabPane.add("Run Simulation", runnerPanel);
-        resultsPanel = new ResultsView();
+        resultsPanel = new ResultsView(runner);
         tabPane.add("Results", resultsPanel);
         add(tabPane, BorderLayout.CENTER);
     }

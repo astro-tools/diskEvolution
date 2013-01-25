@@ -3,6 +3,7 @@ package edu.asu.sese.diskEvolution.controller;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
+import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.RadialGrid;

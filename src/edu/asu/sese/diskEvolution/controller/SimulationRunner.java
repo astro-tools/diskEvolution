@@ -30,6 +30,7 @@ public class SimulationRunner {
 	    gridFactory = application.getGridFactory();
 	    initialConditions = application.getInitialConditions();
 	    simulationTimeStep = new TimeStep();
+	    snapshotCollection = new SnapshotCollection();
 	    setDefaultParameters();
 	}
 
@@ -41,18 +42,17 @@ public class SimulationRunner {
 
 	public void run() {
 	    simulation = new DiskSimulation(gridFactory, initialConditions);
+	    snapshotCollection.setSimulation(simulation);
 	    createMassMover();
 	    createMassFlowCalculator();
-	    createSnapshotCollection();
         System.out.println("Running simulation...");
+        snapshotCollection.takeSnapshot();
+        
         massFlowCalculator.calculate();
         massMover.setTimeStep(simulationTimeStep.getTime());
         massMover.moveMass();
         snapshotCollection.takeSnapshot();
-    }
-
-    private void createSnapshotCollection() {
-        snapshotCollection = new SnapshotCollection(simulation);
+        snapshotCollection.takeSnapshot();
     }
 
     private void createMassFlowCalculator() {
@@ -97,6 +97,10 @@ public class SimulationRunner {
 
     public GridFactory getGridFactory() {
         return gridFactory;
+    }
+
+    public SnapshotCollection getSnapshotCollection() {
+        return snapshotCollection;
     }
 
 }

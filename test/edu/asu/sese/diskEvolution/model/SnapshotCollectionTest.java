@@ -17,7 +17,8 @@ public class SnapshotCollectionTest {
         GridFactory factory = new GridFactory();
         InitialConditions initialConditions = new InitialConditions();
         simulation = new DiskSimulation(factory, initialConditions);
-        collection = new SnapshotCollection(simulation);
+        collection = new SnapshotCollection();
+        collection.setSimulation(simulation);
     }
         
     @Test

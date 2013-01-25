@@ -1,32 +1,65 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 
-public class SnapshotSelector {
+import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+
+public class SnapshotSelector implements Observer {
     
     private JSlider slider;
+    private SnapshotCollection collection;
 
-    SnapshotSelector() {
+    SnapshotSelector(SnapshotCollection collection) {
+        this.collection = collection;
         createSlider();
+        collection.addObserver(this);
     }
 
     private void createSlider() {
-        int min = 0;
-        int max = 30;
-        int value = 0;
-        slider = new JSlider(SwingConstants.HORIZONTAL, min, max, value);
-        slider.setMajorTickSpacing(5);
+        slider = new JSlider(SwingConstants.HORIZONTAL, 0, 0, 0);
         slider.setMinorTickSpacing(1);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setSnapToTicks(true);
+        update();
     }
 
     public JComponent getComponent() {
         return slider;
+    }
+
+    @Override
+    public void update(Observable arg0, Object arg1) {
+        update();
+    }
+
+    private void update() {
+        int count = collection.getSnapshotCount();
+        if (count > 0) {
+            slider.setMaximum(count - 1);
+            slider.setEnabled(true);
+            setMajorTicks(count);
+        } else {
+            slider.setMaximum(0);
+            slider.setEnabled(false);
+        }
+        int max = count - 1;
+        if (max < 0) max = 0;
+    }
+
+    private void setMajorTicks(int count) {
+        if (count > 15) {
+            slider.setMajorTickSpacing(5);
+        } else if (count > 9) {
+            slider.setMajorTickSpacing(2);
+        } else {
+            slider.setMajorTickSpacing(1);
+        }
     }
 
 }
