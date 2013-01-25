@@ -5,6 +5,7 @@ import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowCalculator;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.MassMover;
+import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
@@ -22,6 +23,7 @@ public class SimulationRunner {
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
+    private SnapshotCollection snapshotCollection;
 	
 	public SimulationRunner(Application diskSimulation) {
 	    this.application = diskSimulation;
@@ -41,10 +43,16 @@ public class SimulationRunner {
 	    simulation = new DiskSimulation(gridFactory, initialConditions);
 	    createMassMover();
 	    createMassFlowCalculator();
+	    createSnapshotCollection();
         System.out.println("Running simulation...");
         massFlowCalculator.calculate();
         massMover.setTimeStep(simulationTimeStep.getTime());
         massMover.moveMass();
+        snapshotCollection.takeSnapshot();
+    }
+
+    private void createSnapshotCollection() {
+        snapshotCollection = new SnapshotCollection(simulation);
     }
 
     private void createMassFlowCalculator() {
