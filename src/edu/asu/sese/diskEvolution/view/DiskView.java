@@ -7,12 +7,17 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import edu.asu.sese.diskEvolution.model.Snapshot;
+import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+
 public class DiskView {
 
     private JPanel panel = new JPanel();
 	private List<DiskViewGraph> graphList = new ArrayList<DiskViewGraph>();
+	private SnapshotCollection snapshotCollection;
     
-    public DiskView() {
+    public DiskView(SnapshotCollection snapshotCollection) {
+    	this.snapshotCollection = snapshotCollection;
         panel.setPreferredSize(new Dimension(300, 200));
     }
     
@@ -34,12 +39,14 @@ public class DiskView {
 	}
 
 	private DiskViewGraph createGraph(int selected) {
-		DiskViewGraph graph = new DiskViewGraph(null);
+		Snapshot snapshot = snapshotCollection.getSnapshot(selected);
+		DiskViewGraph graph = new DiskViewGraph(snapshot.getDensityGrid());
 		graphList.add(selected, graph);
 		return graph;
 				
 	}
     
+	
 
 }
 

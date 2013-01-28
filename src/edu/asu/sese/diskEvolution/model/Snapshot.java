@@ -9,4 +9,8 @@ public class Snapshot {
     Snapshot(DiskSimulation simulation) {
         density = new DensityGrid(simulation.getDensityGrid());
     }
+
+	public DensityGrid getDensityGrid() {
+		return density;
+	}
 }

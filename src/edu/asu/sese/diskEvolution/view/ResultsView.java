@@ -26,7 +26,7 @@ public class ResultsView extends JPanel implements Observer {
     }
 
     private void setupDiskView() {
-        diskView = new DiskView();
+        diskView = new DiskView(snapshotCollection);
         add(diskView.getComponent());
     }
 
