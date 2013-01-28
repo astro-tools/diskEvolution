@@ -8,14 +8,14 @@ import edu.asu.sese.diskEvolution.plot.ArrayGrid;
 import edu.asu.sese.diskEvolution.plot.GridInterface;
 import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.plot.UnitInterface;
+import edu.asu.sese.diskEvolution.util.MidpointAdaptor;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
+import edu.asu.sese.diskEvolution.util.RadialGrid;
 import edu.asu.sese.diskEvolution.util.Unit;
 
 public class DiskViewGraph {
     
     private PlotView plot;
-    private GridInterface domainGrid;
-    private GridInterface rangeGrid;
     private UnitInterface domainUnit;
     private UnitInterface rangeUnit;
     private DensityGrid densityGrid;
@@ -26,15 +26,14 @@ public class DiskViewGraph {
     }
 
     private void createDensityGraphs() {
-        rangeGrid = new ArrayGrid(new double [10]);
-        domainGrid = new ArrayGrid(new double [10]);
+        MidpointAdaptor radialGrid = new MidpointAdaptor(densityGrid.getRadialGrid());
         String domainLabel = "r";
         String rangeLabel = "Σ";
         domainUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
                 PhysicalConstants.earthRadiusInCm);
         rangeUnit = new Unit("g/cm²", "g/cm²", 1.0);
 
-        plot = new PlotView(domainGrid, rangeGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
+        plot = new PlotView(radialGrid, densityGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
     }
 
     public JComponent getComponent() {

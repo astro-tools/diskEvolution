@@ -1,10 +1,12 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.Snapshot;
@@ -35,7 +37,7 @@ public class DiskView {
 			graph = createGraph(selected);
 		}
 		panel.removeAll();
-		panel.add(graph.getComponent());
+		panel.add(graph.getComponent(), BorderLayout.CENTER);
 	}
 
 	private DiskViewGraph createGraph(int selected) {
