@@ -43,6 +43,7 @@ public class ResultsView extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         int selected = selector.getIndex();
+        diskView.showGraph(selected);
         System.out.println("slider changed: " + selected);
     }
 }
