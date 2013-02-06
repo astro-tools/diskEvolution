@@ -1,6 +1,7 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class DiskView {
     
     public DiskView(SnapshotCollection snapshotCollection) {
     	this.snapshotCollection = snapshotCollection;
-        panel.setPreferredSize(new Dimension(300, 200));
+        panel.setLayout(new BorderLayout());
     }
     
     public Component getComponent() {
@@ -38,6 +39,7 @@ public class DiskView {
 		}
 		panel.removeAll();
 		panel.add(graph.getComponent(), BorderLayout.CENTER);
+		panel.repaint();
 	}
 
 	private DiskViewGraph createGraph(int selected) {
