@@ -1,13 +1,9 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.Snapshot;
@@ -16,7 +12,7 @@ import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 public class DiskView {
 
     private JPanel panel = new JPanel();
-	private List<DiskViewGraph> graphList = new ArrayList<DiskViewGraph>();
+	private Vector<DiskViewGraph> graphList = new Vector<DiskViewGraph>();
 	private SnapshotCollection snapshotCollection;
     
     public DiskView(SnapshotCollection snapshotCollection) {
@@ -37,6 +33,7 @@ public class DiskView {
 		if (graph == null){
 			graph = createGraph(selected);
 		}
+		System.out.println(graph);
 		panel.removeAll();
 		panel.add(graph.getComponent(), BorderLayout.CENTER);
 		panel.repaint();
@@ -45,12 +42,14 @@ public class DiskView {
 	private DiskViewGraph createGraph(int selected) {
 		Snapshot snapshot = snapshotCollection.getSnapshot(selected);
 		DiskViewGraph graph = new DiskViewGraph(snapshot.getDensityGrid());
-		graphList.add(selected, graph);
+		System.out.println("Create a graph");
+		if (graphList.size() <= selected) {
+			graphList.setSize(selected + 1);
+		}
+		graphList.set(selected, graph);
 		return graph;
 				
 	}
     
-	
-
 }
 
