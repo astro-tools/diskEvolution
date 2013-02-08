@@ -88,6 +88,7 @@ public class PlotView {
         String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
         final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeLabelText);
         rangeAxis.setLog10TickLabelsFlag(true);
+        rangeAxis.setAllowNegativesFlag(true);
         plot.setRangeAxis(rangeAxis);
     }
 
