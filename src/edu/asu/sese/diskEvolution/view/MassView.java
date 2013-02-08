@@ -2,6 +2,7 @@ package edu.asu.sese.diskEvolution.view;
 
 import javax.swing.JComponent;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.plot.ArrayGrid;
 import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;

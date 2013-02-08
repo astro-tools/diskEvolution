@@ -52,7 +52,6 @@ public class SimulationRunner {
         massMover.setTimeStep(simulationTimeStep.getTime());
         massMover.moveMass();
         snapshotCollection.takeSnapshot();
-        snapshotCollection.takeSnapshot();
     }
 
     private void createMassFlowCalculator() {
