@@ -35,11 +35,11 @@ public class SimulationRunner {
 	}
 
     private void setDefaultParameters() {
-        simulationTimeStep.setTime(10.0 * PhysicalConstants.day);
+        simulationTimeStep.setTime(1.0 * PhysicalConstants.hour);
 	    totalDuration = 30.0 * PhysicalConstants.year;
-	    totalDuration = 1.0 * PhysicalConstants.year;
+	    totalDuration = 1.0 * PhysicalConstants.hour;
 	    snapshotInterval = 1.0 * PhysicalConstants.year;
-	    snapshotInterval = 10.0 * PhysicalConstants.day;
+	    snapshotInterval = 1.0 * PhysicalConstants.hour;
     }
 
 	public void run() {
@@ -55,7 +55,7 @@ public class SimulationRunner {
         	
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
-//        	massMover.moveMass();
+        	massMover.moveMass();
         	snapshotCollection.takeSnapshot();
         	time +=  timeStep;
         }

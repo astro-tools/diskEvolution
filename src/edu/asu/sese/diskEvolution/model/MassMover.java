@@ -16,14 +16,15 @@ public class MassMover {
 
     public void moveMass() {
         int count = massFlowGrid.getCount();
-        double value1, value2, difference, density = 0.0;
         for (int i = 0; i < count - 1; ++i) {
         	double mdot1 = massFlowGrid.getValue(i);
             double mdot2 = massFlowGrid.getValue(i + 1);
-            value1 = mdot1 * timeStep;
-            value2 = mdot2 * timeStep;
-            difference = value2 - value1;
-            density = densityGrid.getValue(i);
+            double value1 = mdot1 * timeStep;
+            double value2 = mdot2 * timeStep;
+            System.out.println(i + ": " + value1 + ", " + value2);
+            
+            double difference = value2 - value1;
+            double density = densityGrid.getValue(i);
             density += difference;
             densityGrid.setValue(i, density);
         }
