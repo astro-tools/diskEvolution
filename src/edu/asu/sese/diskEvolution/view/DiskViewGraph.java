@@ -1,16 +1,12 @@
 package edu.asu.sese.diskEvolution.view;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import org.jfree.chart.ChartPanel;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
-import edu.asu.sese.diskEvolution.plot.ArrayGrid;
-import edu.asu.sese.diskEvolution.plot.GridInterface;
 import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.plot.UnitInterface;
 import edu.asu.sese.diskEvolution.util.MidpointAdaptor;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
-import edu.asu.sese.diskEvolution.util.RadialGrid;
 import edu.asu.sese.diskEvolution.util.Unit;
 
 public class DiskViewGraph {
@@ -37,7 +33,7 @@ public class DiskViewGraph {
 
     }
 
-    public JComponent getComponent() {
+    public  ChartPanel getComponent() {
         return plot.getChartPanel();
     }
 

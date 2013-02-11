@@ -1,10 +1,13 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.util.Vector;
 
 import javax.swing.JPanel;
+
+import org.jfree.chart.ChartPanel;
 
 import edu.asu.sese.diskEvolution.model.Snapshot;
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
@@ -35,7 +38,11 @@ public class DiskView {
 		}
 		System.out.println(graph);
 		panel.removeAll();
-		panel.add(graph.getComponent(), BorderLayout.CENTER);
+		panel.setBackground(new Color(6*selected, 6*selected, 6*selected));
+		
+		ChartPanel chartPanel = graph.getComponent();
+        panel.add(chartPanel, BorderLayout.CENTER);
+		chartPanel.revalidate();
 		panel.repaint();
 	}
 
