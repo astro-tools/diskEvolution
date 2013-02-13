@@ -19,8 +19,10 @@ public class MassMover {
         for (int i = 0; i < count - 1; ++i) {
         	double mdot1 = massFlowGrid.getValue(i);
             double mdot2 = massFlowGrid.getValue(i + 1);
+
             double value1 = mdot1 * timeStep;
             double value2 = mdot2 * timeStep;
+//            System.out.println("value1 = " + value1 + " value2 = " + value2);
             double difference = value1 - value2;
             double density = densityGrid.getValue(i);
             density += difference;

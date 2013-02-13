@@ -26,20 +26,21 @@ public class MassFlowCalculator {
             double innerMidpoint = radialGrid.getMidpoint(i-1);
             double boundaryPoint = radialGrid.getBoundaryPoint(i);
             double deltaR = outerMidpoint - innerMidpoint;
-            double difference = Math.sqrt(outerMidpoint) 
-                    * densityGrid.getValue(i)
-                    * viscosityGrid.getValue(i);
+            double density = densityGrid.getValue(i);
+			double viscosity = viscosityGrid.getValue(i);
+			double difference = Math.sqrt(outerMidpoint) * density * viscosity;
+            System.out.println("outerMidPoint = " + outerMidpoint + " density = " + density +  " viscosity = " + viscosity);
             difference -= Math.sqrt(innerMidpoint) 
                     * densityGrid.getValue(i-1)
                     * viscosityGrid.getValue(i-1);
-           
+
             double value = 
                     6.0 * Math.PI * Math.sqrt(boundaryPoint)
                     * difference / deltaR;
             massFlowGrid.setValue(i, value);
         }
 
-        double extrapolated = 2.0 * massFlowGrid.getValue(1)
+        double extrapolated = 2 * massFlowGrid.getValue(1)
                 - massFlowGrid.getValue(2);
         if (extrapolated < 0.0) {
             extrapolated = 0.0;
