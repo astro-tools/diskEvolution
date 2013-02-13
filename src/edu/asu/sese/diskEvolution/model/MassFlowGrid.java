@@ -24,7 +24,6 @@ public class MassFlowGrid {
 		return value[i];
 	}
 
-
     public void setValue(int i, double data) {
         value[i] = data;
     }

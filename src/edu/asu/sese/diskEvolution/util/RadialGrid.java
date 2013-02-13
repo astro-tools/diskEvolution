@@ -21,6 +21,7 @@ public class RadialGrid {
         area = new double[intervalCount];
         midpoint = new double[intervalCount];
         boundary[0] = rmin;
+
         double step = deltar0;
         for (int i=0; i<intervalCount; ++i) {
             interval[i] = step;
@@ -29,6 +30,7 @@ public class RadialGrid {
                                 - boundary[i]*boundary[i]);
             midpoint[i] = Math.sqrt(boundary[i+1] * boundary[i]);
             step *= scaleFactor;
+
         }
     }
 

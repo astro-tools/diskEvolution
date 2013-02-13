@@ -57,7 +57,7 @@ public class MassFlowCalculatorTest {
         double term1 = Math.sqrt(rmid1) * density1 * viscosity1;
         double term2 = Math.sqrt(rmid2) * density2 * viscosity2;
         double prefactor = 6.0 * Math.PI * Math.sqrt(r1);
-        double expect = prefactor * (term2 - term1) /(rmid2 - rmid1);        
+        double expect = prefactor * (term2 - term1) /(rmid2 - rmid1);   
         
         assertEquals(expect, massFlowGrid.getValue(1), 1e-12);
     }

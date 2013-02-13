@@ -50,7 +50,7 @@ public class MassMoverTest {
         massFlow.setValue(index, innerFlowRate);
         mover.setTimeStep(timeStep);
 		mover.moveMass();
-		double massFlowDifference = outerFlowRate - innerFlowRate;
+		double massFlowDifference = innerFlowRate - outerFlowRate;
         double expect = oldDensity + timeStep * massFlowDifference;
         double newDensity = densityGrid.getValue(index);
 		assertEquals(expect, newDensity, 1e-13);		

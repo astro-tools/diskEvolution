@@ -32,11 +32,13 @@ public class MassFlowCalculator {
             difference -= Math.sqrt(innerMidpoint) 
                     * densityGrid.getValue(i-1)
                     * viscosityGrid.getValue(i-1);
+           
             double value = 
                     6.0 * Math.PI * Math.sqrt(boundaryPoint)
                     * difference / deltaR;
             massFlowGrid.setValue(i, value);
         }
+
         double extrapolated = 2.0 * massFlowGrid.getValue(1)
                 - massFlowGrid.getValue(2);
         if (extrapolated < 0.0) {
