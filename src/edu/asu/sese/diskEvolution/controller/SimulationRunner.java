@@ -35,11 +35,11 @@ public class SimulationRunner {
 	}
 
     private void setDefaultParameters() {
-        simulationTimeStep.setTime(1 * PhysicalConstants.hour);
+        simulationTimeStep.setTime(10.0 * PhysicalConstants.hour);
 	    totalDuration = 30.0 * PhysicalConstants.year;
-	    totalDuration = 10.0 * PhysicalConstants.hour;
+        totalDuration = 500.0 * PhysicalConstants.year;
 	    snapshotInterval = 1.0 * PhysicalConstants.year;
-	    snapshotInterval = 1.0 * PhysicalConstants.hour;
+        snapshotInterval = 20.0 * PhysicalConstants.year;
     }
 
 	public void run() {
@@ -50,13 +50,17 @@ public class SimulationRunner {
         System.out.println("Running simulation...");
         snapshotCollection.takeSnapshot();
         double time = 0.0;
+        double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
         	massFlowCalculator.calculate();
         	
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
         	massMover.moveMass();
-        	snapshotCollection.takeSnapshot();
+        	if (time >= nextSnapshotTime) {
+        	    snapshotCollection.takeSnapshot();
+        	    nextSnapshotTime += snapshotInterval;
+        	}
         	time +=  timeStep;
         }
     }

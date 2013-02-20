@@ -38,7 +38,6 @@ public class DiskView {
 		}
 		System.out.println(graph);
 		panel.removeAll();
-		panel.setBackground(new Color(6*selected, 6*selected, 6*selected));
 		
 		ChartPanel chartPanel = graph.getComponent();
         panel.add(chartPanel, BorderLayout.CENTER);

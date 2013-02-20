@@ -23,17 +23,17 @@ public class MassFlowCalculator {
         int count = massFlowGrid.getCount();
         for (int i=1; i<count-1; ++i) {
             double outerMidpoint = radialGrid.getMidpoint(i);
-            double innerMidpoint = radialGrid.getMidpoint(i-1);
-            double boundaryPoint = radialGrid.getBoundaryPoint(i);
-            double deltaR = outerMidpoint - innerMidpoint;
             double density = densityGrid.getValue(i);
 			double viscosity = viscosityGrid.getValue(i);
 			double difference = Math.sqrt(outerMidpoint) * density * viscosity;
-            System.out.println("outerMidPoint = " + outerMidpoint + " density = " + density +  " viscosity = " + viscosity);
-            difference -= Math.sqrt(innerMidpoint) 
-                    * densityGrid.getValue(i-1)
-                    * viscosityGrid.getValue(i-1);
 
+            double innerMidpoint = radialGrid.getMidpoint(i-1);
+            density = densityGrid.getValue(i-1);
+            viscosity = viscosityGrid.getValue(i-1);
+            difference -= Math.sqrt(innerMidpoint) * density * viscosity;
+
+            double deltaR = outerMidpoint - innerMidpoint;
+            double boundaryPoint = radialGrid.getBoundaryPoint(i);
             double value = 
                     6.0 * Math.PI * Math.sqrt(boundaryPoint)
                     * difference / deltaR;

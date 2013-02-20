@@ -22,10 +22,9 @@ public class MassMover {
 
             double value1 = mdot1 * timeStep;
             double value2 = mdot2 * timeStep;
-//            System.out.println("value1 = " + value1 + " value2 = " + value2);
-            double difference = value1 - value2;
+            double difference = value2 - value1;
             double density = densityGrid.getValue(i);
-            density += difference;
+            density += difference / densityGrid.getArea(i);
             densityGrid.setValue(i, density);
             
         }
