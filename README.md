@@ -27,4 +27,16 @@ To build and run the project:
 
 # More information
 
+# To import the code on Eclipse (programming software that we used for writing and modifying this code)
+
+(Assuming that Eclipse has egit)
+1. File --> Import --> Projects from Git --> URI --> (Enter the URI from the GitHub site) --> 
+Select Master --> Use the Ner Project Wizard --> Finish --> New Project (Select Java Project) --> 
+(Give a project name) --> Finish
+
+Now the project is imported in Eclipse. But it may have errors (since packages like JFree chart are not installed)
+Right Ckick on the project --> Properties --> Java Build Path --> Libraries --> add JARs -->
+
+
+
 See the wiki for more infomation, https://github.com/shumway/diskEvolution/wiki.
