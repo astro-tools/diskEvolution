@@ -94,14 +94,14 @@ public class SimulationRunnerView extends JPanel {
         timeStepInputView = new ScalarInputView("Δ t", hour);
         list.add(timeStepInputView);
         
-        durationView = new ScalarInputView("T<sub>tot</sub>", year);
+        durationView = new ScalarInputView("t<sub>tot</sub>", year);
         list.add(durationView);
 
         iterationCountView = 
                 new ScalarOutputView("N<sub>iter</sub>", noUnit, "#");
         list.add(iterationCountView);
         
-        snapshotIntervalView = new ScalarInputView("Δ T<sub>image</sub>", year);
+        snapshotIntervalView = new ScalarInputView("Δ t<sub>image</sub>", year);
         list.add(snapshotIntervalView);
 
         imageCountView = 

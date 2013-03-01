@@ -38,7 +38,9 @@ public class DiskSimulation {
         double density0 = initialConditions.getDensity0();
         double radius0 = initialConditions.getRadius0();
         double exponent = initialConditions.getExponent();
-        densityGrid.initializeWithPowerLaw(density0, radius0, exponent);
+        double rin = initialConditions.getRIn();
+        double rout = initialConditions.getROut();
+        densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
     }
 
     public RadialGrid getRadialGrid() {
