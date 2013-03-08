@@ -25,13 +25,11 @@ public class TimeStepTest {
     
     @Test
     public void testUpdateTime() {
-        for (int i = 0; i < densityGrid.getCount(); ++i) {
-            densityGrid.setValue(i, 1.0e16 / densityGrid.getArea(i));
-        }
+        densityGrid.setValue(1, 1e17 / densityGrid.getArea(1));
         massFlowGrid.setValue(2, 1.0e16);
-        double expect = 0.5;
+        double expect = 5.0;
         timeStep.update(densityGrid, massFlowGrid);
         double newTimeStep = timeStep.getTime();
-        assertEquals(expect, newTimeStep, 1e-8);
+        assertEquals(expect, newTimeStep, 1e-6);
     }
 }

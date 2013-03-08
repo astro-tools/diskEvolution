@@ -19,7 +19,7 @@ public class TimeStep {
             massMoved += Math.abs(massFlowGrid.getValue(i));
             massMoved += Math.abs(massFlowGrid.getValue(i+1));
             double intervalTimeStep = 0.5 * mass / massMoved;
-            if (intervalTimeStep <= newTimeStep) {
+            if (intervalTimeStep > 1.0 && intervalTimeStep <= newTimeStep) {
                 newTimeStep = intervalTimeStep;
             }
         }
