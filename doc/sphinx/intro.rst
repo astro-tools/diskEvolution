@@ -8,7 +8,6 @@ details of the processes that formed this lone satellite of the Earth remain unc
 understanding geochemical and dynamic processes that were the results of the moon forming impact and 
 their effect on the evolution of the Earth-Moon system is one of the highest priorities for planetary 
 science. 
-
 	Formation of Moon is such a fundamental research theme that is the central subject of this research
 project. Lunar samples returned from the Apollo program changed our understanding of Moon formation 
 drastically. The primary results from the geochemical analysis of these samples suggest that Moon has
