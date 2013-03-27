@@ -29,8 +29,12 @@ heterogeneity in Earth- Moon system. Third possibility is that the mixing in pro
 profound that the system reached equilibrium and no heterogeneities could survive (Pahlevan and Stevenson 
 2007). 
 
-.. figure:: images/1.jpeg
-   :width: 100 %
+.. image:: images/1.jpeg
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: right
    Oxygen isotopic composition in the solar system (Franchi et al 2001)
    
    
@@ -49,7 +53,7 @@ has a distinct isotopic composition (very different than the Earth, it provides 
 the impactor that caused the Giant impact had a different isotopic composition. (Pahlevan and Stevenson, 
 2007) 
 
-.. figure:: images/2.jpeg
+.. image:: images/2.jpeg
    :width: 100 %
    Trend in Condensation Temperature f the five elements (Taylor G. J. 2012)
    
@@ -65,7 +69,7 @@ with condensation temperature above ~1000K do not show any isotopic variation ho
 dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
 
 
-.. figure:: images/3.jpeg
+.. image:: images/3.jpeg
    :width: 100 % 
    Schematic of proto-lunar disk immediately after the giant impact (Pahlevan and and Stevenson 2007)
    
