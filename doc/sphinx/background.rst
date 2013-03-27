@@ -1,7 +1,7 @@
 Background
 ==========
 
-@section(Geochemical characteristics of the Earth- Moon system:)
+Geochemical characteristics of the Earth- Moon system:
 Lunar samples returned from the Apollo program was a giant scientific leap, bringing first samples from 
 a planetary body other than the Earth. These samples revealed important geochemical characteristics of 
 the Moon. It has a lower density than the Earth and bulk chondrites compared to the Earth’s mantle. 
@@ -26,3 +26,35 @@ Stevenson 2007 show that contribution from the impactor as less as ~3% should re
 heterogeneity in Earth- Moon system. Third possibility is that the mixing in proto-lunar disk was so 
 profound that the system reached equilibrium and no heterogeneities could survive (Pahlevan and Stevenson 
 2007). 
+
+Early solar system had a geochemical heterogeneity, however planetismals that formed in the same source 
+region are expected to have similar chemical and isotopic composition. This is used as an explanation for 
+identical oxygen isotopic composition of the Earth-Moon system. (eg. Franchi et al 2001) However planet 
+formation process has three stages; Growth of dust grains into kilometer sized planetismals in the 
+protoplanetary disk, which is followed by runaway growth into the Mars size planetismals. The feeding 
+zone for runaway growth is ~0.01AU and this processes continues for a timespan of ~105-106 yr. The final 
+stage of planet formation is though giant impact events. This is an extended stage of planetary 
+accumulation that spans over a timescale of ~107-108 yr and involves significant of radial mixing. This 
+process primarily dominated formation of the Earth, therefore sampling material from a much broader 
+feeding zone. The composition of the Earth does not reflect the composition of the material at 1 AU in the
+ early solar system but has significant contribution from regions close to Mars and Mercury. Since Mars 
+ has a distinct isotopic composition (very different than the Earth, it provides a good probablility that 
+ the impactor that caused the Giant impact had a different isotopic composition. (Pahlevan and Stevenson, 
+ 2007) 
+ 
+ With the advent of modern multi collector Inductively Coupled Plasma Mass Spectrometers, high precision 
+ isotopic analysis with high precision is made possible. Some recent studies of more refractory elements 
+ such as W (Touboul et al. 2007), Ti (Zang et al., 2012), Cr (Lugmair anf Shukolyukov 1998)) and K 
+ (Humayun and Clayton 1995) show that the isotopic composition of the Earth-Moon system is identical. 
+ However Zn isotopes show a distinct difference (Paniello et al 2012). As shown in figure 2, there is a 
+ trend in isotopic homogeneity or variation and temperature of condensation of the element. Elements 
+ with condensation temperature above ~1000K do not show any isotopic variation however Zn condenses 
+ ~700K shows distinct difference in terrestrial and lunar samples. This has been interpreted as mass 
+ dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
+ 
+ As shown in figure 3, a proto-lunar disk consists of a central magmatic disk surrounded by the 
+ atmosphere. The atmosphere of the disk interacts with the atmosphere of the Earth allowing isotopic 
+ and volatile exchange. In order to understand the isotopic signatures in the Earth-Moon system, it is 
+ very essential to develop a simulation for the evolution of proto-lunar disk. Results from our research 
+ will provide significant insight into the isotopic mixing and volatile transport of the proto-lunar 
+ disk.
