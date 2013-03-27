@@ -15,6 +15,7 @@ Contents:
    background
    start
    examples
+   references
 
 
 Indices and tables

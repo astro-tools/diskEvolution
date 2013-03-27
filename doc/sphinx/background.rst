@@ -52,9 +52,8 @@ with condensation temperature above ~1000K do not show any isotopic variation ho
 ~700K shows distinct difference in terrestrial and lunar samples. This has been interpreted as mass 
 dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
  
- As shown in figure 3, a proto-lunar disk consists of a central magmatic disk surrounded by the 
- atmosphere. The atmosphere of the disk interacts with the atmosphere of the Earth allowing isotopic 
- and volatile exchange. In order to understand the isotopic signatures in the Earth-Moon system, it is 
- very essential to develop a simulation for the evolution of proto-lunar disk. Results from our research 
- will provide significant insight into the isotopic mixing and volatile transport of the proto-lunar 
- disk.
+As shown in figure 3, a proto-lunar disk consists of a central magmatic disk surrounded by the 
+atmosphere. The atmosphere of the disk interacts with the atmosphere of the Earth allowing isotopic 
+and volatile exchange. In order to understand the isotopic signatures in the Earth-Moon system, it is 
+very essential to develop a simulation for the evolution of proto-lunar disk. Results from our research 
+will provide significant insight into the isotopic mixing and volatile transport of the proto-lunar disk.
