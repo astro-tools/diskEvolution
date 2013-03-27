@@ -48,6 +48,11 @@ early solar system but has significant contribution from regions close to Mars a
 has a distinct isotopic composition (very different than the Earth, it provides a good probablility that 
 the impactor that caused the Giant impact had a different isotopic composition. (Pahlevan and Stevenson, 
 2007) 
+
+.. figure:: images/2.*
+   :width: 100 %
+   Trend in Condensation Temperature f the five elements (Taylor G. J. 2012)
+   
  
 With the advent of modern multi collector Inductively Coupled Plasma Mass Spectrometers, high precision 
 isotopic analysis with high precision is made possible. Some recent studies of more refractory elements 
@@ -58,7 +63,12 @@ trend in isotopic homogeneity or variation and temperature of condensation of th
 with condensation temperature above ~1000K do not show any isotopic variation however Zn condenses 
 ~700K shows distinct difference in terrestrial and lunar samples. This has been interpreted as mass 
 dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
- 
+
+
+.. figure:: images/3.*
+   :width: 100 % 
+   Schematic of proto-lunar disk immediately after the giant impact (Pahlevan and and Stevenson 2007)
+   
 As shown in figure 3, a proto-lunar disk consists of a central magmatic disk surrounded by the 
 atmosphere. The atmosphere of the disk interacts with the atmosphere of the Earth allowing isotopic 
 and volatile exchange. In order to understand the isotopic signatures in the Earth-Moon system, it is 
