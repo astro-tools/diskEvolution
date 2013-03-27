@@ -2,6 +2,8 @@ Background
 ==========
 
 Geochemical characteristics of the Earth- Moon system:
+======================================================
+
 Lunar samples returned from the Apollo program was a giant scientific leap, bringing first samples from 
 a planetary body other than the Earth. These samples revealed important geochemical characteristics of 
 the Moon. It has a lower density than the Earth and bulk chondrites compared to the Earth’s mantle. 
