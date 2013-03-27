@@ -1,9 +1,8 @@
-**********
 Background
-**********
+==========
 
 Geochemical characteristics of the Earth- Moon system:
-======================================================
+------------------------------------------------------
 
 Lunar samples returned from the Apollo program was a giant scientific leap, bringing first samples from 
 a planetary body other than the Earth. These samples revealed important geochemical characteristics of 
@@ -30,6 +29,11 @@ heterogeneity in Earth- Moon system. Third possibility is that the mixing in pro
 profound that the system reached equilibrium and no heterogeneities could survive (Pahlevan and Stevenson 
 2007). 
 
+.. figure:: images/1.*
+   :width: 100 %
+   Oxygen isotopic composition in the solar system (Franchi et al 2001)
+   
+   
 Early solar system had a geochemical heterogeneity, however planetismals that formed in the same source 
 region are expected to have similar chemical and isotopic composition. This is used as an explanation for 
 identical oxygen isotopic composition of the Earth-Moon system. (eg. Franchi et al 2001) However planet 
@@ -60,3 +64,10 @@ atmosphere. The atmosphere of the disk interacts with the atmosphere of the Eart
 and volatile exchange. In order to understand the isotopic signatures in the Earth-Moon system, it is 
 very essential to develop a simulation for the evolution of proto-lunar disk. Results from our research 
 will provide significant insight into the isotopic mixing and volatile transport of the proto-lunar disk.
+
+Model:
+=====
+
+Step 1: Setting up a magma disk and evolving it over time:
+----------------------------------------------------------
+
