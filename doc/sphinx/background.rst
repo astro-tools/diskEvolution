@@ -37,20 +37,20 @@ stage of planet formation is though giant impact events. This is an extended sta
 accumulation that spans over a timescale of ~107-108 yr and involves significant of radial mixing. This 
 process primarily dominated formation of the Earth, therefore sampling material from a much broader 
 feeding zone. The composition of the Earth does not reflect the composition of the material at 1 AU in the
- early solar system but has significant contribution from regions close to Mars and Mercury. Since Mars 
- has a distinct isotopic composition (very different than the Earth, it provides a good probablility that 
- the impactor that caused the Giant impact had a different isotopic composition. (Pahlevan and Stevenson, 
- 2007) 
+early solar system but has significant contribution from regions close to Mars and Mercury. Since Mars 
+has a distinct isotopic composition (very different than the Earth, it provides a good probablility that 
+the impactor that caused the Giant impact had a different isotopic composition. (Pahlevan and Stevenson, 
+2007) 
  
- With the advent of modern multi collector Inductively Coupled Plasma Mass Spectrometers, high precision 
- isotopic analysis with high precision is made possible. Some recent studies of more refractory elements 
- such as W (Touboul et al. 2007), Ti (Zang et al., 2012), Cr (Lugmair anf Shukolyukov 1998)) and K 
- (Humayun and Clayton 1995) show that the isotopic composition of the Earth-Moon system is identical. 
- However Zn isotopes show a distinct difference (Paniello et al 2012). As shown in figure 2, there is a 
- trend in isotopic homogeneity or variation and temperature of condensation of the element. Elements 
- with condensation temperature above ~1000K do not show any isotopic variation however Zn condenses 
- ~700K shows distinct difference in terrestrial and lunar samples. This has been interpreted as mass 
- dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
+With the advent of modern multi collector Inductively Coupled Plasma Mass Spectrometers, high precision 
+isotopic analysis with high precision is made possible. Some recent studies of more refractory elements 
+such as W (Touboul et al. 2007), Ti (Zang et al., 2012), Cr (Lugmair anf Shukolyukov 1998)) and K 
+(Humayun and Clayton 1995) show that the isotopic composition of the Earth-Moon system is identical. 
+However Zn isotopes show a distinct difference (Paniello et al 2012). As shown in figure 2, there is a 
+trend in isotopic homogeneity or variation and temperature of condensation of the element. Elements 
+with condensation temperature above ~1000K do not show any isotopic variation however Zn condenses 
+~700K shows distinct difference in terrestrial and lunar samples. This has been interpreted as mass 
+dependent isotopic fractionation effect during the proto-lunar disk evolution (Paneillo et al 2012).
  
  As shown in figure 3, a proto-lunar disk consists of a central magmatic disk surrounded by the 
  atmosphere. The atmosphere of the disk interacts with the atmosphere of the Earth allowing isotopic 
