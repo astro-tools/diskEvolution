@@ -97,20 +97,17 @@ Where \Sigma is surface density,
            
            Mass accretion rate through an annulus is 
 .. math::
-   
-           \displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
+\displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
            
 Where \nu is the turbulent viscosity of the disk.
 
 This equation can be re-written as 
  
 .. math::
-   
  \displaystyle \text{M} = 3 \pi\Sigma\nu  (1 + 2Q)
  
 Where 
 .. math::
-   :label: shoz
  \displaystyle \text{Q} = \frac{\partial\ln (\Sigma\nu)} {\partial\ln\text{r}}  
  
 The figure shows the input window of our program that is being written in JAVA programming language. 
