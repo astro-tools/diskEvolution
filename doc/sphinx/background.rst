@@ -86,6 +86,7 @@ Step 1: Setting up a magma disk and evolving it over time:
 
 The protolunar disk in our model contains a central disk composed of magma. We adopt disk evolution 
 equation from Lynden-Bell and Pringle (1974), which defines changes in surface density,
+
 .. math::
  \displaystyle \frac{\partial\Sigma}{\partial\text{t}} = \frac{1}{2\pi\text{r}} \frac{\partial\text{M}}{\partial\text{r}}
 
@@ -95,6 +96,7 @@ Where \Sigma is surface density,
            M is accretion rate.
            
            Mass accretion rate through an annulus is 
+           
 .. math::
  \displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
            
