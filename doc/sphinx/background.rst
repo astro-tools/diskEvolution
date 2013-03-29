@@ -121,7 +121,7 @@ Step 2: Adding Temperature gradient to the Proto-Lunar disk:
 Adding temperature gradient, and hence change in the viscosity using following equation
 
 .. math::
-\displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
+ \displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
  
 Step 3: Adding atmosphere to the proto-Earth and the proto-Lunar disk:
  ----------------------------------------------------------------------
