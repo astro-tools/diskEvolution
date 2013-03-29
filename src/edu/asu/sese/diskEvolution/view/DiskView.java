@@ -1,7 +1,6 @@
 package edu.asu.sese.diskEvolution.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.util.Vector;
 

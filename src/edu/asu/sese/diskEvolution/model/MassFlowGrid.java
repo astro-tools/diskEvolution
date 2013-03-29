@@ -4,12 +4,10 @@ import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class MassFlowGrid {
 
-	private RadialGrid radialGrid;
 	private int gridCount;
 	private double[] value;
 
 	public MassFlowGrid(RadialGrid radialGrid) {
-		this.radialGrid = radialGrid;
 		gridCount = radialGrid.getIntervalCount()+1;
 		value = new double [gridCount];
 	}
