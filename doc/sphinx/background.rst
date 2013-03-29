@@ -90,7 +90,7 @@ equation from Lynden-Bell and Pringle (1974), which defines changes in surface d
 .. math::
  \displaystyle \frac{\partial\Sigma}{\partial\text{t}} = \frac{1}{2\pi\text{r}} \frac{\partial\text{M}}{\partial\text{r}}
 
-Where \Sigma is surface density,
+Where \sigma is surface density,
            t is time,
            r is radius of the disk, 
            M is accretion rate.
@@ -115,5 +115,28 @@ The figure shows the input window of our program that is being written in JAVA p
 On the panel are the input parameters for initializing the proto-lunar disk.  The graph shows variation 
 in the surface density with radius.
  
- Step 2: Adding Temperature gradient to the Proto-Lunar disk:
- ------------------------------------------------------------          
+Step 2: Adding Temperature gradient to the Proto-Lunar disk:
+------------------------------------------------------------
+ 
+Adding temperature gradient, and hence change in the viscosity using following equation,
+
+.. math::
+\displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
+ 
+Step 3: Adding atmosphere to the proto-Earth and the proto-Lunar disk:
+ ----------------------------------------------------------------------
+ 
+As shown in the figure, immediately after the giant impact, most of the Earth is in a molten state, 
+surrounded by a circum-terrestrial proto-lunar disk made up of silicate magma. A common silicate- vapor 
+atmosphere links the disk to the planet. This interaction (diffusive equilibrium) of disk atmosphere 
+with the Earth’s atmosphere is a primary mechanism of exchange of volatiles and isotopes within the 
+Earth-Moon system. (Pahleva and Stevenson 2007) It is suggested that hydrodynamic instabilities within 
+the disk cause mixing of material up to ~ 1 yr after the giant impact, however after ~ 1yr Earth’s 
+atmosphere gained enough angular momentum to match the angular velocity of the disk, which causes the 
+instabilities to cease, which shuts down the mixing process. (Desch and Taylor 2013) 
+
+Step 4: Adding tracer species (for volatile transport as well as Isotopic signatures):
+--------------------------------------------------------------------------------------
+
+In order to determine the time evolution of concentration of a species (either volatile species such as 
+water, or an isotopic tracer), the mass accretion rate for this species is given as:           
