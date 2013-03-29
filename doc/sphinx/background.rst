@@ -84,3 +84,28 @@ Model:
 Step 1: Setting up a magma disk and evolving it over time:
 ----------------------------------------------------------
 
+The protolunar disk in our model contains a central disk composed of magma. We adopt disk evolution 
+equation from Lynden-Bell and Pringle (1974), which defines changes in surface density,
+
+\displaystyle \frac{\partial\Sigma}{\partial\text{t}} = \frac{1}{2\pi\text{r}} \frac{\partial\text{M}}{\partial\text{r}}
+
+Where \Sigma is surface density,
+           t is time,
+           r is radius of the disk, 
+           M is accretion rate.
+           
+           Mass accretion rate through an annulus is 
+           \displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
+           Where \nu is the turbulent viscosity of the disk.
+
+ This equation can be re-written as 
+ \displaystyle \text{M} = 3 \pi\Sigma\nu  (1 + 2Q)
+ 
+ Where \displaystyle \text{Q} = \frac{\partial\ln (\Sigma\nu)} {\partial\ln\text{r}}  
+ 
+ The figure shows the input window of our program that is being written in JAVA programming language. 
+ On the panel are the input parameters for initializing the proto-lunar disk.  The graph shows variation 
+ in the surface density with radius.
+ 
+ Step 2: Adding Temperature gradient to the Proto-Lunar disk:
+ ------------------------------------------------------------          
