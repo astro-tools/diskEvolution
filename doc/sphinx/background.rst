@@ -30,7 +30,7 @@ profound that the system reached equilibrium and no heterogeneities could surviv
 2007). 
 
 .. figure:: Images/1.jpg
-   :width: 100 %
+   :width: 50 %
    
    Oxygen isotopic composition in the solar system (Franchi et al 2001)
    
@@ -51,7 +51,7 @@ the impactor that caused the Giant impact had a different isotopic composition. 
 2007) 
 
 .. figure:: Images/2.jpg
-   :width: 100 %
+   :width: 50 %
   
    Trend in Condensation Temperature f the five elements (Taylor G. J. 2012)
    
@@ -68,7 +68,7 @@ dependent isotopic fractionation effect during the proto-lunar disk evolution (P
 
 
 .. figure:: Images/3.jpg
-   :width: 100 % 
+   :width: 50 % 
    
    Schematic of proto-lunar disk immediately after the giant impact (Pahlevan and and Stevenson 2007)
    
@@ -118,7 +118,7 @@ in the surface density with radius.
 Step 2: Adding Temperature gradient to the Proto-Lunar disk:
 ------------------------------------------------------------
  
-Adding temperature gradient, and hence change in the viscosity using following equation,
+Adding temperature gradient, and hence change in the viscosity using following equation
 
 .. math::
 \displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
