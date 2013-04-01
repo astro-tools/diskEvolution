@@ -100,7 +100,10 @@ Where \sigma is surface density,
 .. math::
  \displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
            
-Where \nu is the turbulent viscosity of the disk.
+Where 
+.. math::
+ \nu 
+is the turbulent viscosity of the disk.
 
 This equation can be re-written as 
  
@@ -124,7 +127,7 @@ Adding temperature gradient, and hence change in the viscosity using following e
  \displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
  
 Step 3: Adding atmosphere to the proto-Earth and the proto-Lunar disk:
- ----------------------------------------------------------------------
+----------------------------------------------------------------------
  
 As shown in the figure, immediately after the giant impact, most of the Earth is in a molten state, 
 surrounded by a circum-terrestrial proto-lunar disk made up of silicate magma. A common silicate- vapor 
@@ -139,4 +142,15 @@ Step 4: Adding tracer species (for volatile transport as well as Isotopic signat
 --------------------------------------------------------------------------------------
 
 In order to determine the time evolution of concentration of a species (either volatile species such as 
-water, or an isotopic tracer), the mass accretion rate for this species is given as:           
+water, or an isotopic tracer), the mass accretion rate for this species is given as  
+
+.. math::
+  \displaystyle \text{M}_c = cM + 2 \pi\text{rD} \Sigma \frac{\partial\text{c}}{\partial\text{r}}
+  
+Where, concentration of the trace species 
+.. math::
+ \displaystyle c = \frac{\Sigma_c} {\Sigma} 
+D is the diffusion coefficient of the species through the gas
+
+
+         
