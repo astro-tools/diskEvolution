@@ -30,7 +30,7 @@ profound that the system reached equilibrium and no heterogeneities could surviv
 2007). 
 
 .. figure:: Images/1.jpg
-   :width: 100 %
+   :width: 50 %
    
    Oxygen isotopic composition in the solar system (Franchi et al 2001)
    
@@ -51,7 +51,7 @@ the impactor that caused the Giant impact had a different isotopic composition. 
 2007) 
 
 .. figure:: Images/2.jpg
-   :width: 100 %
+   :width: 50 %
   
    Trend in Condensation Temperature f the five elements (Taylor G. J. 2012)
    
@@ -68,7 +68,7 @@ dependent isotopic fractionation effect during the proto-lunar disk evolution (P
 
 
 .. figure:: Images/3.jpg
-   :width: 100 % 
+   :width: 50 % 
    
    Schematic of proto-lunar disk immediately after the giant impact (Pahlevan and and Stevenson 2007)
    
@@ -84,3 +84,73 @@ Model:
 Step 1: Setting up a magma disk and evolving it over time:
 ----------------------------------------------------------
 
+The protolunar disk in our model contains a central disk composed of magma. We adopt disk evolution 
+equation from Lynden-Bell and Pringle (1974), which defines changes in surface density,
+
+.. math::
+ \displaystyle \frac{\partial\Sigma}{\partial\text{t}} = \frac{1}{2\pi\text{r}} \frac{\partial\text{M}}{\partial\text{r}}
+
+Where \sigma is surface density,
+           t is time,
+           r is radius of the disk, 
+           M is accretion rate.
+           
+           Mass accretion rate through an annulus is 
+           
+.. math::
+ \displaystyle \text{M} = 6 \pi\sqrt{r}  (\partial\sqrt{r}\Sigma\nu)
+           
+Where 
+.. math::
+ \nu 
+is the turbulent viscosity of the disk.
+
+This equation can be re-written as 
+ 
+.. math::
+ \displaystyle \text{M} = 3 \pi\Sigma\nu  (1 + 2Q)
+ 
+
+.. math::
+ \displaystyle \text{Q} = \frac{\partial\ln (\Sigma\nu)} {\partial\ln\text{r}}  
+ 
+The figure shows the input window of our program that is being written in JAVA programming language. 
+On the panel are the input parameters for initializing the proto-lunar disk.  The graph shows variation 
+in the surface density with radius.
+ 
+Step 2: Adding Temperature gradient to the Proto-Lunar disk:
+------------------------------------------------------------
+ 
+Adding temperature gradient, and hence change in the viscosity using following equation
+
+.. math::
+ \displaystyle \text{2}\sigma\text{T}^4 = \frac{9}{4} \Sigma\nu\Omega^2
+ 
+Step 3: Adding atmosphere to the proto-Earth and the proto-Lunar disk:
+----------------------------------------------------------------------
+ 
+As shown in the figure, immediately after the giant impact, most of the Earth is in a molten state, 
+surrounded by a circum-terrestrial proto-lunar disk made up of silicate magma. A common silicate- vapor 
+atmosphere links the disk to the planet. This interaction (diffusive equilibrium) of disk atmosphere 
+with the Earth’s atmosphere is a primary mechanism of exchange of volatiles and isotopes within the 
+Earth-Moon system. (Pahleva and Stevenson 2007) It is suggested that hydrodynamic instabilities within 
+the disk cause mixing of material up to ~ 1 yr after the giant impact, however after ~ 1yr Earth’s 
+atmosphere gained enough angular momentum to match the angular velocity of the disk, which causes the 
+instabilities to cease, which shuts down the mixing process. (Desch and Taylor 2013) 
+
+Step 4: Adding tracer species (for volatile transport as well as Isotopic signatures):
+--------------------------------------------------------------------------------------
+
+In order to determine the time evolution of concentration of a species (either volatile species such as 
+water, or an isotopic tracer), the mass accretion rate for this species is given as  
+
+.. math::
+  \displaystyle \text{M}_c = cM + 2 \pi\text{rD} \Sigma \frac{\partial\text{c}}{\partial\text{r}}
+  
+Where, concentration of the trace species 
+.. math::
+ \displaystyle c = \frac{\Sigma_c} {\Sigma} 
+D is the diffusion coefficient of the species through the gas
+
+
+         
