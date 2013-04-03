@@ -28,7 +28,7 @@ public class TimeStepTest {
         densityGrid.setValue(1, 1e18 / densityGrid.getArea(1));
         densityGrid.setValue(2, 1e18 / densityGrid.getArea(1));
         massFlowGrid.setValue(2, 1.0e14);
-        double expect = 5000.0;
+        double expect = 1.05 * timeStep.getTime();
         timeStep.update(densityGrid, massFlowGrid);
         double newTimeStep = timeStep.getTime();
         assertEquals(expect, newTimeStep, 1e-2);
