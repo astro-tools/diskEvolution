@@ -11,18 +11,31 @@ public class TimeStep {
         this.time = time;
     }
 
-    public void update(DensityGrid densityGrid, MassFlowGrid massFlowGrid) {
+    public void update(DensityGrid densityGrid, MassFlowGrid massFlowGrid) {        
         double newTimeStep = 2.0 * time;
+        
+        newTimeStep 
+            = calculateMaximumTimeStep(densityGrid, massFlowGrid, newTimeStep);
+     
+        if (newTimeStep > 1.05 * time) { 
+            time *= 1.05;
+        }else {
+            time = newTimeStep;
+        }
+    }
+
+    private double calculateMaximumTimeStep(DensityGrid densityGrid,
+            MassFlowGrid massFlowGrid, double newTimeStep) {
         for (int i = 0; i < densityGrid.getCount(); ++i) {
             double mass = densityGrid.getValue(i) * densityGrid.getArea(i);
             double massMoved = 1e8;
             massMoved += Math.abs(massFlowGrid.getValue(i));
             massMoved += Math.abs(massFlowGrid.getValue(i+1));
             double intervalTimeStep = 0.5 * mass / massMoved;
-            if (intervalTimeStep > 3600.0 && intervalTimeStep <= newTimeStep) {
+            if (intervalTimeStep > 0.0 && intervalTimeStep <= newTimeStep) {
                 newTimeStep = intervalTimeStep;
             }
         }
-        time = newTimeStep;
+        return newTimeStep;
     }
 }

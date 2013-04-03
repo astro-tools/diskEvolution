@@ -6,6 +6,12 @@ import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DensityGrid extends MidpointGrid {
     
+    private double densityFloor;
+
+    public double getDensityFloor() {
+        return densityFloor;
+    }
+
     public DensityGrid(RadialGrid radialGrid) {
         super(radialGrid);
     }
@@ -24,6 +30,22 @@ public class DensityGrid extends MidpointGrid {
         }
         return mass;
     }
+    
+    public double calculateDensityFloor(double density0, double radius0, 
+            double exponent, double rin, double rout) {
+        double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout);
+        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
+        densityFloor = 0.01 * totalMass / area;
+        return densityFloor;
+    }
+    
+    private double calculateTotalMass(double density0, double radius0, 
+            double exponent, double rin, double rout) {
+        double area = rout * rout * Math.pow(rout / radius0, -exponent);
+        area -= rin * rin * Math.pow(rin / radius0, -exponent);
+        area *= 2 * Math.PI / (2-exponent);
+        return density0 * area;
+    }
 
     public void initializeWithPowerLaw(double density0, double radius0, 
             double exponent, double rin, double rout) {
@@ -36,17 +58,19 @@ public class DensityGrid extends MidpointGrid {
             double density = getValue(i);
         	
             if (outsideDisk(innerBoundary, outerBoundary, rin, rout)) {
-                density = 0.0;
+                density = densityFloor;
             }
             
             if (onInnerEdge(innerBoundary, outerBoundary, rin)) {
-                density *= fractionWithinInnerEdge(
+                double x = fractionWithinInnerEdge(
                         rin, innerBoundary, outerBoundary);
+                density = density * x + (1.0 - x) * densityFloor;
             }
             
         	if (onOuterEdge(innerBoundary, outerBoundary, rout)) {
-        	    density *= fractionWithinOuterEdge(
+        	    double x = fractionWithinOuterEdge(
         	            rout, innerBoundary, outerBoundary);
+        	    density = density * x + (1.0 - x) * densityFloor;
         	}
         	
             setValue(i, density);

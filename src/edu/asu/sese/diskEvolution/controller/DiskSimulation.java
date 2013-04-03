@@ -40,6 +40,7 @@ public class DiskSimulation {
         double exponent = initialConditions.getExponent();
         double rin = initialConditions.getRIn();
         double rout = initialConditions.getROut();
+        densityGrid.calculateDensityFloor(density0, radius0, exponent, rin, rout);
         densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
     }
 

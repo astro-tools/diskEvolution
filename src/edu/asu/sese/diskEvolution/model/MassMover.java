@@ -16,6 +16,7 @@ public class MassMover {
 
     public void moveMass() {
         int count = massFlowGrid.getCount();
+        double densityFloor = densityGrid.getDensityFloor();
         for (int i = 0; i < count - 1; ++i) {
         	double mdot1 = massFlowGrid.getValue(i);
             double mdot2 = massFlowGrid.getValue(i + 1);
@@ -25,6 +26,7 @@ public class MassMover {
             double difference = value2 - value1;
             double density = densityGrid.getValue(i);
             density += difference / densityGrid.getArea(i);
+            if (density < densityFloor) density = densityFloor;
             densityGrid.setValue(i, density);
             
         }
