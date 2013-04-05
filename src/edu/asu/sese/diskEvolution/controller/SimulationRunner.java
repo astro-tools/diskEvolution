@@ -59,10 +59,8 @@ public class SimulationRunner {
             simulationTimeStep.update(densityGrid, massFlowGrid);
             
         	double timeStep = simulationTimeStep.getTime();
-        	System.out.println("Time step is " + timeStep + ", time is " + time);
 			massMover.setTimeStep(timeStep);
         	massMover.moveMass();
-        	
         	if (time >= nextSnapshotTime) {
         	    snapshotCollection.takeSnapshot();
         	    nextSnapshotTime += snapshotInterval;

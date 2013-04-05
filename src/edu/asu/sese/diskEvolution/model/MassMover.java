@@ -28,9 +28,8 @@ public class MassMover {
             density += difference / densityGrid.getArea(i);
             if (density < densityFloor) density = densityFloor;
             densityGrid.setValue(i, density);
-            
         }
- 
+     
     }
 
 	public double getTimeStep() {

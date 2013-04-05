@@ -2,6 +2,7 @@ package edu.asu.sese.diskEvolution.view;
 
 import javax.swing.JComponent;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.plot.ArrayGrid;
 import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
@@ -13,6 +14,7 @@ public class MassView {
     private PlotView plotView;
     private ArrayGrid timePlotGrid;
     private ArrayGrid massPlotGrid;
+    private DensityGrid densityGrid;
 
     MassView() {
         createGraph();
@@ -33,7 +35,8 @@ public class MassView {
     private void createMassGrid() {
         double [] mass = new double [31];
         for (int i = 0; i < 31; ++i) {
-            mass[i] = PhysicalConstants.lunarMass;
+        	double finalMass = densityGrid.getTotalMass();
+            mass[i] = finalMass*PhysicalConstants.lunarMass;
         }
         massPlotGrid = new ArrayGrid(mass);
     }
