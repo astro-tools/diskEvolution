@@ -15,6 +15,7 @@ public class DiskSimulation {
     private MassFlowGrid massFlowGrid;
     private GridFactory factory;
     private InitialConditions initialConditions;
+    private double currentTime;
 
     public DiskSimulation(GridFactory factory, 
             InitialConditions initialConditions) {
@@ -58,6 +59,14 @@ public class DiskSimulation {
 
     public ViscosityGrid getViscosityGrid() {
         return viscosityGrid;
+    }
+
+    public double getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(double time) {
+        currentTime = time;
     }
 
 }

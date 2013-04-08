@@ -74,7 +74,7 @@ public class MassView implements Observer {
         	densityGrid = snapshot.getDensityGrid();
         	double finalMass = densityGrid.getTotalMass();
         	mass[index] =  finalMass;
-        	time[index] = index * PhysicalConstants.year;
+        	time[index] = snapshot.getTime();
         	System.out.println("mass is " + mass[index] + " for index " + index);
 		}
         massPlotGrid = new ArrayGrid(mass);

@@ -61,11 +61,13 @@ public class SimulationRunner {
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
         	massMover.moveMass();
-        	if (time >= nextSnapshotTime) {
-        	    snapshotCollection.takeSnapshot();
-        	    nextSnapshotTime += snapshotInterval;
-        	}
         	time +=  timeStep;
+        	simulation.setCurrentTime(time);
+        	
+            if (time >= nextSnapshotTime) {
+                snapshotCollection.takeSnapshot();
+                nextSnapshotTime += snapshotInterval;
+            }
         }
     }
 
