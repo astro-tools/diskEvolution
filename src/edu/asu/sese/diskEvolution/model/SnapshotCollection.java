@@ -9,7 +9,8 @@ import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
 public class SnapshotCollection {
 
-    private DiskSimulation simulation;
+    private static Snapshot snapshot;
+	private DiskSimulation simulation;
     private List<Snapshot> collection;
     private SimpleObservable observable;
 
@@ -39,5 +40,10 @@ public class SnapshotCollection {
     public void addObserver(Observer observer) {
         observable.addObserver(observer);
     }
+
+	public static Snapshot copySnapshot(int i) {
+		return snapshot;
+	}
+
 
 }
