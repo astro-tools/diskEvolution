@@ -47,8 +47,10 @@ public class PlotView {
                 rangeMax / rangeUnit.getScale());
     }
 
-    public void updateData(GridInterface radialGrid, 
-            GridInterface densityGrid) {
+    public void updateData(GridInterface domainGrid, 
+            GridInterface rangeGrid) {
+        this.domainGrid = domainGrid;
+        this.rangeGrid = rangeGrid;
         datasetCollection.removeAllSeries();
         XYSeries series = createDataSet();
         datasetCollection.addSeries(series);

@@ -67,16 +67,20 @@ public class MassView implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		int count = snapshotCollection.getSnapshotCount();
-		double [] mass = new double [31];
+        double[] mass = new double[count];
+		double[] time = new double[count];
 		for (int index = 0; index < count; index++){
 			Snapshot snapshot = snapshotCollection.getSnapshot(index);
         	densityGrid = snapshot.getDensityGrid();
         	double finalMass = densityGrid.getTotalMass();
         	mass[index] =  finalMass;
+        	time[index] = index * PhysicalConstants.year;
         	System.out.println("mass is " + mass[index] + " for index " + index);
 		}
         massPlotGrid = new ArrayGrid(mass);
+        timePlotGrid = new ArrayGrid(time);
         plotView.updateData(timePlotGrid, massPlotGrid);
+        plotView.setAxisLimits(0, time[count-1], 0, 1.8 * PhysicalConstants.lunarMass);
 	}
 	
 }
