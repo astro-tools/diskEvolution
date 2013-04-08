@@ -52,6 +52,7 @@ public class PlotView {
         datasetCollection.removeAllSeries();
         XYSeries series = createDataSet();
         datasetCollection.addSeries(series);
+        System.out.println("Data updated ");
     }
 
     private void createSimpleXYChart() {

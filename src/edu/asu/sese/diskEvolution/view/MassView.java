@@ -1,5 +1,8 @@
 package edu.asu.sese.diskEvolution.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JComponent;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
@@ -12,16 +15,19 @@ import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.Unit;
 
 
-public class MassView {
+public class MassView implements Observer {
     
     private PlotView plotView;
     private ArrayGrid timePlotGrid;
     private ArrayGrid massPlotGrid;
     private DensityGrid densityGrid;
     private DiskSimulation simulation;
+    private SnapshotCollection snapshotCollection;
     
-    MassView() {
+    MassView(SnapshotCollection snapshotCollection) {
+    	this.snapshotCollection = snapshotCollection;
         createGraph();
+        snapshotCollection.addObserver(this);
     }
     
     void createGraph() {
@@ -38,11 +44,9 @@ public class MassView {
 
     private void createMassGrid() {
         double [] mass = new double [31];
-        for (int i = 0; i < 31; ++i) {
-        	Snapshot snapshot = SnapshotCollection.copySnapshot(i);
-        	densityGrid = snapshot.getDensityGrid();
-        	double finalMass = densityGrid.getTotalMass();
-            mass[i] =  finalMass * PhysicalConstants.lunarMass;
+        for (int i = 0; i < 31; i++){
+        	mass[i] = 0.8 * PhysicalConstants.lunarMass;
+        
         }
         massPlotGrid = new ArrayGrid(mass);
     }
@@ -60,4 +64,19 @@ public class MassView {
         return plotView.getChartPanel();
     }
 
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		int count = snapshotCollection.getSnapshotCount();
+		double [] mass = new double [31];
+		for (int index = 0; index < count; index++){
+			Snapshot snapshot = snapshotCollection.getSnapshot(index);
+        	densityGrid = snapshot.getDensityGrid();
+        	double finalMass = densityGrid.getTotalMass();
+        	mass[index] =  finalMass;
+        	System.out.println("mass is " + mass[index] + " for index " + index);
+		}
+        massPlotGrid = new ArrayGrid(mass);
+        plotView.updateData(timePlotGrid, massPlotGrid);
+	}
+	
 }

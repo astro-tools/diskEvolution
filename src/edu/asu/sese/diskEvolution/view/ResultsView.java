@@ -36,7 +36,7 @@ public class ResultsView extends JPanel implements Observer {
     }
 
     private void setupMassView() {
-        massView = new MassView();
+        massView = new MassView(snapshotCollection);
         add(massView.getComponent());
     }
 

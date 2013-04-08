@@ -41,9 +41,5 @@ public class SnapshotCollection {
         observable.addObserver(observer);
     }
 
-	public static Snapshot copySnapshot(int i) {
-		return snapshot;
-	}
-
 
 }
