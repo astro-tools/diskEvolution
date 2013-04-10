@@ -3,8 +3,10 @@ package edu.asu.sese.diskEvolution.controller;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
+import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DiskSimulation {
@@ -15,6 +17,7 @@ public class DiskSimulation {
     private MassFlowGrid massFlowGrid;
     private GridFactory factory;
     private InitialConditions initialConditions;
+    private TracerDensityGrid tracerDensity;
     private double currentTime;
 
     public DiskSimulation(GridFactory factory, 
@@ -43,6 +46,14 @@ public class DiskSimulation {
         double rout = initialConditions.getROut();
         densityGrid.calculateDensityFloor(density0, radius0, exponent, rin, rout);
         densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
+    }
+    
+    private void setupTracerGrid(){
+    	tracerDensity = new TracerDensityGrid(radialGrid);
+    	double cellDensity = 0.01 * PhysicalConstants.lunarMass
+    			/densityGrid.getArea(10);
+    	
+    	tracerDensity.setValue(10, cellDensity);
     }
 
     public RadialGrid getRadialGrid() {
