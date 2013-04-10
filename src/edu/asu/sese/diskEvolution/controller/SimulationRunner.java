@@ -37,9 +37,7 @@ public class SimulationRunner {
     private void setDefaultParameters() {
         simulationTimeStep.setTime(10.0 * PhysicalConstants.hour);
 	    totalDuration = 30.0 * PhysicalConstants.year;
-        totalDuration = 500.0 * PhysicalConstants.year;
 	    snapshotInterval = 1.0 * PhysicalConstants.year;
-        snapshotInterval = 20.0 * PhysicalConstants.year;
     }
 
 	public void run() {
