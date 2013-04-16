@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
@@ -32,6 +33,7 @@ public class SimulationRunnerView extends JPanel {
     private JPanel buttonPanel;
     private JButton startButton;
     private JButton pauseButton;
+    private JCheckBox tracerButton;
 
 	public SimulationRunnerView(SimulationRunner runner) {
 	    this.runner = runner;
@@ -145,6 +147,8 @@ public class SimulationRunnerView extends JPanel {
         pauseButton = new JButton("Pause");
         pauseButton.setEnabled(false);
         buttonPanel.add(pauseButton);
+        tracerButton = new JCheckBox("Enable Tracer");
+        buttonPanel.add(tracerButton);
         startButton = new JButton("Run Simulation");
         ActionListener listener = new ActionListener() {
             @Override
