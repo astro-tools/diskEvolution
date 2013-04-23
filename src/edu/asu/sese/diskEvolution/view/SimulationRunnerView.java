@@ -27,6 +27,8 @@ public class SimulationRunnerView extends JPanel {
 	private ScalarInputView intervalCountView;
     private ScalarInputView durationView;
     private ScalarInputView snapshotIntervalView;
+    private ScalarInputView tracerMassView;
+    private ScalarInputView tracerPositionView;
     private ScalarOutputView iterationCountView;
     private ScalarOutputView imageCountView;
     private JPanel inputPanel;
@@ -80,6 +82,7 @@ public class SimulationRunnerView extends JPanel {
     private void setupLabelsAndFields(ActionListener listener) {
 	    setupLoopParameters(listener);
 	    setupGridParameters(listener);
+	    setupTracerParameters(listener);
 	    setupExecutionButtons();
 	}
 
@@ -140,8 +143,30 @@ public class SimulationRunnerView extends JPanel {
 	    intervalCountView.setInteger(true);
 	    list.add(intervalCountView);
 	    list.addActionListener(listener);
+	    
+	    
     }
 
+    private void setupTracerParameters(ActionListener listener) {
+        ScalarListView list = new ScalarListView();
+        list.setAlignmentX(LEFT_ALIGNMENT);
+        inputPanel.add(list);
+        list.addLabel("Tracer parameters:");
+        
+        Unit lunarMass = new Unit("M☽", "M<sub>☽</sub>", 
+        		PhysicalConstants.lunarMass);
+        Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
+	            PhysicalConstants.earthRadiusInCm);
+        
+        tracerMassView = new ScalarInputView("Initial tracer mass ", lunarMass);
+	    list.add(tracerMassView);
+	    list.addActionListener(listener);
+	    
+	    tracerPositionView = new ScalarInputView("Initial tracer position ", earthRadius);
+	    list.add(tracerPositionView);
+	    list.addActionListener(listener);
+        
+    }
     private void setupExecutionButtons() {
         buttonPanel.add(Box.createHorizontalGlue());
         pauseButton = new JButton("Pause");
