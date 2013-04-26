@@ -84,6 +84,12 @@ public class SimulationRunner {
         RadialGrid radialGrid = simulation.getRadialGrid();
         massMover = new MassMover(density , massFlow, radialGrid);
     }
+    
+    private void useTracer(){
+    	
+    	// calculate tracer mass accretion rate
+    	
+    }
 
     public double getSimulationTimeStep() {
         return simulationTimeStep.getTime();

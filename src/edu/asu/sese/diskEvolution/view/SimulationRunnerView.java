@@ -66,6 +66,8 @@ public class SimulationRunnerView extends JPanel {
 	    rmaxView.setValue(gridFactory.getRmax());
 	    intervalCountView.setValue(gridFactory.getIntervalCount());
 	    deltar0View.setValue(gridFactory.getDeltar0());
+	    tracerMassView.setValue(0.001 * PhysicalConstants.lunarMass);
+	    tracerPositionView.setValue(1 * PhysicalConstants.earthRadiusInCm);
 	}
 
 	private void setupPanels() {
