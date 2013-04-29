@@ -20,6 +20,7 @@ public class SimulationRunner {
     private GridFactory gridFactory;
     private Application application;
     private DiskSimulation simulation;
+    private DiskSimulation tracerSimulation;
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
@@ -86,9 +87,34 @@ public class SimulationRunner {
     }
     
     private void useTracer(){
-    	
     	// calculate tracer mass accretion rate
-    	
+    	tracerSimulation = new DiskSimulation(gridFactory, initialConditions);
+	    snapshotCollection.setSimulation(tracerSimulation);
+	    createMassMover();
+	    createMassFlowCalculator();
+        System.out.println("Running tracer simulation...");
+        snapshotCollection.takeSnapshot();
+        double time = 0.0;
+        double nextSnapshotTime = snapshotInterval;
+        while (time < totalDuration){
+        	massFlowCalculator.calculate();
+        	
+        	TracerDensityGrid densityGrid = simulation.getTracerDensityGrid();
+            MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
+            simulationTimeStep.update(densityGrid, massFlowGrid);
+            
+        	double timeStep = simulationTimeStep.getTime();
+			massMover.setTimeStep(timeStep);
+        	massMover.moveMass();
+        	time +=  timeStep;
+        	simulation.setCurrentTime(time);
+        	
+            if (time >= nextSnapshotTime) {
+                snapshotCollection.takeSnapshot();
+                nextSnapshotTime += snapshotInterval;
+            }
+        }
+    	 
     }
 
     public double getSimulationTimeStep() {
