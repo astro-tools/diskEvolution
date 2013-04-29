@@ -3,22 +3,22 @@ package edu.asu.sese.diskEvolution.model;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class TracerFlowCalculator {
-	private MassFlowGrid massFlowGrid;
+	private TracerFlowGrid tracerFlowGrid;
     private RadialGrid radialGrid;
     private TracerDensityGrid tracerDensityGrid;
     private ViscosityGrid viscosityGrid;
 
-    public TracerFlowCalculator(MassFlowGrid massFlowGrid,
+    public TracerFlowCalculator(TracerFlowGrid tracerFlowGrid,
             RadialGrid radialGrid, TracerDensityGrid tracerDensityGrid,
             ViscosityGrid viscosityGrid) {
-        this.massFlowGrid = massFlowGrid;
+        this.tracerFlowGrid = tracerFlowGrid;
         this.radialGrid = radialGrid;
         this.tracerDensityGrid = tracerDensityGrid;
         this.viscosityGrid = viscosityGrid;
     }
 
     public void calculate() {
-        int count = massFlowGrid.getCount();
+        int count = tracerFlowGrid.getCount();
         for (int i=1; i<count-1; ++i) {
             double outerMidpoint = radialGrid.getMidpoint(i);
             double density = tracerDensityGrid.getValue(i);
@@ -35,16 +35,16 @@ public class TracerFlowCalculator {
             double value = 
                     6.0 * Math.PI * Math.sqrt(boundaryPoint)
                     * difference / deltaR;
-            massFlowGrid.setValue(i, value);
+            tracerFlowGrid.setValue(i, value);
         }
 
-        double extrapolated = 2 * massFlowGrid.getValue(1)
-                - massFlowGrid.getValue(2);
+        double extrapolated = 2 * tracerFlowGrid.getValue(1)
+                - tracerFlowGrid.getValue(2);
         if (extrapolated < 0.0) {
             extrapolated = 0.0;
         }
-        massFlowGrid.setValue(0, extrapolated);
-        massFlowGrid.setValue(count-1, 0.0);
+        tracerFlowGrid.setValue(0, extrapolated);
+        tracerFlowGrid.setValue(count-1, 0.0);
        
     }
 

@@ -6,21 +6,21 @@ import edu.asu.sese.diskEvolution.util.RadialGrid;
 public class TracerMover {
 
 		private TracerDensityGrid tracerDensityGrid;
-	    private MassFlowGrid massFlowGrid;
+	    private TracerFlowGrid tracerFlowGrid;
 	    private double timeStep;
 
-	    public TracerMover(TracerDensityGrid density, MassFlowGrid massFlow,
+	    public TracerMover(TracerDensityGrid density, TracerFlowGrid tracerFlow,
 	            RadialGrid radialGrid) {
 	        this.tracerDensityGrid = density;
-	        this.massFlowGrid = massFlow;
+	        this.tracerFlowGrid = tracerFlow;
 	    }
 
 	    public void moveTracer() {
-	        int count = massFlowGrid.getCount();
+	        int count = tracerFlowGrid.getCount();
 	        double densityFloor = tracerDensityGrid.getTracerDensityFloor();
 	        for (int i = 0; i < count - 1; ++i) {
-	        	double mdot1 = massFlowGrid.getValue(i);
-	            double mdot2 = massFlowGrid.getValue(i + 1);
+	        	double mdot1 = tracerFlowGrid.getValue(i);
+	            double mdot2 = tracerFlowGrid.getValue(i + 1);
 
 	            double value1 = mdot1 * timeStep;
 	            double value2 = mdot2 * timeStep;
@@ -32,4 +32,11 @@ public class TracerMover {
 	        }
 
 	    }
+	public double getTimeStep() {
+		return timeStep;
+	}
+		
+	public void setTimeStep(double timeStep) {
+		this.timeStep = timeStep;
+	}
 }

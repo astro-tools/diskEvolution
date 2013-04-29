@@ -7,6 +7,10 @@ import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.MassMover;
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
+import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
+import edu.asu.sese.diskEvolution.model.TracerFlowCalculator;
+import edu.asu.sese.diskEvolution.model.TracerFlowGrid;
+import edu.asu.sese.diskEvolution.model.TracerMover;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
@@ -25,6 +29,8 @@ public class SimulationRunner {
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
     private SnapshotCollection snapshotCollection;
+    private TracerFlowCalculator tracerFlowCalculator;
+    private TracerMover tracerMover;
 	
 	public SimulationRunner(Application diskSimulation) {
 	    this.application = diskSimulation;
@@ -87,25 +93,25 @@ public class SimulationRunner {
     }
     
     private void useTracer(){
-    	// calculate tracer mass accretion rate
+
     	tracerSimulation = new DiskSimulation(gridFactory, initialConditions);
 	    snapshotCollection.setSimulation(tracerSimulation);
-	    createMassMover();
-	    createMassFlowCalculator();
+	    createTracerMover();
+	    createTracerFlowCalculator();
         System.out.println("Running tracer simulation...");
         snapshotCollection.takeSnapshot();
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
-        	massFlowCalculator.calculate();
+        	TracerFlowCalculator.calculate();
         	
-        	TracerDensityGrid densityGrid = simulation.getTracerDensityGrid();
+        	DensityGrid densityGrid = simulation.getDensityGrid();
             MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
             simulationTimeStep.update(densityGrid, massFlowGrid);
             
         	double timeStep = simulationTimeStep.getTime();
-			massMover.setTimeStep(timeStep);
-        	massMover.moveMass();
+			tracerMover.setTimeStep(timeStep);
+        	TracerMover.moveTracer();
         	time +=  timeStep;
         	simulation.setCurrentTime(time);
         	
@@ -116,7 +122,23 @@ public class SimulationRunner {
         }
     	 
     }
+    
+    private void createTracerMover() {
+        TracerDensityGrid tracerDensity = simulation.getTracerDensityGrid();
+        TracerFlowGrid tracerFlow = simulation.getTracerFlowGrid();
+        RadialGrid radialGrid = simulation.getRadialGrid();
+        tracerMover = new TracerMover(tracerDensity , tracerFlow, radialGrid);
+    }
 
+    private void createTracerFlowCalculator() {
+        TracerFlowGrid tracerFlowGrid = simulation.getTracerFlowGrid();
+        RadialGrid radialGrid = simulation.getRadialGrid();
+        TracerDensityGrid tracerDensityGrid = simulation.getTracerDensityGrid();
+        ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
+        tracerFlowCalculator = new TracerFlowCalculator(
+                tracerFlowGrid, radialGrid, tracerDensityGrid, viscosityGrid);
+    }
+    
     public double getSimulationTimeStep() {
         return simulationTimeStep.getTime();
     }
