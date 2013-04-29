@@ -80,4 +80,8 @@ public class DiskSimulation {
         currentTime = time;
     }
 
+	public TracerDensityGrid getTracerDensityGrid() {
+		return tracerDensity;
+	}
+
 }

@@ -34,13 +34,13 @@ public class TracerDensityGrid extends MidpointGrid {
 	    
 	    public double calculateTracerDensityFloor(double density0, double radius0, 
 	            double exponent, double rin, double rout) {
-	        double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout);
+	        double totalMass = calculateTotalTracerMass(density0, radius0, exponent, rin, rout);
 	        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
 	        tracerDensityFloor = 0.0001 * totalMass / area;
 	        return tracerDensityFloor;
 	    }
 	    
-	    private double calculateTotalMass(double density0, double radius0, 
+	    private double calculateTotalTracerMass(double density0, double radius0, 
 	            double exponent, double rin, double rout) {
 	        double area = rout * rout * Math.pow(rout / radius0, -exponent);
 	        area -= rin * rin * Math.pow(rin / radius0, -exponent);
