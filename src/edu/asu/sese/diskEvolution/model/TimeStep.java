@@ -17,8 +17,8 @@ public class TimeStep {
         newTimeStep 
             = calculateMaximumTimeStep(densityGrid, massFlowGrid, newTimeStep);
      
-        if (newTimeStep > 1.05 * time) { 
-            time *= 1.05;
+        if (newTimeStep > 1.001 * time) { 
+            time *= 1.001;
         }else {
             time = newTimeStep;
         }
