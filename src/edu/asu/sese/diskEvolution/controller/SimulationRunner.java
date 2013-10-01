@@ -103,7 +103,7 @@ public class SimulationRunner {
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
-        	TracerFlowCalculator.calculate();
+        	tracerFlowCalculator.calculate();
         	
         	DensityGrid densityGrid = simulation.getDensityGrid();
             MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
@@ -111,7 +111,7 @@ public class SimulationRunner {
             
         	double timeStep = simulationTimeStep.getTime();
 			tracerMover.setTimeStep(timeStep);
-        	TracerMover.moveTracer();
+        	tracerMover.moveTracer();
         	time +=  timeStep;
         	simulation.setCurrentTime(time);
         	
