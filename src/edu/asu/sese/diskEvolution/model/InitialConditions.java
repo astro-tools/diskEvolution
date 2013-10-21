@@ -4,6 +4,7 @@ import java.util.Observer;
 
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.SimpleObservable;
+import javax.swing.*;
 
 public class InitialConditions {
 
@@ -51,9 +52,10 @@ public class InitialConditions {
     }
 
     public void setExponent(double exponent) {
-        boolean changed = (Math.abs(exponent - this.densityExponent) > 1e-6);
+        boolean changed = (Math.abs(exponent - this.densityExponent) > 1e-6 );
         this.densityExponent = exponent;
         if (changed) observable.notifyObservers();
+        if (exponent == -2.0) JOptionPane.showMessageDialog(null, "Undefined exponent value.", "P=2", JOptionPane.ERROR_MESSAGE);
     }
 
     public void addObserver(Observer observer) {
