@@ -9,8 +9,8 @@ import javax.swing.*;
 public class InitialConditions {
 
     private double radius0;
-    private double density0;
-    private double densityExponent;
+    private double totalmass0; //private double denisty0;
+    private double densityExponent; 
     private SimpleObservable observable = new SimpleObservable();
     private double rin;
     private double rout;
@@ -20,7 +20,7 @@ public class InitialConditions {
     }
     
     public void initializeParameters() {
-        setDensity0(1e7);
+    	setTotalmass0(1.0 * PhysicalConstants.lunarMass); // setDensity0(1e7);
         setRadius0(PhysicalConstants.earthRadiusInCm);
         setRIn(1.0 * PhysicalConstants.earthRadiusInCm);
         setROut(5.0 * PhysicalConstants.earthRadiusInCm);
@@ -37,13 +37,13 @@ public class InitialConditions {
         if (changed) observable.notifyObservers();
     }
 
-    public double getDensity0() {
-        return density0;
+    public double getTotalmass0() { // getDensity0()
+        return totalmass0; // return density0;
     }
 
-    public void setDensity0(double density0) {
-        boolean changed = (Math.abs(density0 - this.density0) > 1.0);
-        this.density0 = density0;
+    public void setTotalmass0(double totalmass0) { //setDenisty0
+        boolean changed = (Math.abs(totalmass0 - this.totalmass0) > 1.0); // > 1.0); \\ !!! HELP HERE
+        this.totalmass0 = totalmass0;
         if (changed) observable.notifyObservers();
     }
 
@@ -83,11 +83,18 @@ public class InitialConditions {
         return rout;
     }
 
-    public double getTotalMass() {
-        double mass = 2 * Math.PI * density0;
-        mass /= (densityExponent + 2.0) * Math.pow(radius0, densityExponent);
-        mass *= Math.pow(rout, densityExponent + 2.0) 
+    public double getDensity0() { 
+        double density0 = (densityExponent + 2.0) * Math.pow(radius0, densityExponent) * totalmass0; 
+        density0 /= 2 * Math.PI;
+        density0 /= Math.pow(rout, densityExponent + 2.0) 
                 - Math.pow(rin, densityExponent + 2.0);
-        return mass;
+        return density0;
+        
+        // public double getTotalMass() { 
+        //double mass = 2 * Math.PI * density0; 
+        //mass /= (densityExponent + 2.0) * Math.pow(radius0, densityExponent);
+        //mass *= Math.pow(rout, densityExponent + 2.0) 
+             //   - Math.pow(rin, densityExponent + 2.0);
+        //return mass;
     }
 }

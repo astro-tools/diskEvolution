@@ -26,20 +26,20 @@ public class DensityGrid extends MidpointGrid {
     public double getTotalMass() {
         double mass = 0.0;
         for (int i = 0; i < zoneCount; ++i) {
-            mass += getValue(i) * getArea(i);
+           mass += getValue(i) * getArea(i);
         }
         return mass;
     }
     
     public double calculateDensityFloor(double density0, double radius0, 
-            double exponent, double rin, double rout) {
-        double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout);
-        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
-        densityFloor = 0.01 * totalMass / area;
-        return densityFloor;
+       double exponent, double rin, double rout) {
+       double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout); // HELP HERE
+       double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
+       densityFloor = 0.01 * totalMass / area;
+       return densityFloor;
     }
     
-    private double calculateTotalMass(double density0, double radius0, 
+    private double calculateTotalMass(double density0, double radius0, // HELP HERE
             double exponent, double rin, double rout) {
         double area = rout * rout * Math.pow(rout / radius0, -exponent);
         area -= rin * rin * Math.pow(rin / radius0, -exponent);

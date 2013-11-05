@@ -63,15 +63,22 @@ public class InitialConditionsTest {
     /// Mass is 2*pi*sigma0 [rmax^(-p+2) - rmin^(p+2)]/ (-p+2)*r0^p
     /// For an exponent of p=1.5, sigma0 of 5 g/cm, r0=3cm, rmax=4 cm, rmin=2cm,
     /// mass should be 191.2498322660473 g.
+    
+    /// density formula double density0 = (densityExponent + 2.0) * Math.pow(radius0, densityExponent) * totalmass0; 
+   // density0 /= 2 * Math.PI;
+    //density0 /= Math.pow(rout, densityExponent + 2.0) 
+       //     - Math.pow(rin, densityExponent + 2.0);
+   // return density0;
+    
     @Test
-    public void testThatInitialMassIsCorrect() {
+    public void testThatInitialDensity0IsCorrect() {
         initialConditions.setRadius0(3.0);
-        initialConditions.setDensity0(5.0);
+        initialConditions.setTotalmass0(191.2498322660473);
         initialConditions.setExponent(-1.5);
         initialConditions.setRIn(2.0);
         initialConditions.setROut(4.0);
-        double expect = 191.2498322660473;
-        assertEquals(expect, initialConditions.getTotalMass(), 1e-12);
+        double expect = 5.0;
+        assertEquals(expect, initialConditions.getDensity0(), 1e-12);
     }
     
     private InitialConditions createInitialConditionsWithObserver() {

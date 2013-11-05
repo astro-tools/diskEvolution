@@ -19,10 +19,10 @@ public class InitialConditionsInputView extends JPanel {
 
     private ScalarInputView rInInputView;
     private ScalarInputView rOutInputView;
-    private ScalarInputView density0InputView;
+    private ScalarInputView totalmass0InputView; // density0InputView;
     private ScalarInputView radius0InputView;
     private ScalarInputView exponentInputView;
-    private ScalarOutputView massOutputView;
+    private ScalarOutputView density0OutputView; // massOutputView;
 
     public InitialConditionsInputView(InitialConditions initialConditions) {
         this.conditions = initialConditions;
@@ -35,9 +35,10 @@ public class InitialConditionsInputView extends JPanel {
         rInInputView.setValue(conditions.getRIn());
         rOutInputView.setValue(conditions.getROut());
         radius0InputView.setValue(conditions.getRadius0());
-        density0InputView.setValue(conditions.getDensity0());
+        totalmass0InputView.setValue(conditions.getTotalmass0()); // massOutputView 
         exponentInputView.setValue(-conditions.getExponent());
-        massOutputView.setValue(conditions.getTotalMass());
+        density0OutputView.setValue(conditions.getDensity0()); //density0InputView
+        
     }
 
     private void setupLabelsAndFields(ActionListener listener) {
@@ -70,14 +71,16 @@ public class InitialConditionsInputView extends JPanel {
         
         Unit earthRadius = new Unit("R⊕", "R<sub>⊕</sub>",
                 PhysicalConstants.earthRadiusInCm);
-        Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
+        Unit lunarMass = new Unit("M☽", "M<sub>☽</sub>", 
+        		PhysicalConstants.lunarMass);
+        
         Unit noUnit = new Unit("", "", 1.0);
 
         rInInputView = new ScalarInputView("r<sub>in</sub>", earthRadius);
         inputListView.add(rInInputView);
 
-        density0InputView = new ScalarInputView("Σ<sub>0</sub>", gramsPerCm2);
-        inputListView.add(density0InputView);
+        totalmass0InputView = new ScalarInputView("M<sub>☽</sub>", lunarMass); //  "Σ<sub>0</sub>"
+        inputListView.add(totalmass0InputView);
 
         rOutInputView = new ScalarInputView("r<sub>out</sub>", earthRadius);
         inputListView.add(rOutInputView);
@@ -93,17 +96,16 @@ public class InitialConditionsInputView extends JPanel {
 
     private void setupOutputLabelsAndFields() {
 
-        ScalarListView outputListView = new ScalarListView();
+    	Unit gramsPerCm2 = new Unit("g/cm2", "g/cm<sup>2</sup>", 1.0);
+    	ScalarListView outputListView = new ScalarListView();
         outputListView.setAlignmentX(LEFT_ALIGNMENT);
         add(outputListView);
 
-        outputListView.addLabel("Output:");
-
-        Unit lunarMass = new Unit("M☽", "M<sub>☽</sub>",
-                PhysicalConstants.lunarMass);
-        massOutputView = new ScalarOutputView("M<sub>tot</sub>", lunarMass,
-                "#.###");
-        outputListView.add(massOutputView);
+        outputListView.addLabel("Output:"); 
+       
+        
+        density0OutputView = new ScalarOutputView("Σ<sub>0</sub>", gramsPerCm2, "#.###"); //density0OutputView
+        outputListView.add(density0OutputView); //density0OutputView
     }
 
     String decorateLabel(String text) {
@@ -134,8 +136,8 @@ public class InitialConditionsInputView extends JPanel {
         }
 
         try {
-            double density0 = density0InputView.getValue();
-            conditions.setDensity0(density0);
+            double totalmass0 = totalmass0InputView.getValue(); // density0InputView
+            conditions.setTotalmass0(totalmass0);
         } catch (NumberFormatException exception) {
         }
 
