@@ -35,8 +35,8 @@ public class SimulationRunnerView extends JPanel {
     private JPanel buttonPanel;
     private JButton startButton;
     private JButton pauseButton;
-    private JCheckBox tracerButton;
-
+/*    private JCheckBox tracerButton;
+*/
 	public SimulationRunnerView(SimulationRunner runner) {
 	    this.runner = runner;
 	    gridFactory = runner.getGridFactory();
@@ -66,9 +66,9 @@ public class SimulationRunnerView extends JPanel {
 	    rmaxView.setValue(gridFactory.getRmax());
 	    intervalCountView.setValue(gridFactory.getIntervalCount());
 	    deltar0View.setValue(gridFactory.getDeltar0());
-	    tracerMassView.setValue(0.001 * PhysicalConstants.lunarMass);
+/*	    tracerMassView.setValue(0.001 * PhysicalConstants.lunarMass);
 	    tracerPositionView.setValue(1 * PhysicalConstants.earthRadiusInCm);
-	}
+*/	}
 
 	private void setupPanels() {
 	    setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -84,8 +84,8 @@ public class SimulationRunnerView extends JPanel {
     private void setupLabelsAndFields(ActionListener listener) {
 	    setupLoopParameters(listener);
 	    setupGridParameters(listener);
-	    setupTracerParameters(listener);
-	    setupExecutionButtons();
+/*	    setupTracerParameters(listener);
+*/	    setupExecutionButtons();
 	}
 
     private void setupLoopParameters(ActionListener listener) {
@@ -149,7 +149,7 @@ public class SimulationRunnerView extends JPanel {
 	    
     }
 
-    private void setupTracerParameters(ActionListener listener) {
+/*    private void setupTracerParameters(ActionListener listener) {
         ScalarListView list = new ScalarListView();
         list.setAlignmentX(LEFT_ALIGNMENT);
         inputPanel.add(list);
@@ -168,14 +168,14 @@ public class SimulationRunnerView extends JPanel {
 	    list.add(tracerPositionView);
 	    list.addActionListener(listener);
         
-    }
+    }*/
     private void setupExecutionButtons() {
         buttonPanel.add(Box.createHorizontalGlue());
         pauseButton = new JButton("Pause");
         pauseButton.setEnabled(false);
         buttonPanel.add(pauseButton);
-        tracerButton = new JCheckBox("Enable Tracer");
-        buttonPanel.add(tracerButton);
+/*        tracerButton = new JCheckBox("Enable Tracer");
+        buttonPanel.add(tracerButton);*/
         startButton = new JButton("Run Simulation");
         ActionListener listener = new ActionListener() {
             @Override

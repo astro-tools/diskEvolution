@@ -17,13 +17,13 @@ public class GraphicalApplication extends JFrame {
     private InitialConditionsView initialConditionsPanel;
     private SimulationRunnerView runnerPanel;
     private ResultsView resultsPanel;
-    private TracerView tracerPanel;
-    private TemperatureView temperaturePanel;
+/*    private TracerView tracerPanel;
+*/    private TemperatureView temperaturePanel;
     
     public GraphicalApplication(Application simulation) {
         this.simulation = simulation;
-        setupMenuBar();
-        setupWindowLayout();
+/*        setupMenuBar();
+*/        setupWindowLayout();
         pack();
         setSize(640, 480);
         setVisible(true);
@@ -41,19 +41,18 @@ public class GraphicalApplication extends JFrame {
         tabPane.add("Run Simulation", runnerPanel);
         resultsPanel = new ResultsView(runner);
         tabPane.add("Results", resultsPanel);
-        tracerPanel = new TracerView(runner);
-        tabPane.add("Tracer", tracerPanel);
+//        tracerPanel = new TracerView(runner);
         temperaturePanel = new TemperatureView();
         tabPane.add("Temperature", temperaturePanel);
         add(tabPane, BorderLayout.CENTER);
     }
     
-    public void setupMenuBar() {
+/*    public void setupMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu toolsMenu = new JMenu("Tools");
         menuBar.add(toolsMenu);
         setJMenuBar(menuBar);       
-    }
+    }*/
 }                                   
 
     
