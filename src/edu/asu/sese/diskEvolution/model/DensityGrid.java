@@ -33,13 +33,13 @@ public class DensityGrid extends MidpointGrid {
     
     public double calculateDensityFloor(double density0, double radius0, 
        double exponent, double rin, double rout) {
-       double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout); // HELP HERE
+       double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout); 
        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
        densityFloor = 0.01 * totalMass / area;
        return densityFloor;
     }
     
-    private double calculateTotalMass(double density0, double radius0, // HELP HERE
+    private double calculateTotalMass(double density0, double radius0, 
             double exponent, double rin, double rout) {
         double area = rout * rout * Math.pow(rout / radius0, -exponent);
         area -= rin * rin * Math.pow(rin / radius0, -exponent);
