@@ -18,9 +18,9 @@ public class DiskSimulation {
     private MassFlowGrid massFlowGrid;
     private GridFactory factory;
     private InitialConditions initialConditions;
-    private TracerDensityGrid tracerDensity;
+/*    private TracerDensityGrid tracerDensity;*/
     private double currentTime;
-    private TracerFlowGrid tracerFlowGrid;
+/*    private TracerFlowGrid tracerFlowGrid;*/
 
     public DiskSimulation(GridFactory factory, 
             InitialConditions initialConditions) {
@@ -82,11 +82,11 @@ public class DiskSimulation {
         currentTime = time;
     }
 
-	public TracerDensityGrid getTracerDensityGrid() {
+/*	public TracerDensityGrid getTracerDensityGrid() {
 		return tracerDensity;
 	}
 	public TracerFlowGrid getTracerFlowGrid() {
 		return tracerFlowGrid;
 	}
-
+*/
 }

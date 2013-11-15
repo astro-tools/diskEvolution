@@ -24,13 +24,13 @@ public class SimulationRunner {
     private GridFactory gridFactory;
     private Application application;
     private DiskSimulation simulation;
-    private DiskSimulation tracerSimulation;
+/*    private DiskSimulation tracerSimulation;*/  
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
     private SnapshotCollection snapshotCollection;
-    private TracerFlowCalculator tracerFlowCalculator;
-/*    private TracerMover tracerMover;*/
+/*    private TracerFlowCalculator tracerFlowCalculator;
+    private TracerMover tracerMover;*/
 	
 	public SimulationRunner(Application diskSimulation) {
 	    this.application = diskSimulation;
