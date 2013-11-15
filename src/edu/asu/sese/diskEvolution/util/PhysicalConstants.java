@@ -8,4 +8,7 @@ public class PhysicalConstants {
     public static double day = 24.0 * 60.0 * 60.0;
     public static double hour = 60.0 * 60.0;
     public static double minute = 60.0;
+    public static double gravitationalConstant = 6.67384e-8;
+    public static double earthMass = 5.972e27;
+    public static double stefanBoltzmannConstant = 5.67e-5;
 }

@@ -50,13 +50,13 @@ public class DiskSimulation {
         densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
     }
     
-    private void setupTracerDensityGrid(){
+/*    private void setupTracerDensityGrid(){
     	tracerDensity = new TracerDensityGrid(radialGrid);
     	double cellDensity = 0.01 * PhysicalConstants.lunarMass
     			/densityGrid.getArea(10);
     	
     	tracerDensity.setValue(10, cellDensity);
-    }
+    }*/
 
     public RadialGrid getRadialGrid() {
         return radialGrid;
