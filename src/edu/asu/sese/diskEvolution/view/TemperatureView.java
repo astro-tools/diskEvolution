@@ -12,7 +12,6 @@
 package edu.asu.sese.diskEvolution.view;
 
 import org.jfree.chart.ChartPanel;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.model.TemperatureGrid;
@@ -29,10 +28,7 @@ public class TemperatureView extends JPanel{
 //	private ArrayGrid massPlotGrid;
 //
 //
-//	public TemperatureView(){
-//		createGraph();
-//		//all the methods like make the temperature chart, labels and Field etc
-//	}
+	
 //	
 //    void createGraph() {
 //        createTimeGrid();
@@ -80,12 +76,17 @@ public class TemperatureView extends JPanel{
     private UnitInterface rangeUnit;
     private TemperatureGrid temperatureGrid;
 
-    TemperatureView(TemperatureGrid temperatureGrid) {  
-        this.temperatureGrid = temperatureGrid;
-        createTemperatureGraphs();
-    }
+   // public TemperatureView(TemperatureGrid temperatureGrid) {  
+      //  this.temperatureGrid = temperatureGrid;
+     //   createTemperatureGraphs();
+   // }
+    
+    public TemperatureView(){
+		createGraph();
+	//all the methods like make the temperature chart, labels and Field etc
+		}
 
-    private void createTemperatureGraphs() {
+    private void createGraph() {
         MidpointAdaptor radialGrid = new MidpointAdaptor(temperatureGrid.getRadialGrid());
         String domainLabel = "r";
         String rangeLabel = "T<sub>eff</sub>";
