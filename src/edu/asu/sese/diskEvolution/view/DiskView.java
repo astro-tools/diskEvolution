@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import org.jfree.chart.ChartPanel;
 
-import edu.asu.sese.diskEvolution.model.Snapshot;
+import edu.asu.sese.diskEvolution.model.DensitySnapshot;
 import edu.asu.sese.diskEvolution.model.SnapshotCollection;
 
 public class DiskView {
@@ -45,7 +45,7 @@ public class DiskView {
 	}
 
 	private DiskViewGraph createGraph(int selected) {
-		Snapshot snapshot = snapshotCollection.getSnapshot(selected);
+		DensitySnapshot snapshot = snapshotCollection.getSnapshot(selected);
 		DiskViewGraph graph = new DiskViewGraph(snapshot.getDensityGrid());
 		System.out.println("Create a graph");
 		if (graphList.size() <= selected) {

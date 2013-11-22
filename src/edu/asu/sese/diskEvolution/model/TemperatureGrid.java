@@ -25,8 +25,13 @@ public class TemperatureGrid extends MidpointGrid {
 	        }
 	    }
 	    
-	    public double CalculateTemperature(double temperature, double density,
+	    public double CalculateTemperatureFloor(double temperatureFloor){
+	    	temperatureFloor = 300.0;
+	    	return temperatureFloor;
+	    }
+	    public double CalculateTemperature(double density,
 	            double viscosity, double keplerianFrequency) {
+	    	double temperature;
 	    	keplerianFrequency = calculateKeplerianFrequency();
 	    	density = densityGrid.getValue(zoneCount);
 	    	viscosity = viscosityGrid.getValue(zoneCount);
@@ -48,8 +53,8 @@ public class TemperatureGrid extends MidpointGrid {
 	        return keplerianFrequency;
 	    }
 		public RadialGrid getTemperatureGrid() {
-			// TODO Auto-generated method stub
 			return null;
 		}
+
 
 }

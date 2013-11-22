@@ -2,12 +2,12 @@ package edu.asu.sese.diskEvolution.model;
 
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 
-public class Snapshot {
+public class DensitySnapshot {
 
     DensityGrid density;
     private double time;
     
-    public Snapshot(DiskSimulation simulation) {
+    public DensitySnapshot(DiskSimulation simulation) {
         density = new DensityGrid(simulation.getDensityGrid());
         time = simulation.getCurrentTime();
     }

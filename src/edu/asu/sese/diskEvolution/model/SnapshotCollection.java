@@ -9,18 +9,18 @@ import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
 public class SnapshotCollection {
 
-    private static Snapshot snapshot;
+    private static DensitySnapshot snapshot;
 	private DiskSimulation simulation;
-    private List<Snapshot> collection;
+    private List<DensitySnapshot> collection;
     private SimpleObservable observable;
 
     public SnapshotCollection() {
-        collection = new ArrayList<Snapshot>();
+        collection = new ArrayList<DensitySnapshot>();
         observable = new SimpleObservable();
     }
 
     public void takeSnapshot() {
-        Snapshot snapshot = new Snapshot(simulation);
+        DensitySnapshot snapshot = new DensitySnapshot(simulation);
         collection.add(snapshot);
         observable.notifyObservers();
     }
@@ -29,7 +29,7 @@ public class SnapshotCollection {
         return collection.size();
     }
 
-    public Snapshot getSnapshot(int index) {
+    public DensitySnapshot getSnapshot(int index) {
         return collection.get(index);
     }
 

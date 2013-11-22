@@ -25,7 +25,7 @@ public class SnapshotCollectionTest {
     public void testTakeSnapshot() {
         collection.takeSnapshot();
         assertEquals(1, collection.getSnapshotCount());
-        Snapshot snapshot = collection.getSnapshot(0);
+        DensitySnapshot snapshot = collection.getSnapshot(0);
         assertNotNull(snapshot);
     }
 

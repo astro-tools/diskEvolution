@@ -3,11 +3,11 @@ package edu.asu.sese.diskEvolution.controller;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
-import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
-import edu.asu.sese.diskEvolution.model.TracerFlowGrid;
+import edu.asu.sese.diskEvolution.model.TemperatureGrid;
+/*import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
+import edu.asu.sese.diskEvolution.model.TracerFlowGrid;*/
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
-import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DiskSimulation {
@@ -18,10 +18,11 @@ public class DiskSimulation {
     private MassFlowGrid massFlowGrid;
     private GridFactory factory;
     private InitialConditions initialConditions;
-/*    private TracerDensityGrid tracerDensity;*/
+    private TemperatureGrid temperatureGrid;
     private double currentTime;
 /*    private TracerFlowGrid tracerFlowGrid;*/
-
+ /*    private TracerDensityGrid tracerDensity;*/
+    
     public DiskSimulation(GridFactory factory, 
             InitialConditions initialConditions) {
         this.factory = factory;
@@ -37,6 +38,8 @@ public class DiskSimulation {
                 .initializeWithPowerLaw(1e9, 
                         initialConditions.getRadius0(), 1.0);
         massFlowGrid = new MassFlowGrid(getRadialGrid());
+        temperatureGrid = new TemperatureGrid(getRadialGrid());
+        setupTemperatureGrid();
     }
 
     private void setupDensityGrid() {
@@ -57,6 +60,18 @@ public class DiskSimulation {
     	
     	tracerDensity.setValue(10, cellDensity);
     }*/
+    
+   //come back to this later and think about initializing it.
+    private void setupTemperatureGrid(){
+    	temperatureGrid = new TemperatureGrid(getRadialGrid());
+    	double temperatureFloor = 300.0;
+ 
+    	double density = initialConditions.getDensity0();
+    	double viscosity = 10e9;
+    	double keplerianFrequency = 1.0;
+    	temperatureGrid.CalculateTemperatureFloor(temperatureFloor);
+    	temperatureGrid.CalculateTemperature(density, viscosity, keplerianFrequency);
+    }
 
     public RadialGrid getRadialGrid() {
         return radialGrid;
