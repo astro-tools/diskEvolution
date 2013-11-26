@@ -15,8 +15,8 @@ public class GraphicalApplication extends JFrame {
     private InitialConditionsView initialConditionsPanel;
     private SimulationRunnerView runnerPanel;
     private ResultsView resultsPanel;
-/*    private TracerView tracerPanel;
-    private ResultsViewII resultsPanelII;*/
+/*    private TracerView tracerPanel;*/
+    private ResultsViewII resultsPanelII;
     
     public GraphicalApplication(Application simulation) {
         this.simulation = simulation;
@@ -39,9 +39,9 @@ public class GraphicalApplication extends JFrame {
         tabPane.add("Run Simulation", runnerPanel);
         resultsPanel = new ResultsView(runner);
         tabPane.add("Results", resultsPanel);
-//        tracerPanel = new TracerView(runner);
-/*        resultsPanelII = new ResultsViewII(runner);
-        tabPane.add("Temperature", resultsPanelII);*/
+//       tracerPanel = new TracerView(runner);
+        resultsPanelII = new ResultsViewII(runner);
+        tabPane.add("Temperature", resultsPanelII);
         add(tabPane, BorderLayout.CENTER);
     }
     

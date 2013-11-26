@@ -13,12 +13,12 @@ public class ResultsView extends JPanel implements Observer {
     private static final long serialVersionUID = 1L;
     private MassView massView;
     private DiskView diskView;
-    private SnapshotSelector selector;
+    private DensitySnapshotSelector selector;
     private DensitySnapshotCollection snapshotCollection;
 
     public ResultsView(SimulationRunner runner) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.snapshotCollection = runner.getSnapshotCollection();
+        this.snapshotCollection = runner.getDensitySnapshotCollection();
         setupDiskView();
         setupSnapshotSelector();
         setupMassView();
@@ -32,7 +32,7 @@ public class ResultsView extends JPanel implements Observer {
     }
 
     private void setupSnapshotSelector() {
-        selector = new SnapshotSelector(snapshotCollection);
+        selector = new DensitySnapshotSelector(snapshotCollection);
         add(selector.getComponent());
     }
 

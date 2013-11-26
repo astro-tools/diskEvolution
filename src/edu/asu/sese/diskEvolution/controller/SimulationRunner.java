@@ -6,6 +6,7 @@ import edu.asu.sese.diskEvolution.model.MassFlowCalculator;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.MassMover;
 import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
+import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
 import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
 import edu.asu.sese.diskEvolution.model.TracerFlowCalculator;
@@ -28,7 +29,8 @@ public class SimulationRunner {
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
-    private DensitySnapshotCollection snapshotCollection;
+    private DensitySnapshotCollection densitySnapshotCollection;
+    private TemperatureSnapshotCollection temperatureSnapshotCollection;
 /*    private TracerFlowCalculator tracerFlowCalculator;
     private TracerMover tracerMover;*/
 	
@@ -37,7 +39,8 @@ public class SimulationRunner {
 	    gridFactory = application.getGridFactory();
 	    initialConditions = application.getInitialConditions();
 	    simulationTimeStep = new TimeStep();
-	    snapshotCollection = new DensitySnapshotCollection();
+	    densitySnapshotCollection = new DensitySnapshotCollection();
+	    temperatureSnapshotCollection = new TemperatureSnapshotCollection();
 	    setDefaultParameters();
 	}
 
@@ -49,11 +52,13 @@ public class SimulationRunner {
 
 	public void run() {
 	    simulation = new DiskSimulation(gridFactory, initialConditions);
-	    snapshotCollection.setSimulation(simulation);
+	    densitySnapshotCollection.setSimulation(simulation);
+	    temperatureSnapshotCollection.setSimulation(simulation);
 	    createMassMover();
 	    createMassFlowCalculator();
         System.out.println("Running simulation...");
-        snapshotCollection.takeSnapshot();
+        densitySnapshotCollection.takeSnapshot();
+        temperatureSnapshotCollection.takeSnapshot();
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
@@ -70,7 +75,8 @@ public class SimulationRunner {
         	simulation.setCurrentTime(time);
         	
             if (time >= nextSnapshotTime) {
-                snapshotCollection.takeSnapshot();
+                densitySnapshotCollection.takeSnapshot();
+                temperatureSnapshotCollection.takeSnapshot();
                 nextSnapshotTime += snapshotInterval;
             }
         }
@@ -167,8 +173,11 @@ public class SimulationRunner {
         return gridFactory;
     }
 
-    public DensitySnapshotCollection getSnapshotCollection() {
-        return snapshotCollection;
+    public DensitySnapshotCollection getDensitySnapshotCollection() {
+        return densitySnapshotCollection;
     }
-
+    
+    public TemperatureSnapshotCollection getTemperatureSnapshotCollection() {
+        return temperatureSnapshotCollection;
+    }
 }

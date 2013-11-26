@@ -1,4 +1,4 @@
-/*
+
 package edu.asu.sese.diskEvolution.view;
 
 import java.util.Observable;
@@ -8,45 +8,38 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
 
 public class ResultsViewII extends JPanel implements Observer {
     private static final long serialVersionUID = 1L;
     private TemperatureView temperatureView;
-    private DiskView diskView;
-    private SnapshotSelector selector;
-    private SnapshotCollection snapshotCollection;
+    private TemperatureSnapshotSelector selector;
+    private TemperatureSnapshotCollection snapshotCollection;
 
     public ResultsViewII(SimulationRunner runner) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.snapshotCollection = runner.getSnapshotCollection();
-        setupDiskView();
+        this.snapshotCollection = runner.getTemperatureSnapshotCollection();
         setupSnapshotSelector();
         setupTemperatureView();
         selector.addObserver(this);
     }
 
 
-    private void setupDiskView() {
-        diskView = new DiskView(snapshotCollection);
-        add(diskView.getComponent());
-    }
-
-    private void setupSnapshotSelector() {
-        selector = new SnapshotSelector(snapshotCollection);
-        add(selector.getComponent());
-    }
-
     private void setupTemperatureView() {
         temperatureView = new TemperatureView(snapshotCollection);
         add(temperatureView.getComponent());
     }
 
+    private void setupSnapshotSelector() {
+        selector = new TemperatureSnapshotSelector(snapshotCollection);
+        add(selector.getComponent());
+    }
+
+
     @Override
     public void update(Observable o, Object arg) {
         int selected = selector.getIndex();
-        diskView.showGraph(selected);
+        temperatureView.showGraph(selected);
         System.out.println("slider changed: " + selected);
     }
 }
-*/
