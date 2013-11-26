@@ -52,9 +52,6 @@ public class TemperatureGrid extends MidpointGrid {
 	        keplerianFrequency /= radius;
 	        return keplerianFrequency;
 	    }
-		public RadialGrid getTemperatureGrid() {
-			return null;
-		}
 
 
 }

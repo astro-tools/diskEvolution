@@ -7,14 +7,14 @@ import java.util.Observer;
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
-public class SnapshotCollection {
+public class DensitySnapshotCollection {
 
     private static DensitySnapshot snapshot;
 	private DiskSimulation simulation;
     private List<DensitySnapshot> collection;
     private SimpleObservable observable;
 
-    public SnapshotCollection() {
+    public DensitySnapshotCollection() {
         collection = new ArrayList<DensitySnapshot>();
         observable = new SimpleObservable();
     }

@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 import edu.asu.sese.diskEvolution.controller.DiskSimulation;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.DensitySnapshot;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 import edu.asu.sese.diskEvolution.plot.ArrayGrid;
 import edu.asu.sese.diskEvolution.plot.PlotView;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
@@ -21,9 +21,9 @@ public class MassView implements Observer {
     private ArrayGrid timePlotGrid;
     private ArrayGrid massPlotGrid;
     private DensityGrid densityGrid;
-    private SnapshotCollection snapshotCollection;
+    private DensitySnapshotCollection snapshotCollection;
     
-    MassView(SnapshotCollection snapshotCollection) {
+    MassView(DensitySnapshotCollection snapshotCollection) {
     	this.snapshotCollection = snapshotCollection;
         createGraph();
         snapshotCollection.addObserver(this);

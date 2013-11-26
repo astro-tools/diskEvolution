@@ -9,15 +9,15 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 
 import edu.asu.sese.diskEvolution.model.DensitySnapshot;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 
 public class DiskView {
 
     private JPanel panel = new JPanel();
 	private Vector<DiskViewGraph> graphList = new Vector<DiskViewGraph>();
-	private SnapshotCollection snapshotCollection;
+	private DensitySnapshotCollection snapshotCollection;
     
-    public DiskView(SnapshotCollection snapshotCollection) {
+    public DiskView(DensitySnapshotCollection snapshotCollection) {
     	this.snapshotCollection = snapshotCollection;
         panel.setLayout(new BorderLayout());
     }

@@ -9,7 +9,7 @@ import edu.asu.sese.diskEvolution.util.GridFactory;
 
 public class SnapshotCollectionTest {
     
-    private SnapshotCollection collection;
+    private DensitySnapshotCollection collection;
     private DiskSimulation simulation;
 
     @Before
@@ -17,7 +17,7 @@ public class SnapshotCollectionTest {
         GridFactory factory = new GridFactory();
         InitialConditions initialConditions = new InitialConditions();
         simulation = new DiskSimulation(factory, initialConditions);
-        collection = new SnapshotCollection();
+        collection = new DensitySnapshotCollection();
         collection.setSimulation(simulation);
     }
         

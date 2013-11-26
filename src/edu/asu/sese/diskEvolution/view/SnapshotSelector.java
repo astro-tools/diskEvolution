@@ -9,16 +9,16 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 import edu.asu.sese.diskEvolution.util.SimpleObservable;
 
 public class SnapshotSelector implements Observer, ChangeListener {
     
     private JSlider slider;
-    private SnapshotCollection collection;
+    private DensitySnapshotCollection collection;
     private SimpleObservable observable = new SimpleObservable();
 
-    SnapshotSelector(SnapshotCollection collection) {
+    SnapshotSelector(DensitySnapshotCollection collection) {
         this.collection = collection;
         createSlider();
         collection.addObserver(this);

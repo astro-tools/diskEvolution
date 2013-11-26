@@ -7,14 +7,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 
 public class ResultsView extends JPanel implements Observer {
     private static final long serialVersionUID = 1L;
     private MassView massView;
     private DiskView diskView;
     private SnapshotSelector selector;
-    private SnapshotCollection snapshotCollection;
+    private DensitySnapshotCollection snapshotCollection;
 
     public ResultsView(SimulationRunner runner) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));

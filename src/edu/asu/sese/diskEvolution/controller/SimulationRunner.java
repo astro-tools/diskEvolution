@@ -5,7 +5,7 @@ import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowCalculator;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.MassMover;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
 import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
 import edu.asu.sese.diskEvolution.model.TracerFlowCalculator;
@@ -28,7 +28,7 @@ public class SimulationRunner {
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
-    private SnapshotCollection snapshotCollection;
+    private DensitySnapshotCollection snapshotCollection;
 /*    private TracerFlowCalculator tracerFlowCalculator;
     private TracerMover tracerMover;*/
 	
@@ -37,7 +37,7 @@ public class SimulationRunner {
 	    gridFactory = application.getGridFactory();
 	    initialConditions = application.getInitialConditions();
 	    simulationTimeStep = new TimeStep();
-	    snapshotCollection = new SnapshotCollection();
+	    snapshotCollection = new DensitySnapshotCollection();
 	    setDefaultParameters();
 	}
 
@@ -167,7 +167,7 @@ public class SimulationRunner {
         return gridFactory;
     }
 
-    public SnapshotCollection getSnapshotCollection() {
+    public DensitySnapshotCollection getSnapshotCollection() {
         return snapshotCollection;
     }
 

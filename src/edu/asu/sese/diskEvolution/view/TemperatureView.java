@@ -8,16 +8,16 @@ import javax.swing.JPanel;
 
 import org.jfree.chart.ChartPanel;
 
-import edu.asu.sese.diskEvolution.model.DensitySnapshot;
-import edu.asu.sese.diskEvolution.model.SnapshotCollection;
+import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
+import edu.asu.sese.diskEvolution.model.TemperatureSnapshot;
 
 public class TemperatureView {
 
     private JPanel panel = new JPanel();
 	private Vector<TemperatureViewGraph> graphList = new Vector<TemperatureViewGraph>();
-	private SnapshotCollection snapshotCollection;
+	private TemperatureSnapshotCollection snapshotCollection;
     
-    public TemperatureView(SnapshotCollection snapshotCollection) {
+    public TemperatureView(TemperatureSnapshotCollection snapshotCollection) {
     	this.snapshotCollection = snapshotCollection;
         panel.setLayout(new BorderLayout());
     }
@@ -45,7 +45,7 @@ public class TemperatureView {
 	}
 
 	private TemperatureViewGraph createGraph(int selected) {
-		DensitySnapshot snapshot = snapshotCollection.getSnapshot(selected);
+		TemperatureSnapshot snapshot = snapshotCollection.getSnapshot(selected);
 		TemperatureViewGraph graph = new TemperatureViewGraph(snapshot.getTemperatureGrid());
 		System.out.println("Create a graph");
 		if (graphList.size() <= selected) {
