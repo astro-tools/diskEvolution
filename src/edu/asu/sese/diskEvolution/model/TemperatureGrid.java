@@ -18,6 +18,7 @@ public class TemperatureGrid extends MidpointGrid {
 	    public TemperatureGrid(RadialGrid radialGrid) {
 	        super(radialGrid);
 	    }
+	        
 	    public TemperatureGrid(TemperatureGrid temperatureGrid) {
 	        super(temperatureGrid.radialGrid);
 	        for (int i = 0; i < zoneCount; ++i) {
@@ -25,12 +26,13 @@ public class TemperatureGrid extends MidpointGrid {
 	        }
 	    }
 	    
-	    public double CalculateTemperatureFloor(double temperatureFloor){
+/*	    public double CalculateTemperatureFloor(double temperatureFloor){
 	    	temperatureFloor = 300.0;
 	    	return temperatureFloor;
-	    }
-	    public double CalculateTemperature(double density,
+	    }*/
+	    public void CalculateTemperature(double density,
 	            double viscosity, double keplerianFrequency) {
+	    	for (int i = 0; i < zoneCount; i++){
 	    	double temperature;
 	    	keplerianFrequency = calculateKeplerianFrequency();
 	    	density = densityGrid.getValue(zoneCount);
@@ -39,8 +41,9 @@ public class TemperatureGrid extends MidpointGrid {
 	    	temperature *= 1.125 * Math.pow(keplerianFrequency, 2.0);
 	    	temperature /= PhysicalConstants.stefanBoltzmannConstant;
 	    	temperature = Math.pow(temperature, 0.25);
-	    	return temperature;
-	    	
+	    	setValue(i, temperature);
+	    	}
+	     	
 	    }
 
 		private double calculateKeplerianFrequency() {

@@ -64,12 +64,12 @@ public class DiskSimulation {
    //come back to this later and think about initializing it.
     private void setupTemperatureGrid(){
     	temperatureGrid = new TemperatureGrid(getRadialGrid());
-    	double temperatureFloor = 300.0;
+ /*   	double temperatureFloor = 300.0;*/
  
     	double density = initialConditions.getDensity0();
     	double viscosity = 10e9;
     	double keplerianFrequency = 1.0;
-    	temperatureGrid.CalculateTemperatureFloor(temperatureFloor);
+/*    	temperatureGrid.CalculateTemperatureFloor(temperatureFloor);*/
     	temperatureGrid.CalculateTemperature(density, viscosity, keplerianFrequency);
     }
 

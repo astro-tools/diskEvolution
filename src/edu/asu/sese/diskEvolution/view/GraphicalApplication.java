@@ -38,7 +38,7 @@ public class GraphicalApplication extends JFrame {
         runnerPanel = new SimulationRunnerView(runner);
         tabPane.add("Run Simulation", runnerPanel);
         resultsPanel = new ResultsView(runner);
-        tabPane.add("Results", resultsPanel);
+        tabPane.add("Surface Density", resultsPanel);
 //       tracerPanel = new TracerView(runner);
         resultsPanelII = new ResultsViewII(runner);
         tabPane.add("Temperature", resultsPanelII);
