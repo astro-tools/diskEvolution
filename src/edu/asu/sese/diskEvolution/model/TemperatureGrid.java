@@ -45,16 +45,22 @@ public class TemperatureGrid extends MidpointGrid {
 	    	}
 	     	
 	    }
+	    
+	   
 
-		private double calculateKeplerianFrequency() {
-			double radius; 
+		private void calculateKeplerianFrequency(double radius) {
+			for (int i = 0; i < zoneCount; i++){
 			double keplerianFrequency; 
 			radius = radialGrid.getMidpoint(zoneCount);
 	        keplerianFrequency = PhysicalConstants.gravitationalConstant *
 	        		PhysicalConstants.earthMass;
 	        keplerianFrequency /= radius;
-	        return keplerianFrequency;
+	        setValue(i, keplerianFrequency);
+			}
 	    }
-
+		
+		public double getKeplerianFrequency(){ 
+			return KeplerianFrequency();
+		}
 
 }
