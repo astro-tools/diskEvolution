@@ -66,11 +66,9 @@ public class DiskSimulation {
     	temperatureGrid = new TemperatureGrid(getRadialGrid());
  /*   	double temperatureFloor = 300.0;*/
  
-    	double density = initialConditions.getDensity0();
-    	double viscosity = 10e9;
-    	double keplerianFrequency = 1.0;
+    	
 /*    	temperatureGrid.CalculateTemperatureFloor(temperatureFloor);*/
-    	temperatureGrid.CalculateTemperature(density, viscosity, keplerianFrequency);
+    	temperatureGrid.CalculateTemperature();
     }
 
     public RadialGrid getRadialGrid() {

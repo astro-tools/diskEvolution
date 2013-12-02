@@ -30,37 +30,27 @@ public class TemperatureGrid extends MidpointGrid {
 	    	temperatureFloor = 300.0;
 	    	return temperatureFloor;
 	    }*/
-	    public void CalculateTemperature(double density,
-	            double viscosity, double keplerianFrequency) {
+	    public void CalculateTemperature() {
 	    	for (int i = 0; i < zoneCount; i++){
 	    	double temperature;
-	    	keplerianFrequency = calculateKeplerianFrequency();
-	    	density = densityGrid.getValue(zoneCount);
-	    	viscosity = viscosityGrid.getValue(zoneCount);
-	    	temperature = density * viscosity;
-	    	temperature *= 1.125 * Math.pow(keplerianFrequency, 2.0);
+	    	double radius;
+	    	double keplerianFrequency;
+	    	radius = radialGrid.getMidpoint(i);
+	        keplerianFrequency = PhysicalConstants.gravitationalConstant *
+	        		PhysicalConstants.earthMass;
+	        keplerianFrequency /= Math.pow(radius, 3.0);
+	    	//density = densityGrid.getValue(i);
+	    	//viscosity = viscosityGrid.getValue(i);
+	    	temperature = densityGrid.getValue(i) * viscosityGrid.getValue(i);
+	    	temperature *= 1.125 * keplerianFrequency;
 	    	temperature /= PhysicalConstants.stefanBoltzmannConstant;
 	    	temperature = Math.pow(temperature, 0.25);
 	    	setValue(i, temperature);
 	    	}
 	     	
 	    }
-	    
+	}
 	   
 
-		private void calculateKeplerianFrequency(double radius) {
-			for (int i = 0; i < zoneCount; i++){
-			double keplerianFrequency; 
-			radius = radialGrid.getMidpoint(zoneCount);
-	        keplerianFrequency = PhysicalConstants.gravitationalConstant *
-	        		PhysicalConstants.earthMass;
-	        keplerianFrequency /= radius;
-	        setValue(i, keplerianFrequency);
-			}
-	    }
 		
-		public double getKeplerianFrequency(){ 
-			return KeplerianFrequency();
-		}
-
-}
+		
