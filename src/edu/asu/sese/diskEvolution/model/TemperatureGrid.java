@@ -7,18 +7,21 @@ import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.model.DensityGrid;
 
 
-public class TemperatureGrid extends MidpointGrid {
+public class TemperatureGrid extends MidpointGrid{
 	   private DensityGrid densityGrid;
 	   private ViscosityGrid viscosityGrid;
+	   private RadialGrid radialGrid;
 	   private double temperatureFloor;
+	   
 
-	    public double getTemperatureFloor() {
-	        return temperatureFloor;
-	    }
-	    public TemperatureGrid(RadialGrid radialGrid) {
-	        super(radialGrid);
-	    }
-	        
+
+//	    public double getTemperatureFloor() {
+//	        return temperatureFloor;
+//	    }
+	   public TemperatureGrid(RadialGrid radialGrid) {
+		   super(radialGrid);
+        }
+
 	    public TemperatureGrid(TemperatureGrid temperatureGrid) {
 	        super(temperatureGrid.radialGrid);
 	        for (int i = 0; i < zoneCount; ++i) {
@@ -35,13 +38,13 @@ public class TemperatureGrid extends MidpointGrid {
 	    	double temperature;
 	    	double radius;
 	    	double keplerianFrequency;
+	    	double density = densityGrid.getValue(i);
+			double viscosity = viscosityGrid.getValue(i);
 	    	radius = radialGrid.getMidpoint(i);
 	        keplerianFrequency = PhysicalConstants.gravitationalConstant *
 	        		PhysicalConstants.earthMass;
 	        keplerianFrequency /= Math.pow(radius, 3.0);
-	    	//density = densityGrid.getValue(i);
-	    	//viscosity = viscosityGrid.getValue(i);
-	    	temperature = densityGrid.getValue(i) * viscosityGrid.getValue(i);
+	    	temperature =  density * viscosity;
 	    	temperature *= 1.125 * keplerianFrequency;
 	    	temperature /= PhysicalConstants.stefanBoltzmannConstant;
 	    	temperature = Math.pow(temperature, 0.25);

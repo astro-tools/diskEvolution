@@ -1,5 +1,6 @@
 package edu.asu.sese.diskEvolution.util;
 
+import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.plot.GridInterface;
 
 
@@ -15,7 +16,7 @@ public class MidpointGrid implements GridInterface {
         value = new double[zoneCount];
     }
 
-    @Override
+	@Override
     public int getCount() {
         return zoneCount;
     }
