@@ -62,7 +62,7 @@ public class DiskSimulation {
     
    //come back to this later and think about initializing it.
     private void setupTemperatureGrid(){
-    	temperatureGrid = new TemperatureGrid(temperatureGrid.radialGrid, temperatureGrid.densityGrid, temperatureGrid.viscosityGrid);
+    	temperatureGrid = new TemperatureGrid(radialGrid, densityGrid, viscosityGrid);
  /*   	double temperatureFloor = 300.0;*/
  
     	

@@ -39,11 +39,10 @@ public class TemperatureGrid extends MidpointGrid{
 	    public void CalculateTemperature() {
 	    	for (int i = 0; i < zoneCount; i++){
 	    	double temperature;
-	    	double radius;
+	    	double radius = radialGrid.getMidpoint(i);
 	    	double keplerianFrequency;
 	    	double density = densityGrid.getValue(i);
 			double viscosity = viscosityGrid.getValue(i);
-	    	radius = radialGrid.getMidpoint(i);
 	        keplerianFrequency = PhysicalConstants.gravitationalConstant *
 	        		PhysicalConstants.earthMass;
 	        keplerianFrequency /= Math.pow(radius, 3.0);
