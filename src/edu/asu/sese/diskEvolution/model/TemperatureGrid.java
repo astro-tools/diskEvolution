@@ -8,9 +8,9 @@ import edu.asu.sese.diskEvolution.model.DensityGrid;
 
 
 public class TemperatureGrid extends MidpointGrid{
-	   private DensityGrid densityGrid;
-	   private ViscosityGrid viscosityGrid;
-	   private RadialGrid radialGrid;
+	   public DensityGrid densityGrid;
+	   public ViscosityGrid viscosityGrid;
+	   public RadialGrid radialGrid;
 	   private double temperatureFloor;
 	   
 
@@ -18,12 +18,15 @@ public class TemperatureGrid extends MidpointGrid{
 //	    public double getTemperatureFloor() {
 //	        return temperatureFloor;
 //	    }
-	   public TemperatureGrid(RadialGrid radialGrid) {
-		   super(radialGrid);
-        }
+	   public TemperatureGrid(RadialGrid radialGrid, DensityGrid densityGrid, ViscosityGrid viscosityGrid) {
+           super(radialGrid);
+        this.densityGrid = densityGrid;
+        this.viscosityGrid = viscosityGrid;
+}
+
 
 	    public TemperatureGrid(TemperatureGrid temperatureGrid) {
-	        super(temperatureGrid.radialGrid);
+	        super(temperatureGrid.radialGrid,temperatureGrid.densityGrid, temperatureGrid.viscosityGrid);
 	        for (int i = 0; i < zoneCount; ++i) {
 	            setValue(i, temperatureGrid.getValue(i));
 	        }

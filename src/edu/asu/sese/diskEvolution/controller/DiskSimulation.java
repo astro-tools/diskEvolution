@@ -38,7 +38,6 @@ public class DiskSimulation {
                 .initializeWithPowerLaw(1e9, 
                         initialConditions.getRadius0(), 1.0);
         massFlowGrid = new MassFlowGrid(getRadialGrid());
-        temperatureGrid = new TemperatureGrid(getRadialGrid());
         setupTemperatureGrid();
     }
 
@@ -63,7 +62,7 @@ public class DiskSimulation {
     
    //come back to this later and think about initializing it.
     private void setupTemperatureGrid(){
-    	temperatureGrid = new TemperatureGrid(getRadialGrid());
+    	temperatureGrid = new TemperatureGrid(temperatureGrid.radialGrid, temperatureGrid.densityGrid, temperatureGrid.viscosityGrid);
  /*   	double temperatureFloor = 300.0;*/
  
     	
