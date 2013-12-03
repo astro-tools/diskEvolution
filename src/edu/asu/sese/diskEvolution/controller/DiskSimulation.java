@@ -94,8 +94,8 @@ public class DiskSimulation {
         currentTime = time;
     }
 
-	public RadialGrid getTemperatureGrid() {
-		return null;
+	public TemperatureGrid getTemperatureGrid() {
+		return temperatureGrid;
 	}
 
 /*	public TracerDensityGrid getTracerDensityGrid() {

@@ -1,6 +1,7 @@
 package edu.asu.sese.diskEvolution.util;
 
 import edu.asu.sese.diskEvolution.model.DensityGrid;
+import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.plot.GridInterface;
 
 
@@ -15,6 +16,11 @@ public class MidpointGrid implements GridInterface {
         zoneCount = radialGrid.getIntervalCount();
         value = new double[zoneCount];
     }
+
+	public MidpointGrid(RadialGrid radialGrid, DensityGrid densityGrid,
+			ViscosityGrid viscosityGrid) {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
     public int getCount() {
