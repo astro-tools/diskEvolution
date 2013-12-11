@@ -20,6 +20,7 @@ public class TemperatureGrid extends MidpointGrid{
 //	    }
 	   public TemperatureGrid(RadialGrid radialGrid, DensityGrid densityGrid, ViscosityGrid viscosityGrid) {
            super(radialGrid);
+        this.radialGrid = radialGrid;
         this.densityGrid = densityGrid;
         this.viscosityGrid = viscosityGrid;
 }
