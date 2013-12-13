@@ -19,7 +19,7 @@ public class MidpointGrid implements GridInterface {
 
 	public MidpointGrid(RadialGrid radialGrid, DensityGrid densityGrid,
 			ViscosityGrid viscosityGrid) {
-		// TODO Auto-generated constructor stub
+		this(radialGrid);
 	}
 
 	@Override
