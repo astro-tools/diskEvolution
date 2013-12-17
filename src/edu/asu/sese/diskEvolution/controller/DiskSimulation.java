@@ -38,7 +38,7 @@ public class DiskSimulation {
                 .initializeWithPowerLaw(1e9, 
                         initialConditions.getRadius0(), 1.0);
         massFlowGrid = new MassFlowGrid(getRadialGrid());
-        setupTemperatureGrid();
+        temperatureGrid = new TemperatureGrid(getRadialGrid());
     }
 
     private void setupDensityGrid() {
@@ -59,16 +59,6 @@ public class DiskSimulation {
     	
     	tracerDensity.setValue(10, cellDensity);
     }*/
-    
-   //come back to this later and think about initializing it.
-    private void setupTemperatureGrid(){
-    	temperatureGrid = new TemperatureGrid(radialGrid, densityGrid, viscosityGrid);
- /*   	double temperatureFloor = 300.0;*/
- 
-    	
-/*    	temperatureGrid.CalculateTemperatureFloor(temperatureFloor);*/
-    	temperatureGrid.CalculateTemperature();
-    }
 
     public RadialGrid getRadialGrid() {
         return radialGrid;

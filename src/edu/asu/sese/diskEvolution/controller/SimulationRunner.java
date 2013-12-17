@@ -6,6 +6,8 @@ import edu.asu.sese.diskEvolution.model.MassFlowCalculator;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.MassMover;
 import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
+import edu.asu.sese.diskEvolution.model.TemperatureCalculator;
+import edu.asu.sese.diskEvolution.model.TemperatureGrid;
 import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
 import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
@@ -31,6 +33,7 @@ public class SimulationRunner {
     private MassFlowCalculator massFlowCalculator;
     private DensitySnapshotCollection densitySnapshotCollection;
     private TemperatureSnapshotCollection temperatureSnapshotCollection;
+    private TemperatureCalculator temperatureCalculator;
 /*    private TracerFlowCalculator tracerFlowCalculator;
     private TracerMover tracerMover;*/
 	
@@ -56,9 +59,12 @@ public class SimulationRunner {
 	    temperatureSnapshotCollection.setSimulation(simulation);
 	    createMassMover();
 	    createMassFlowCalculator();
+	    createTemperatureCalculator();
         System.out.println("Running simulation...");
         densitySnapshotCollection.takeSnapshot();
+    	temperatureCalculator.calculate();
         temperatureSnapshotCollection.takeSnapshot();
+
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
@@ -73,6 +79,7 @@ public class SimulationRunner {
         	massMover.moveMass();
         	time +=  timeStep;
         	simulation.setCurrentTime(time);
+        	temperatureCalculator.calculate();
         	
             if (time >= nextSnapshotTime) {
                 densitySnapshotCollection.takeSnapshot();
@@ -81,6 +88,14 @@ public class SimulationRunner {
             }
         }
     }
+	
+	private void createTemperatureCalculator() {
+        TemperatureGrid temperatureGrid = simulation.getTemperatureGrid();
+        RadialGrid radialGrid = simulation.getRadialGrid();
+        DensityGrid densityGrid = simulation.getDensityGrid();
+        ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
+		temperatureCalculator = new TemperatureCalculator(temperatureGrid, radialGrid, densityGrid, viscosityGrid);
+	}
 
     private void createMassFlowCalculator() {
         MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();

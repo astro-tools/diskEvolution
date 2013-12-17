@@ -1,7 +1,5 @@
 package edu.asu.sese.diskEvolution.util;
 
-import edu.asu.sese.diskEvolution.model.DensityGrid;
-import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.plot.GridInterface;
 
 
@@ -9,18 +7,13 @@ public class MidpointGrid implements GridInterface {
 
     protected int zoneCount;
     private double[] value;
-    protected RadialGrid radialGrid;
+    protected final RadialGrid radialGrid;
 
     public MidpointGrid(RadialGrid radialGrid) {
         this.radialGrid = radialGrid;
         zoneCount = radialGrid.getIntervalCount();
         value = new double[zoneCount];
     }
-
-	public MidpointGrid(RadialGrid radialGrid, DensityGrid densityGrid,
-			ViscosityGrid viscosityGrid) {
-		this(radialGrid);
-	}
 
 	@Override
     public int getCount() {
@@ -34,7 +27,6 @@ public class MidpointGrid implements GridInterface {
     
     public void setValue(int i, double v) {
          value[i] = v;
-         
     }
 
     public void initializeWithPowerLaw(double value0, double radius0, 
