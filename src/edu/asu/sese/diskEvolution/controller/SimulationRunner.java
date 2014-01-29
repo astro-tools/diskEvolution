@@ -14,7 +14,9 @@ import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
 import edu.asu.sese.diskEvolution.model.TracerFlowCalculator;
 import edu.asu.sese.diskEvolution.model.TracerFlowGrid;
 import edu.asu.sese.diskEvolution.model.TracerMover;
+import edu.asu.sese.diskEvolution.model.ViscosityCalculator;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
+import edu.asu.sese.diskEvolution.model.ViscositySnapshotCollection;
 import edu.asu.sese.diskEvolution.util.GridFactory;
 import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
@@ -34,6 +36,8 @@ public class SimulationRunner {
     private DensitySnapshotCollection densitySnapshotCollection;
     private TemperatureSnapshotCollection temperatureSnapshotCollection;
     private TemperatureCalculator temperatureCalculator;
+    private ViscositySnapshotCollection viscositySnapshotCollection;
+    private ViscosityCalculator viscosityCalculator;
 /*    private TracerFlowCalculator tracerFlowCalculator;
     private TracerMover tracerMover;*/
 	
@@ -44,6 +48,7 @@ public class SimulationRunner {
 	    simulationTimeStep = new TimeStep();
 	    densitySnapshotCollection = new DensitySnapshotCollection();
 	    temperatureSnapshotCollection = new TemperatureSnapshotCollection();
+	    viscositySnapshotCollection = new ViscositySnapshotCollection();
 	    setDefaultParameters();
 	}
 
@@ -57,13 +62,17 @@ public class SimulationRunner {
 	    simulation = new DiskSimulation(gridFactory, initialConditions);
 	    densitySnapshotCollection.setSimulation(simulation);
 	    temperatureSnapshotCollection.setSimulation(simulation);
+	    viscositySnapshotCollection.setSimulation(simulation);
 	    createMassMover();
 	    createMassFlowCalculator();
 	    createTemperatureCalculator();
+	    createViscosityCalculator();
         System.out.println("Running simulation...");
         densitySnapshotCollection.takeSnapshot();
     	temperatureCalculator.calculate();
         temperatureSnapshotCollection.takeSnapshot();
+        viscosityCalculator.calculate();
+        viscositySnapshotCollection.takeSnapshot();
 
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
@@ -80,10 +89,12 @@ public class SimulationRunner {
         	time +=  timeStep;
         	simulation.setCurrentTime(time);
         	temperatureCalculator.calculate();
+        	viscosityCalculator.calculate();
         	
             if (time >= nextSnapshotTime) {
                 densitySnapshotCollection.takeSnapshot();
                 temperatureSnapshotCollection.takeSnapshot();
+                viscositySnapshotCollection.takeSnapshot();
                 nextSnapshotTime += snapshotInterval;
             }
         }
@@ -97,6 +108,13 @@ public class SimulationRunner {
 		temperatureCalculator = new TemperatureCalculator(temperatureGrid, radialGrid, densityGrid, viscosityGrid);
 	}
 
+	private void createViscosityCalculator() {
+        ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
+        RadialGrid radialGrid = simulation.getRadialGrid();
+        DensityGrid densityGrid = simulation.getDensityGrid();
+        TemperatureGrid temperatureGrid = simulation.getTemperatureGrid();
+		viscosityCalculator = new ViscosityCalculator(viscosityGrid, radialGrid, densityGrid, temperatureGrid);
+	}
     private void createMassFlowCalculator() {
         MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
@@ -194,5 +212,9 @@ public class SimulationRunner {
     
     public TemperatureSnapshotCollection getTemperatureSnapshotCollection() {
         return temperatureSnapshotCollection;
+    }
+    
+    public ViscositySnapshotCollection getViscositySnapshotCollection() {
+        return viscositySnapshotCollection;
     }
 }

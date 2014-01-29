@@ -9,4 +9,11 @@ public class ViscosityGrid extends MidpointGrid {
         super(radialGrid);
     }
 
+    public ViscosityGrid(ViscosityGrid viscosityGrid) {
+		super(viscosityGrid.radialGrid);
+		for (int i = 0; i < zoneCount; ++i) {
+			setValue(i, viscosityGrid.getValue(i));
+		}
+	}
 }
+		

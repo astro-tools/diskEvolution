@@ -11,4 +11,7 @@ public class PhysicalConstants {
     public static double gravitationalConstant = 6.67384e-8;
     public static double earthMass = 5.972e27;
     public static double stefanBoltzmannConstant = 5.67e-5;
+    public static double alpha = 10e-2;
+    public static double molecularMass = 2.3;
+    
 }
