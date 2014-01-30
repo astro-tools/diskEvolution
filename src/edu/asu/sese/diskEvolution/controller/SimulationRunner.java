@@ -105,7 +105,7 @@ public class SimulationRunner {
         RadialGrid radialGrid = simulation.getRadialGrid();
         DensityGrid densityGrid = simulation.getDensityGrid();
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
-		temperatureCalculator = new TemperatureCalculator(temperatureGrid, radialGrid, densityGrid, viscosityGrid);
+		temperatureCalculator = new TemperatureCalculator(temperatureGrid, radialGrid, densityGrid);
 	}
 
 	private void createViscosityCalculator() {

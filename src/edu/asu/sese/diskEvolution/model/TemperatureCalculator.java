@@ -10,15 +10,14 @@ public class TemperatureCalculator {
 	 private TemperatureGrid temperatureGrid;
 	 private RadialGrid radialGrid;
 	 private DensityGrid densityGrid;
-	 private ViscosityGrid viscosityGrid;
+	 
 
 	    public TemperatureCalculator(TemperatureGrid temperatureGrid,
-	            RadialGrid radialGrid, DensityGrid densityGrid,
-	            ViscosityGrid viscosityGrid) {
+	            RadialGrid radialGrid, DensityGrid densityGrid) {
 	        this.temperatureGrid = temperatureGrid;
 	        this.radialGrid = radialGrid;
 	        this.densityGrid = densityGrid;
-	        this.viscosityGrid = viscosityGrid;
+	        
 	    }
 	    public void calculate() {
 	        int count = temperatureGrid.getCount();
@@ -27,13 +26,12 @@ public class TemperatureCalculator {
 				double radius = radialGrid.getMidpoint(i);
 				double keplerianFrequency;
 				double density = densityGrid.getValue(i);
-				double viscosity = viscosityGrid.getValue(i);
 				keplerianFrequency = PhysicalConstants.gravitationalConstant
 						* PhysicalConstants.earthMass;
 				keplerianFrequency /= Math.pow(radius, 3.0);
-				temperature = density * viscosity;
-				temperature *= 1.125 * keplerianFrequency;
-				temperature /= PhysicalConstants.stefanBoltzmannConstant;
+				temperature = density * Math.pow(keplerianFrequency, 0.5);
+				temperature *= 1.125 * PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant;
+				temperature /= PhysicalConstants.stefanBoltzmannConstant * PhysicalConstants.molecularMass;
 				temperature = Math.pow(temperature, 0.25);
 				temperatureGrid.setValue(i, temperature);
 	        }
