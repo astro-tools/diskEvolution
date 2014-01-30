@@ -32,7 +32,7 @@ public class TemperatureCalculator {
 				temperature = density * Math.pow(keplerianFrequency, 0.5);
 				temperature *= 1.125 * PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant;
 				temperature /= PhysicalConstants.stefanBoltzmannConstant * PhysicalConstants.molecularMass;
-				temperature = Math.pow(temperature, 0.25);
+				temperature = Math.pow(temperature, 0.33);
 				temperatureGrid.setValue(i, temperature);
 	        }
 	    }
