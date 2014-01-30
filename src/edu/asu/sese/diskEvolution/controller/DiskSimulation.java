@@ -35,7 +35,7 @@ public class DiskSimulation {
         setupDensityGrid();
         viscosityGrid = new ViscosityGrid(getRadialGrid());
         viscosityGrid.initializeWithPowerLaw(1e9, 
-                initialConditions.getRadius0(), 1.0);
+              initialConditions.getRadius0(), 1.0);
         massFlowGrid = new MassFlowGrid(getRadialGrid());
         temperatureGrid = new TemperatureGrid(getRadialGrid());
     }

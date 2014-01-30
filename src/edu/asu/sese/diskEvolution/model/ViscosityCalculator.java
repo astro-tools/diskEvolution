@@ -28,10 +28,9 @@ public class ViscosityCalculator {
 	        	double radius = radialGrid.getMidpoint(i);
 				double keplerianFrequency;
 				double temperature = temperatureGrid.getValue(i);
-				keplerianFrequency = PhysicalConstants.gravitationalConstant
-						* PhysicalConstants.earthMass;
-				keplerianFrequency /= Math.pow(radius, 3.0);
-				viscosity = PhysicalConstants.alpha * PhysicalConstants.stefanBoltzmannConstant * temperature;
+				keplerianFrequency = Math.pow(PhysicalConstants.gravitationalConstant * PhysicalConstants.earthMass, 1.0/2.0);
+				keplerianFrequency /= Math.pow(radius, 3.0/2.0);
+				viscosity = PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant * temperature;
 				viscosity /= PhysicalConstants.molecularMass * keplerianFrequency;
 				viscosityGrid.setValue(i, viscosity);
 	        }

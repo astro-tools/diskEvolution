@@ -27,7 +27,7 @@ public class ViscosityViewGraph {
         String rangeLabel = "V";
         domainUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
                 PhysicalConstants.earthRadiusInCm);
-        rangeUnit = new Unit("v", "v", 1.0);
+        rangeUnit = new Unit("V", "cm^2/s", 1.0);
         plot = new PlotView(radialGrid, viscosityGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
         plot.makeRangeAxisLogarithmic();
 
