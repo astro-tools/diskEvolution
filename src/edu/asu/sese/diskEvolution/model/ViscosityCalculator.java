@@ -23,7 +23,7 @@ public class ViscosityCalculator {
 	    }
 	    public void calculate() {
 	        int count = viscosityGrid.getCount();
-	        for (int i=1; i<count-1; ++i) {
+	        for (int i=1; i<count; ++i) {
 	        	double viscosity;
 	        	double radius = radialGrid.getMidpoint(i);
 				double keplerianFrequency;

@@ -21,7 +21,7 @@ public class TemperatureCalculator {
 	    }
 	    public void calculate() {
 	        int count = temperatureGrid.getCount();
-	        for (int i=1; i<count-1; ++i) {
+	        for (int i=1; i<count; ++i) {
 	        	double temperature;
 				double radius = radialGrid.getMidpoint(i);
 				double keplerianFrequency;
