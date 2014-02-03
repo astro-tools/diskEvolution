@@ -10,28 +10,29 @@ public class ViscosityCalculator {
 	 private ViscosityGrid viscosityGrid;
 	 private RadialGrid radialGrid;
 	 private DensityGrid densityGrid;
-	 private TemperatureGrid temperatureGrid;
+	 //private TemperatureGrid temperatureGrid;
 
 	    public ViscosityCalculator(ViscosityGrid viscosityGrid,
-	            RadialGrid radialGrid, DensityGrid densityGrid,
-	            TemperatureGrid temperatureGrid) {
+	            RadialGrid radialGrid, DensityGrid densityGrid) {
 	    	this.viscosityGrid = viscosityGrid;
 	        this.radialGrid = radialGrid;
 	        this.densityGrid = densityGrid;
-	        this.temperatureGrid = temperatureGrid;
+	        //this.temperatureGrid = temperatureGrid;
 	        
 	    }
 	    public void calculate() {
 	        int count = viscosityGrid.getCount();
-	        for (int i=1; i<count; ++i) {
+	        for (int i=1; i<count-1; ++i) {
 	        	double viscosity;
 	        	double radius = radialGrid.getMidpoint(i);
+	        	double density = densityGrid.getValue(i);
 				double keplerianFrequency;
-				double temperature = temperatureGrid.getValue(i);
+				//double temperature = temperatureGrid.getValue(i);
 				keplerianFrequency = PhysicalConstants.gravitationalConstant * PhysicalConstants.earthMass;
 				keplerianFrequency /= Math.pow(radius, 3.0);
-				viscosity = PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant * temperature;
-				viscosity /= PhysicalConstants.molecularMass * Math.pow(keplerianFrequency, 0.5);
+				keplerianFrequency = Math.pow(keplerianFrequency, 0.5);
+				viscosity = Math.pow(PhysicalConstants.alpha, 3.0) * 1.125 * density * Math.pow(PhysicalConstants.BoltzmannConstant, 4.0);
+				viscosity *= Math.pow(PhysicalConstants.molecularMass, -4.0) * Math.pow(keplerianFrequency, -2.0) * Math.pow(PhysicalConstants.stefanBoltzmannConstant, -1.0);
 				viscosityGrid.setValue(i, viscosity);
 	        }
 	    }

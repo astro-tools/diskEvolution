@@ -21,7 +21,7 @@ public class TemperatureCalculator {
 	    }
 	    public void calculate() {
 	        int count = temperatureGrid.getCount();
-	        for (int i=1; i<count; ++i) {
+	        for (int i=1; i<count-1; ++i) {
 	        	double temperature;
 				double radius = radialGrid.getMidpoint(i);
 				double keplerianFrequency;
@@ -29,8 +29,8 @@ public class TemperatureCalculator {
 				keplerianFrequency = PhysicalConstants.gravitationalConstant
 						* PhysicalConstants.earthMass;
 				keplerianFrequency /= Math.pow(radius, 3.0);
-				temperature = density * Math.pow(keplerianFrequency, 0.5);
-				temperature *= 1.125 * PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant;
+				keplerianFrequency = Math.pow(keplerianFrequency, 0.5);
+				temperature = 1.125 * density * keplerianFrequency * PhysicalConstants.alpha * PhysicalConstants.BoltzmannConstant;
 				temperature /= PhysicalConstants.stefanBoltzmannConstant * PhysicalConstants.molecularMass;
 				temperature = Math.pow(temperature, 0.33);
 				temperatureGrid.setValue(i, temperature);

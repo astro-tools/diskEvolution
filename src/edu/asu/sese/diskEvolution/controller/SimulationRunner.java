@@ -104,7 +104,6 @@ public class SimulationRunner {
         TemperatureGrid temperatureGrid = simulation.getTemperatureGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
         DensityGrid densityGrid = simulation.getDensityGrid();
-        ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
 		temperatureCalculator = new TemperatureCalculator(temperatureGrid, radialGrid, densityGrid);
 	}
 
@@ -112,8 +111,7 @@ public class SimulationRunner {
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
         DensityGrid densityGrid = simulation.getDensityGrid();
-        TemperatureGrid temperatureGrid = simulation.getTemperatureGrid();
-		viscosityCalculator = new ViscosityCalculator(viscosityGrid, radialGrid, densityGrid, temperatureGrid);
+		viscosityCalculator = new ViscosityCalculator(viscosityGrid, radialGrid, densityGrid);
 	}
     private void createMassFlowCalculator() {
         MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
