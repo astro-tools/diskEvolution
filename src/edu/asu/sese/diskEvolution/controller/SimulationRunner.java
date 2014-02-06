@@ -81,7 +81,7 @@ public class SimulationRunner {
         	
         	DensityGrid densityGrid = simulation.getDensityGrid();
             MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
-       //     simulationTimeStep.update(densityGrid, massFlowGrid);
+        //    simulationTimeStep.update(densityGrid, massFlowGrid);
             
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
