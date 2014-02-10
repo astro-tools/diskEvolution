@@ -4,10 +4,11 @@ import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.TemperatureGrid;
-/*import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
-import edu.asu.sese.diskEvolution.model.TracerFlowGrid;*/
+import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
+import edu.asu.sese.diskEvolution.model.TracerFlowGrid;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
+import edu.asu.sese.diskEvolution.util.PhysicalConstants;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class DiskSimulation {
@@ -20,8 +21,8 @@ public class DiskSimulation {
     private InitialConditions initialConditions;
     private TemperatureGrid temperatureGrid;
     private double currentTime;
-/*    private TracerFlowGrid tracerFlowGrid;*/
- /*    private TracerDensityGrid tracerDensity;*/
+    private TracerFlowGrid tracerFlowGrid;
+     private TracerDensityGrid tracerDensity;
     
     public DiskSimulation(GridFactory factory, 
             InitialConditions initialConditions) {
@@ -51,13 +52,13 @@ public class DiskSimulation {
         densityGrid.initializeWithPowerLaw(density0, radius0, exponent, rin, rout);
     }
     
-/*    private void setupTracerDensityGrid(){
+    private void setupTracerDensityGrid(){
     	tracerDensity = new TracerDensityGrid(radialGrid);
     	double cellDensity = 0.01 * PhysicalConstants.lunarMass
     			/densityGrid.getArea(10);
     	
     	tracerDensity.setValue(10, cellDensity);
-    }*/
+    }
 
     public RadialGrid getRadialGrid() {
         return radialGrid;
@@ -87,11 +88,11 @@ public class DiskSimulation {
 		return temperatureGrid;
 	}
 
-/*	public TracerDensityGrid getTracerDensityGrid() {
+	public TracerDensityGrid getTracerDensityGrid() {
 		return tracerDensity;
 	}
 	public TracerFlowGrid getTracerFlowGrid() {
 		return tracerFlowGrid;
 	}
-*/
+
 }

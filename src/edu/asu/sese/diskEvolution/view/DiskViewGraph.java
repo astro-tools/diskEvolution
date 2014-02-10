@@ -27,9 +27,10 @@ public class DiskViewGraph {
         String rangeLabel = "Σ";
         domainUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
                 PhysicalConstants.earthRadiusInCm);
-        rangeUnit = new Unit("g/cm²", "g/cm²", 1.0);
+        rangeUnit = new Unit("g/cm²", "g/cm²", 1.0);      
         plot = new PlotView(radialGrid, densityGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
         plot.makeRangeAxisLogarithmic();
+   
 
     }
 

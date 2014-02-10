@@ -1,4 +1,4 @@
-/*package edu.asu.sese.diskEvolution.view;
+package edu.asu.sese.diskEvolution.view;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -18,7 +18,7 @@ public class TracerView extends JPanel implements Observer {
 
     public TracerView(SimulationRunner runner) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.snapshotCollection = runner.getSnapshotCollection();
+        this.snapshotCollection = runner.getDensitySnapshotCollection();
         setupDiskView();
         setupSnapshotSelector();
         setupMassView();
@@ -47,4 +47,3 @@ public class TracerView extends JPanel implements Observer {
         System.out.println("slider changed: " + selected);
     }
 }
-*/

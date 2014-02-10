@@ -130,5 +130,6 @@ public class PlotView {
         chartTheme.setItemLabelPaint(color);
         chartTheme.apply(chart);
     }
+
     
 }

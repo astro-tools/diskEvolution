@@ -29,7 +29,7 @@ public class SimulationRunner {
     private GridFactory gridFactory;
     private Application application;
     private DiskSimulation simulation;
-/*    private DiskSimulation tracerSimulation;*/  
+    private DiskSimulation tracerSimulation;
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
@@ -38,8 +38,8 @@ public class SimulationRunner {
     private TemperatureCalculator temperatureCalculator;
     private ViscositySnapshotCollection viscositySnapshotCollection;
     private ViscosityCalculator viscosityCalculator;
-/*    private TracerFlowCalculator tracerFlowCalculator;
-    private TracerMover tracerMover;*/
+    private TracerFlowCalculator tracerFlowCalculator;
+    private TracerMover tracerMover;
 	
 	public SimulationRunner(Application diskSimulation) {
 	    this.application = diskSimulation;
@@ -81,7 +81,7 @@ public class SimulationRunner {
         	
         	DensityGrid densityGrid = simulation.getDensityGrid();
             MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
-        //    simulationTimeStep.update(densityGrid, massFlowGrid);
+            simulationTimeStep.update(densityGrid, massFlowGrid);
             
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
@@ -129,14 +129,14 @@ public class SimulationRunner {
         massMover = new MassMover(density , massFlow, radialGrid);
     }
     
-/*    private void useTracer(){
+    private void useTracer(){
 
     	tracerSimulation = new DiskSimulation(gridFactory, initialConditions);
-	    snapshotCollection.setSimulation(tracerSimulation);
+	    densitySnapshotCollection.setSimulation(tracerSimulation);
 	    createTracerMover();
 	    createTracerFlowCalculator();
         System.out.println("Running tracer simulation...");
-        snapshotCollection.takeSnapshot();
+        densitySnapshotCollection.takeSnapshot();
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
@@ -153,14 +153,14 @@ public class SimulationRunner {
         	simulation.setCurrentTime(time);
         	
             if (time >= nextSnapshotTime) {
-                snapshotCollection.takeSnapshot();
+                densitySnapshotCollection.takeSnapshot();
                 nextSnapshotTime += snapshotInterval;
             }
         }
     	 
     }
-    */
-/*    private void createTracerMover() {
+    
+    private void createTracerMover() {
         TracerDensityGrid tracerDensity = simulation.getTracerDensityGrid();
         TracerFlowGrid tracerFlow = simulation.getTracerFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
@@ -174,7 +174,7 @@ public class SimulationRunner {
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
         tracerFlowCalculator = new TracerFlowCalculator(
                 tracerFlowGrid, radialGrid, tracerDensityGrid, viscosityGrid);
-    }*/
+    }
     
     public double getSimulationTimeStep() {
         return simulationTimeStep.getTime();
