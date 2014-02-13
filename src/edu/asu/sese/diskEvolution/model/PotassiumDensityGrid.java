@@ -12,7 +12,7 @@ public class PotassiumDensityGrid extends MidpointGrid {
 
 	    private double potassiumDensityFloor;
 
-	    public double getVolatileDensityFloor() {
+	    public double getPotassiumDensityFloor() {
 	        return potassiumDensityFloor;
 	    }
 
