@@ -10,7 +10,7 @@ import edu.asu.sese.diskEvolution.model.TemperatureCalculator;
 import edu.asu.sese.diskEvolution.model.TemperatureGrid;
 import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
-import edu.asu.sese.diskEvolution.model.VolatileDensityGrid;
+import edu.asu.sese.diskEvolution.model.WaterDensityGrid;
 import edu.asu.sese.diskEvolution.model.VolatileFlowCalculator;
 import edu.asu.sese.diskEvolution.model.VolatileFlowGrid;
 import edu.asu.sese.diskEvolution.model.VolatileMover;
@@ -161,7 +161,7 @@ public class SimulationRunner {
     }
     
     private void createVolatileMover() {
-        VolatileDensityGrid volatileDensity = simulation.getVolatileDensityGrid();
+        WaterDensityGrid volatileDensity = simulation.getVolatileDensityGrid();
         VolatileFlowGrid volatileFlow = simulation.getVolatileFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
         volatileMover = new VolatileMover(volatileDensity , volatileFlow, radialGrid);
@@ -170,7 +170,7 @@ public class SimulationRunner {
     private void createVolatileFlowCalculator() {
         VolatileFlowGrid volatileFlowGrid = simulation.getVolatileFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
-        VolatileDensityGrid volatileDensityGrid = simulation.getVolatileDensityGrid();
+        WaterDensityGrid volatileDensityGrid = simulation.getVolatileDensityGrid();
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
         volatileFlowCalculator = new VolatileFlowCalculator(
                 volatileFlowGrid, radialGrid, volatileDensityGrid, viscosityGrid);

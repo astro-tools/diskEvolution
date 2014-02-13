@@ -1,15 +1,15 @@
 package edu.asu.sese.diskEvolution.model;
 
-import edu.asu.sese.diskEvolution.model.VolatileDensityGrid;
+import edu.asu.sese.diskEvolution.model.WaterDensityGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class VolatileMover {
 
-		private VolatileDensityGrid volatileDensityGrid;
+		private WaterDensityGrid volatileDensityGrid;
 	    private VolatileFlowGrid volatileFlowGrid;
 	    private double timeStep;
 
-	    public VolatileMover(VolatileDensityGrid density, VolatileFlowGrid volatileFlow,
+	    public VolatileMover(WaterDensityGrid density, VolatileFlowGrid volatileFlow,
 	            RadialGrid radialGrid) {
 	        this.volatileDensityGrid = density;
 	        this.volatileFlowGrid = volatileFlow;

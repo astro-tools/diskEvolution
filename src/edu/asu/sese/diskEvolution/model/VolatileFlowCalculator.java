@@ -5,11 +5,11 @@ import edu.asu.sese.diskEvolution.util.RadialGrid;
 public class VolatileFlowCalculator {
 	private VolatileFlowGrid volatileFlowGrid;
     private RadialGrid radialGrid;
-    private VolatileDensityGrid volatileDensityGrid;
+    private WaterDensityGrid volatileDensityGrid;
     private ViscosityGrid viscosityGrid;
 
     public VolatileFlowCalculator(VolatileFlowGrid volatileFlowGrid,
-            RadialGrid radialGrid, VolatileDensityGrid volatileDensityGrid,
+            RadialGrid radialGrid, WaterDensityGrid volatileDensityGrid,
             ViscosityGrid viscosityGrid) {
         this.volatileFlowGrid = volatileFlowGrid;
         this.radialGrid = radialGrid;

@@ -4,7 +4,7 @@ import edu.asu.sese.diskEvolution.model.DensityGrid;
 import edu.asu.sese.diskEvolution.model.InitialConditions;
 import edu.asu.sese.diskEvolution.model.MassFlowGrid;
 import edu.asu.sese.diskEvolution.model.TemperatureGrid;
-import edu.asu.sese.diskEvolution.model.VolatileDensityGrid;
+import edu.asu.sese.diskEvolution.model.WaterDensityGrid;
 import edu.asu.sese.diskEvolution.model.VolatileFlowGrid;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.util.GridFactory;
@@ -22,7 +22,7 @@ public class DiskSimulation {
     private TemperatureGrid temperatureGrid;
     private double currentTime;
     private VolatileFlowGrid volatileFlowGrid;
-     private VolatileDensityGrid volatileDensity;
+     private WaterDensityGrid volatileDensity;
     
     public DiskSimulation(GridFactory factory, 
             InitialConditions initialConditions) {
@@ -53,7 +53,7 @@ public class DiskSimulation {
     }
     
     private void setupVolatileDensityGrid(){
-    	volatileDensity = new VolatileDensityGrid(radialGrid);
+    	volatileDensity = new WaterDensityGrid(radialGrid);
     	double cellDensity = 0.01 * PhysicalConstants.lunarMass
     			/densityGrid.getArea(10);
     	
@@ -88,7 +88,7 @@ public class DiskSimulation {
 		return temperatureGrid;
 	}
 
-	public VolatileDensityGrid getVolatileDensityGrid() {
+	public WaterDensityGrid getVolatileDensityGrid() {
 		return volatileDensity;
 	}
 	public VolatileFlowGrid getVolatileFlowGrid() {
