@@ -41,6 +41,8 @@ public class GraphicalApplication extends JFrame {
         resultsPanel = new ResultsView(runner);
         tabPane.add("Surface Density", resultsPanel);
         tracerPanel = new TracerView(runner);
+        tabPane.add("Volatiles Density", resultsPanelIII);
+        add(tabPane, BorderLayout.CENTER);
         resultsPanelII = new ResultsViewII(runner);
         tabPane.add("Temperature", resultsPanelII);
         add(tabPane, BorderLayout.CENTER);
