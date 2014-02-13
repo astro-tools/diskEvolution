@@ -19,7 +19,7 @@ public class MassMover {
         double densityFloor = densityGrid.getDensityFloor();
         for (int i = 0; i < count - 1; ++i) {
         	double mdot1 = massFlowGrid.getValue(i);
-            double mdot2 = massFlowGrid.getValue(i + 1);
+            double mdot2 = massFlowGrid.getValue(i+1);
 
             double value1 = mdot1 * timeStep;
             double value2 = mdot2 * timeStep;

@@ -46,8 +46,9 @@ public class MassFlowCalculator {
             extrapolated = 0.0;
         }
         massFlowGrid.setValue(0, extrapolated);
-        massFlowGrid.setValue(count-1, 0.0);
-       
+       if  (massFlowGrid.getValue(count -1) > 0) {
+    	   	massFlowGrid.setValue(count-1, 0.0);
+       } 
     }
 
 }
