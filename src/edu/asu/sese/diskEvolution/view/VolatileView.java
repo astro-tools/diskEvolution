@@ -9,14 +9,14 @@ import javax.swing.JPanel;
 import edu.asu.sese.diskEvolution.controller.SimulationRunner;
 import edu.asu.sese.diskEvolution.model.DensitySnapshotCollection;
 
-public class TracerView extends JPanel implements Observer {
+public class VolatileView extends JPanel implements Observer {
     private static final long serialVersionUID = 1L;
     private MassView massView;
     private DiskView diskView;
     private DensitySnapshotSelector selector;
     private DensitySnapshotCollection snapshotCollection;
 
-    public TracerView(SimulationRunner runner) {
+    public VolatileView(SimulationRunner runner) {
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.snapshotCollection = runner.getDensitySnapshotCollection();
         setupDiskView();

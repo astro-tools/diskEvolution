@@ -15,7 +15,7 @@ public class GraphicalApplication extends JFrame {
     private InitialConditionsView initialConditionsPanel;
     private SimulationRunnerView runnerPanel;
     private ResultsView resultsPanel;
-    private TracerView tracerPanel;
+    private VolatileView tracerPanel;
     private ResultsViewII resultsPanelII;
     private ResultsViewIII resultsPanelIII;
     
@@ -40,7 +40,7 @@ public class GraphicalApplication extends JFrame {
         tabPane.add("Run Simulation", runnerPanel);
         resultsPanel = new ResultsView(runner);
         tabPane.add("Surface Density", resultsPanel);
-        tracerPanel = new TracerView(runner);
+        tracerPanel = new VolatileView(runner);
         tabPane.add("Volatiles Density", resultsPanelIII);
         add(tabPane, BorderLayout.CENTER);
         resultsPanelII = new ResultsViewII(runner);

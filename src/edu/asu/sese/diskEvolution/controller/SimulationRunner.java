@@ -10,10 +10,10 @@ import edu.asu.sese.diskEvolution.model.TemperatureCalculator;
 import edu.asu.sese.diskEvolution.model.TemperatureGrid;
 import edu.asu.sese.diskEvolution.model.TemperatureSnapshotCollection;
 import edu.asu.sese.diskEvolution.model.TimeStep;
-import edu.asu.sese.diskEvolution.model.TracerDensityGrid;
-import edu.asu.sese.diskEvolution.model.TracerFlowCalculator;
-import edu.asu.sese.diskEvolution.model.TracerFlowGrid;
-import edu.asu.sese.diskEvolution.model.TracerMover;
+import edu.asu.sese.diskEvolution.model.VolatileDensityGrid;
+import edu.asu.sese.diskEvolution.model.VolatileFlowCalculator;
+import edu.asu.sese.diskEvolution.model.VolatileFlowGrid;
+import edu.asu.sese.diskEvolution.model.VolatileMover;
 import edu.asu.sese.diskEvolution.model.ViscosityCalculator;
 import edu.asu.sese.diskEvolution.model.ViscosityGrid;
 import edu.asu.sese.diskEvolution.model.ViscositySnapshotCollection;
@@ -29,7 +29,7 @@ public class SimulationRunner {
     private GridFactory gridFactory;
     private Application application;
     private DiskSimulation simulation;
-    private DiskSimulation tracerSimulation;
+    private DiskSimulation volatileSimulation;
     private InitialConditions initialConditions;
     private MassMover massMover;
     private MassFlowCalculator massFlowCalculator;
@@ -38,8 +38,8 @@ public class SimulationRunner {
     private TemperatureCalculator temperatureCalculator;
     private ViscositySnapshotCollection viscositySnapshotCollection;
     private ViscosityCalculator viscosityCalculator;
-    private TracerFlowCalculator tracerFlowCalculator;
-    private TracerMover tracerMover;
+    private VolatileFlowCalculator volatileFlowCalculator;
+    private VolatileMover volatileMover;
 	
 	public SimulationRunner(Application diskSimulation) {
 	    this.application = diskSimulation;
@@ -131,24 +131,24 @@ public class SimulationRunner {
     
     private void useTracer(){
 
-    	tracerSimulation = new DiskSimulation(gridFactory, initialConditions);
-	    densitySnapshotCollection.setSimulation(tracerSimulation);
-	    createTracerMover();
-	    createTracerFlowCalculator();
-        System.out.println("Running tracer simulation...");
+    	volatileSimulation = new DiskSimulation(gridFactory, initialConditions);
+	    densitySnapshotCollection.setSimulation(volatileSimulation);
+	    createVolatileMover();
+	    createVolatileFlowCalculator();
+        System.out.println("Running volatile simulation...");
         densitySnapshotCollection.takeSnapshot();
         double time = 0.0;
         double nextSnapshotTime = snapshotInterval;
         while (time < totalDuration){
-        	tracerFlowCalculator.calculate();
+        	volatileFlowCalculator.calculate();
         	
         	DensityGrid densityGrid = simulation.getDensityGrid();
             MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
             simulationTimeStep.update(densityGrid, massFlowGrid);
             
         	double timeStep = simulationTimeStep.getTime();
-			tracerMover.setTimeStep(timeStep);
-        	tracerMover.moveTracer();
+			volatileMover.setTimeStep(timeStep);
+        	volatileMover.moveVolatile();
         	time +=  timeStep;
         	simulation.setCurrentTime(time);
         	
@@ -160,20 +160,20 @@ public class SimulationRunner {
     	 
     }
     
-    private void createTracerMover() {
-        TracerDensityGrid tracerDensity = simulation.getTracerDensityGrid();
-        TracerFlowGrid tracerFlow = simulation.getTracerFlowGrid();
+    private void createVolatileMover() {
+        VolatileDensityGrid volatileDensity = simulation.getVolatileDensityGrid();
+        VolatileFlowGrid volatileFlow = simulation.getVolatileFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
-        tracerMover = new TracerMover(tracerDensity , tracerFlow, radialGrid);
+        volatileMover = new VolatileMover(volatileDensity , volatileFlow, radialGrid);
     }
 
-    private void createTracerFlowCalculator() {
-        TracerFlowGrid tracerFlowGrid = simulation.getTracerFlowGrid();
+    private void createVolatileFlowCalculator() {
+        VolatileFlowGrid volatileFlowGrid = simulation.getVolatileFlowGrid();
         RadialGrid radialGrid = simulation.getRadialGrid();
-        TracerDensityGrid tracerDensityGrid = simulation.getTracerDensityGrid();
+        VolatileDensityGrid volatileDensityGrid = simulation.getVolatileDensityGrid();
         ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
-        tracerFlowCalculator = new TracerFlowCalculator(
-                tracerFlowGrid, radialGrid, tracerDensityGrid, viscosityGrid);
+        volatileFlowCalculator = new VolatileFlowCalculator(
+                volatileFlowGrid, radialGrid, volatileDensityGrid, viscosityGrid);
     }
     
     public double getSimulationTimeStep() {

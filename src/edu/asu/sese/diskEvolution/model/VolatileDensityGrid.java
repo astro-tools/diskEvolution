@@ -3,44 +3,44 @@ package edu.asu.sese.diskEvolution.model;
 import edu.asu.sese.diskEvolution.util.MidpointGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
-public class TracerDensityGrid extends MidpointGrid {
+public class VolatileDensityGrid extends MidpointGrid {
 
 	    
-	    public TracerDensityGrid(RadialGrid radialGrid) {
+	    public VolatileDensityGrid(RadialGrid radialGrid) {
 		super(radialGrid);
 	}
 
-		private double tracerDensityFloor;
+		private double volatileDensityFloor;
 
-	    public double getTracerDensityFloor() {
-	        return tracerDensityFloor;
+	    public double getVolatileDensityFloor() {
+	        return volatileDensityFloor;
 	    }
 
 	    
-	    public TracerDensityGrid(DensityGrid densityGrid) {
+	    public VolatileDensityGrid(DensityGrid densityGrid) {
 	        super(densityGrid.getRadialGrid());
 	        for (int i = 0; i < zoneCount; ++i) {
 	            setValue(i, densityGrid.getValue(i));
 	        }
 	    }
 
-	    public double getTotalTracerMass() {
-	        double tracerMass = 0.0;
+	    public double getTotalVolatileMass() {
+	        double volatileMass = 0.0;
 	        for (int i = 0; i < zoneCount; ++i) {
-	            tracerMass += getValue(i) * getArea(i);
+	            volatileMass += getValue(i) * getArea(i);
 	        }
-	        return tracerMass;
+	        return volatileMass;
 	    }
 	    
-	    public double calculateTracerDensityFloor(double density0, double radius0, 
+	    public double calculateVolatileDensityFloor(double density0, double radius0, 
 	            double exponent, double rin, double rout) {
-	        double totalMass = calculateTotalTracerMass(density0, radius0, exponent, rin, rout);
+	        double totalMass = calculateTotalVolatileMass(density0, radius0, exponent, rin, rout);
 	        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
-	        tracerDensityFloor = 0.0001 * totalMass / area;
-	        return tracerDensityFloor;
+	        volatileDensityFloor = 0.0001 * totalMass / area;
+	        return volatileDensityFloor;
 	    }
 	    
-	    private double calculateTotalTracerMass(double density0, double radius0, 
+	    private double calculateTotalVolatileMass(double density0, double radius0, 
 	            double exponent, double rin, double rout) {
 	        double area = rout * rout * Math.pow(rout / radius0, -exponent);
 	        area -= rin * rin * Math.pow(rin / radius0, -exponent);

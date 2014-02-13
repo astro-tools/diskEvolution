@@ -2,12 +2,12 @@ package edu.asu.sese.diskEvolution.model;
 
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
-public class TracerFlowGrid {
+public class VolatileFlowGrid {
 
 		private int gridCount;
 		private double[] value;
 
-		public TracerFlowGrid(RadialGrid radialGrid) {
+		public VolatileFlowGrid(RadialGrid radialGrid) {
 			gridCount = radialGrid.getIntervalCount()+1;
 			value = new double [gridCount];
 		}
