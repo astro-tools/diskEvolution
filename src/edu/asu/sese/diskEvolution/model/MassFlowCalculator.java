@@ -39,16 +39,22 @@ public class MassFlowCalculator {
                     * difference / deltaR;
             massFlowGrid.setValue(i, value);
         }
-
-        double extrapolated = 2 * massFlowGrid.getValue(1)
-                - massFlowGrid.getValue(2);
+        double deltaR = radialGrid.getBoundaryPoint(1) - radialGrid.getBoundaryPoint(0);
+        double a = 1 + (deltaR/(2 * radialGrid.getBoundaryPoint(0)));
+        double extrapolated = 3 * Math.PI * densityGrid.getValue(0) * viscosityGrid.getValue(0);
+               extrapolated *= 2 * radialGrid.getBoundaryPoint(0) / (deltaR);
+               extrapolated *= Math.sqrt(a);
+        
         if (extrapolated < 0.0) {
             extrapolated = 0.0;
         }
         massFlowGrid.setValue(0, extrapolated);
+        
        if  (massFlowGrid.getValue(count -1) > 0) {
     	   	massFlowGrid.setValue(count-1, 0.0);
-       } 
+       }
+       
+    
     }
 
 }
