@@ -24,9 +24,9 @@ public class VolatileMover {
 	    public void moveVolatile() {
 	        int count = volatileFlowGrid.getCount();
 	        double waterDensityFloor = waterDensityGrid.getWaterDensityFloor();
-	        double carbondioxidedensityFloor = carbondioxideDensityGrid.getCarbondioxideDensityFloor();
-	        double sodiumdensityFloor = sodiumDensityGrid.getSodiumrDensityFloor();
-	        double potassiumdensityFloor = potassiumDensityGrid.getPotassiumDensityFloor();
+	        double carbondioxideDensityFloor = carbondioxideDensityGrid.getCarbondioxideDensityFloor();
+	        double sodiumDensityFloor = sodiumDensityGrid.getSodiumrDensityFloor();
+	        double potassiumDensityFloor = potassiumDensityGrid.getPotassiumDensityFloor();
 	        for (int i = 0; i < count - 1; ++i) {
 	        	double mdot1 = volatileFlowGrid.getValue(i);
 	            double mdot2 = volatileFlowGrid.getValue(i + 1);
@@ -39,7 +39,45 @@ public class VolatileMover {
 	            if (density < waterDensityFloor) density = waterDensityFloor;
 	            waterDensityGrid.setValue(i, density);
 	        }
+	        
+	        for (int i = 0; i < count - 1; ++i) {
+	        	double mdot1 = volatileFlowGrid.getValue(i);
+	            double mdot2 = volatileFlowGrid.getValue(i + 1);
 
+	            double value1 = mdot1 * timeStep;
+	            double value2 = mdot2 * timeStep;
+	            double difference = value2 - value1;
+	            double density = carbondioxideDensityGrid.getValue(i);
+	            density += difference / carbondioxideDensityGrid.getArea(i);
+	            if (density < carbondioxideDensityFloor) density = carbondioxideDensityFloor;
+	            carbondioxideDensityGrid.setValue(i, density);
+	        }
+
+	        for (int i = 0; i < count - 1; ++i) {
+	        	double mdot1 = volatileFlowGrid.getValue(i);
+	            double mdot2 = volatileFlowGrid.getValue(i + 1);
+
+	            double value1 = mdot1 * timeStep;
+	            double value2 = mdot2 * timeStep;
+	            double difference = value2 - value1;
+	            double density = sodiumDensityGrid.getValue(i);
+	            density += difference / sodiumDensityGrid.getArea(i);
+	            if (density < sodiumDensityFloor) density = sodiumDensityFloor;
+	            sodiumDensityGrid.setValue(i, density);
+	        }
+	        
+	        for (int i = 0; i < count - 1; ++i) {
+	        	double mdot1 = volatileFlowGrid.getValue(i);
+	            double mdot2 = volatileFlowGrid.getValue(i + 1);
+
+	            double value1 = mdot1 * timeStep;
+	            double value2 = mdot2 * timeStep;
+	            double difference = value2 - value1;
+	            double density = potassiumDensityGrid.getValue(i);
+	            density += difference / potassiumDensityGrid.getArea(i);
+	            if (density < potassiumDensityFloor) density = potassiumDensityFloor;
+	            potassiumDensityGrid.setValue(i, density);
+	        }
 	    }
 	public double getTimeStep() {
 		return timeStep;

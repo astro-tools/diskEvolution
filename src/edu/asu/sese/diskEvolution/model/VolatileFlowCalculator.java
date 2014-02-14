@@ -1,19 +1,30 @@
 package edu.asu.sese.diskEvolution.model;
 
+import edu.asu.sese.diskEvolution.model.WaterDensityGrid;
+import edu.asu.sese.diskEvolution.model.CarbondioxideDensityGrid;
+import edu.asu.sese.diskEvolution.model.SodiumDensityGrid;
+import edu.asu.sese.diskEvolution.model.PotassiumDensityGrid;
 import edu.asu.sese.diskEvolution.util.RadialGrid;
 
 public class VolatileFlowCalculator {
-	private VolatileFlowGrid volatileFlowGrid;
+
+    private VolatileFlowGrid volatileFlowGrid;
     private RadialGrid radialGrid;
-    private WaterDensityGrid volatileDensityGrid;
+    private WaterDensityGrid waterDensityGrid;
+    private CarbondioxideDensityGrid carbondioxideDensityGrid;
+    private SodiumDensityGrid sodiumDensityGrid;
+    private PotassiumDensityGrid potassiumDensityGrid;
     private ViscosityGrid viscosityGrid;
 
     public VolatileFlowCalculator(VolatileFlowGrid volatileFlowGrid,
-            RadialGrid radialGrid, WaterDensityGrid volatileDensityGrid,
+            RadialGrid radialGrid, WaterDensityGrid waterDensityGrid,
             ViscosityGrid viscosityGrid) {
         this.volatileFlowGrid = volatileFlowGrid;
         this.radialGrid = radialGrid;
-        this.volatileDensityGrid = volatileDensityGrid;
+        this.waterDensityGrid = waterDensityGrid;
+        this.carbondioxideDensityGrid = carbondioxideDensityGrid;
+        this.sodiumDensityGrid = sodiumDensityGrid;
+        this.potassiumDensityGrid = potassiumDensityGrid;
         this.viscosityGrid = viscosityGrid;
     }
 
@@ -21,14 +32,14 @@ public class VolatileFlowCalculator {
         int count = volatileFlowGrid.getCount();
         for (int i=1; i<count-1; ++i) {
             double outerMidpoint = radialGrid.getMidpoint(i);
-            double density = volatileDensityGrid.getValue(i);
+            double waterDensity = waterDensityGrid.getValue(i);
 			double viscosity = viscosityGrid.getValue(i);
-			double difference = Math.sqrt(outerMidpoint) * density * viscosity;
+			double difference = Math.sqrt(outerMidpoint) * waterDensity * viscosity;
 
             double innerMidpoint = radialGrid.getMidpoint(i-1);
-            density = volatileDensityGrid.getValue(i-1);
+            waterDensity = waterDensityGrid.getValue(i-1);
             viscosity = viscosityGrid.getValue(i-1);
-            difference -= Math.sqrt(innerMidpoint) * density * viscosity;
+            difference -= Math.sqrt(innerMidpoint) * waterDensity * viscosity;
 
             double deltaR = outerMidpoint - innerMidpoint;
             double boundaryPoint = radialGrid.getBoundaryPoint(i);
@@ -44,8 +55,9 @@ public class VolatileFlowCalculator {
             extrapolated = 0.0;
         }
         volatileFlowGrid.setValue(0, extrapolated);
-        volatileFlowGrid.setValue(count-1, 0.0);
-       
+       if  (volatileFlowGrid.getValue(count -1) > 0) {
+    	   	volatileFlowGrid.setValue(count-1, 0.0);
+       } 
     }
 
 }
