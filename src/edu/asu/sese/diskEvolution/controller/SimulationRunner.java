@@ -79,9 +79,9 @@ public class SimulationRunner {
         while (time < totalDuration){
         	massFlowCalculator.calculate();
         	
-        	DensityGrid densityGrid = simulation.getDensityGrid();
-            MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
-            simulationTimeStep.update(densityGrid, massFlowGrid);
+        	ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
+            RadialGrid radialGrid = simulation.getRadialGrid();
+            simulationTimeStep.update(viscosityGrid, radialGrid);
             
         	double timeStep = simulationTimeStep.getTime();
 			massMover.setTimeStep(timeStep);
@@ -142,9 +142,9 @@ public class SimulationRunner {
         while (time < totalDuration){
         	volatileFlowCalculator.calculate();
         	
-        	DensityGrid densityGrid = simulation.getDensityGrid();
-            MassFlowGrid massFlowGrid = simulation.getMassFlowGrid();
-            simulationTimeStep.update(densityGrid, massFlowGrid);
+        	ViscosityGrid viscosityGrid = simulation.getViscosityGrid();
+            RadialGrid radialGrid = simulation.getRadialGrid();
+            simulationTimeStep.update(viscosityGrid, radialGrid);
             
         	double timeStep = simulationTimeStep.getTime();
 			volatileMover.setTimeStep(timeStep);
