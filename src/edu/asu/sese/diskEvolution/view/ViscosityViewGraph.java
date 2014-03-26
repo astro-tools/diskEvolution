@@ -24,7 +24,7 @@ public class ViscosityViewGraph {
     private void createViscosityGraphs() {
         MidpointAdaptor radialGrid = new MidpointAdaptor(viscosityGrid.getRadialGrid());
         String domainLabel = "r";
-        String rangeLabel = "V";
+        String rangeLabel = "ν";
         domainUnit = new Unit("R⊕", "R<sub>⊕</sub>", 
                 PhysicalConstants.earthRadiusInCm);
         rangeUnit = new Unit("cm²/s", "cm²/s", 1.0);
