@@ -29,7 +29,7 @@ public class DiskViewGraph {
                 PhysicalConstants.earthRadiusInCm);
         rangeUnit = new Unit("g/cm²", "g/cm²", 1.0);      
         plot = new PlotView(radialGrid, densityGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
-        plot.makeRangeAxisLogarithmic();
+        plot.setRangeAxisLogarithmic(0, 1e8);
    
 
     }

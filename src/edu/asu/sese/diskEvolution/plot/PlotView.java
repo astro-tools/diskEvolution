@@ -35,6 +35,8 @@ public class PlotView {
     public ChartPanel getChartPanel() {
         return chartPanel;
     }
+    
+    
         
     public void setAxisLimits(double domainMin, double domainMax, 
             double rangeMin, double rangeMax) {
@@ -46,6 +48,7 @@ public class PlotView {
         range.setRange(rangeMin / rangeUnit.getScale(),
                 rangeMax / rangeUnit.getScale());
     }
+    
 
     public void updateData(GridInterface domainGrid, 
             GridInterface rangeGrid) {
@@ -90,6 +93,17 @@ public class PlotView {
         final XYPlot plot = chart.getXYPlot();
         String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
         final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeLabelText);
+        rangeAxis.setLog10TickLabelsFlag(true);
+        rangeAxis.setAllowNegativesFlag(true);
+        plot.setRangeAxis(rangeAxis);
+    }
+    
+    public void setRangeAxisLogarithmic(double lower, double upper) {
+        final XYPlot plot = chart.getXYPlot();
+        String rangeLabelText = makeLabelWithUnit(rangeLabel, rangeUnit);
+        final LogarithmicAxis rangeAxis = new LogarithmicAxis(rangeLabelText);
+        rangeAxis.setAutoRange(false);
+        rangeAxis.setRange(lower, upper);
         rangeAxis.setLog10TickLabelsFlag(true);
         rangeAxis.setAllowNegativesFlag(true);
         plot.setRangeAxis(rangeAxis);

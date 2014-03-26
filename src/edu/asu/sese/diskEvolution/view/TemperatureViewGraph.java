@@ -29,7 +29,7 @@ public class TemperatureViewGraph {
                 PhysicalConstants.earthRadiusInCm);
         rangeUnit = new Unit("K", "K", 1.0);
         plot = new PlotView(radialGrid, temperatureGrid, domainLabel, rangeLabel, domainUnit, rangeUnit);
-        plot.makeRangeAxisLogarithmic();
+        plot.setRangeAxisLogarithmic(0, 10000);
 
     }
 
