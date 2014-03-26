@@ -35,7 +35,7 @@ public class DensityGrid extends MidpointGrid {
       double exponent, double rin, double rout) {
        double totalMass = calculateTotalMass(density0, radius0, exponent, rin, rout); 
        double area = Math.PI * Math.pow(radialGrid.getMaximumRadius(), 2);
-      densityFloor = 0.01 * totalMass / area;
+      densityFloor = 0.00* totalMass / area;
        return densityFloor;
    }
     

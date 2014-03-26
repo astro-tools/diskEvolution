@@ -28,10 +28,10 @@ public class TimeStep {
 
     private double calculateMaximumTimeStep(ViscosityGrid viscosityGrid, RadialGrid radialGrid,
            double newTimeStep) {
-        for (int i = 0; i < viscosityGrid.getCount(); ++i) {
+        for (int i = 1; i < viscosityGrid.getCount()-1; ++i) {
             double viscosity = viscosityGrid.getValue(i);
             
-            
+             
             double outerMidpoint = radialGrid.getMidpoint(i);
             double innerMidpoint = radialGrid.getMidpoint(i-1);
             double deltaR = outerMidpoint - innerMidpoint;
