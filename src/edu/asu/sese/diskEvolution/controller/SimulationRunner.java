@@ -176,9 +176,11 @@ public class SimulationRunner {
                 volatileFlowGrid, radialGrid, volatileDensityGrid, viscosityGrid);
     }
     
-    public double getSimulationTimeStep() {
+   public double getSimulationTimeStep() {
         return simulationTimeStep.getTime();
-    }
+    } 
+    
+
 
     public void setSimulationTimeStep(double timeStep) {
         simulationTimeStep.setTime(timeStep);

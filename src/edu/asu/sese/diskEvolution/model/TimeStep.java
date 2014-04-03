@@ -16,16 +16,16 @@ public class TimeStep {
     public void update(ViscosityGrid viscosityGrid, RadialGrid radialGrid) {        
         double newTimeStep = 2.0 * time;
         
-        newTimeStep 
-            = calculateMaximumTimeStep(viscosityGrid, radialGrid, newTimeStep);
+       newTimeStep 
+            =  3000 ; // calculateMaximumTimeStep(viscosityGrid, radialGrid, newTimeStep);
      
         if (newTimeStep > 1.001 * time) { 
             time *= 1.001;
         }else {
             time = newTimeStep;
         }
-    }
-
+    }}
+/*
     private double calculateMaximumTimeStep(ViscosityGrid viscosityGrid, RadialGrid radialGrid,
            double newTimeStep) {
         for (int i = 1; i < viscosityGrid.getCount()-1; ++i) {
@@ -44,3 +44,4 @@ public class TimeStep {
         return newTimeStep;
     }
 }
+*/
